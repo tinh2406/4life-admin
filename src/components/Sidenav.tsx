@@ -1,18 +1,26 @@
-import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
-import linearGradient from "../assets/theme/functions/linearGradient";
+import {
+	Avatar,
+	Box,
+	Divider,
+	Drawer,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	Typography,
+	IconButton,
+	Tooltip
+} from "@mui/material";
 import colors from "../assets/theme/base/colors";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-import logoMini from "../assets/images/logo-mini.png";
-import pxToRem from "../assets/theme/functions/pxToRem";
-import borders from "../assets/theme/base/borders";
-import typography from "../assets/theme/base/typography";
 import routes from "../constants/routes";
 import { useMemo } from "react";
-import shadows from "@mui/material/styles/shadows";
 import { Logout } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/auth/slice";
+import { AuthStateType } from "../store/auth/type";
+
 const LinkItem = ({
 	active,
 	icon,
@@ -29,196 +37,256 @@ const LinkItem = ({
 			component={Link}
 			to={route}
 			aria-label={name}
-			sx={{ p: 0, textDecoration: "none", color: "inherit" }}
+			sx={{ p: 0, textDecoration: "none", color: "inherit", mb: 0.5 }}
 		>
-				<Box
-					className="linkitem"
-					sx={({ transitions }) => ({
-						background: active
-							? linearGradient(colors.gradients.primary.main, colors.gradients.primary.state)
-							: colors.transparent.main,
-						color: active ? colors.white.main : colors.black.main,
-						display: "flex",
-						alignItems: "center",
-						width: "100%",
-						padding: `${pxToRem(8)} ${pxToRem(8)}`,
-						margin: `${pxToRem(1.5)} ${pxToRem(6)}`,
-						borderRadius: borders.borderRadius.md,
-						cursor: "pointer",
-						userSelect: "none",
-						whiteSpace: "nowrap",
-						boxShadow: active ? shadows[2] : "none",
-						transition: transitions.create(["box-shadow", "padding", "background-color"], {
-							easing: transitions.easing.easeInOut,
-							duration: transitions.duration.standard
-						}),
-
-						"&:hover, &:focus": {
-							backgroundColor: colors.grey[400]
+			<Box
+				sx={{
+					display: "flex",
+					alignItems: "center",
+					width: "100%",
+					px: 1.75,
+					py: 1.1,
+					borderRadius: "12px",
+					cursor: "pointer",
+					userSelect: "none",
+					backgroundColor: active ? "rgba(88, 101, 242, 0.15)" : "transparent",
+					color: active ? colors.primary.main : colors.text.main,
+					transition: "all 200ms ease-in-out",
+					"&:hover": {
+						backgroundColor: active ? "rgba(88, 101, 242, 0.15)" : "rgba(255, 255, 255, 0.08)",
+						color: active ? colors.primary.main : colors.white.main,
+						"& .linkitem-icon": {
+							color: active ? colors.primary.main : colors.white.main
 						}
-					})}
+					}
+				}}
+			>
+				<ListItemIcon
+					className="linkitem-icon"
+					sx={{
+						minWidth: 32,
+						color: active ? colors.primary.main : colors.text.main,
+						display: "grid",
+						placeItems: "center",
+						transition: "color 200ms ease-in-out",
+						"& svg": {
+							fontSize: 20
+						}
+					}}
 				>
-					<ListItemIcon
-						sx={({ transitions }) => ({
-							minWidth: pxToRem(32),
-							minHeight: pxToRem(32),
-							color: colors.white.main,
-							borderRadius: borders.borderRadius.md,
-							display: "grid",
-							placeItems: "center",
-							transition: transitions.create("margin", {
-								easing: transitions.easing.easeInOut,
-								duration: transitions.duration.standard
-							}),
+					{icon}
+				</ListItemIcon>
 
-							"& svg, svg g": {
-								color: active ? colors.white.main : colors.black.main
-							}
-						})}
-					>
-						{icon}
-					</ListItemIcon>
+				<ListItemText
+					primary={name}
+					primaryTypographyProps={{
+						fontSize: 14.7,
+						fontWeight: active ? 600 : 400,
+						lineHeight: "21px"
+					}}
+				/>
 
-					<ListItemText
-						className="linkitem-text"
-						primary={name}
-						sx={({ transitions }) => ({
-							opacity: 0,
-							display: "none",
-							marginLeft: pxToRem(10),
-							transition: transitions.create(["opacity", "margin"], {
-								easing: transitions.easing.easeInOut,
-								duration: transitions.duration.standard
-							}),
-
-							"& span": {
-								fontWeight: active ? typography.fontWeightRegular : typography.fontWeightLight,
-								fontSize: typography.size.sm,
-								lineHeight: 0
-							}
-						})}
+				{active && (
+					<Box
+						sx={{
+							width: 6,
+							height: 6,
+							borderRadius: "50%",
+							backgroundColor: colors.primary.main,
+							flexShrink: 0
+						}}
 					/>
-				</Box>
-			</ListItem>
+				)}
+			</Box>
+		</ListItem>
 	);
 };
 
 const Sidenav = () => {
 	const location = useLocation();
+	const dispatch = useDispatch();
+	const user = useSelector((state: AuthStateType) => state.user);
+
 	const activeRoute = useMemo(() => {
 		const collapseLink = location.pathname.split("/")[1];
 		if (routes.find(r => r.route === `/${collapseLink}`)) return `/${collapseLink}`;
 		return "/";
 	}, [location]);
-	const dispatch = useDispatch();
+
 	return (
 		<Drawer
 			variant="permanent"
 			PaperProps={{
-				sx: ({ breakpoints, transitions }) => {
-					return {
-						overflowX: "hidden",
-						width: 60,
-						height: 60,
-						boxShadow: shadows[4],
-						background: linearGradient(colors.gradients.light.main, colors.gradients.light.state),
-						transition: transitions.create("width", {
-							easing: transitions.easing.sharp,
-							duration: transitions.duration.shorter
-						}),
-
-						":hover": {
-							width: 250,
-							height: "calc(100vh - 2rem)",
-							".logo": {
-								background: `url(${logo})`,
-								backgroundSize: 90,
-								backgroundRepeat: "no-repeat",
-								backgroundPosition: "left",
-								mx: 2
-							},
-							".linkitem": {
-								padding: `${pxToRem(8)} ${pxToRem(10)}`,
-								margin: `${pxToRem(1.5)} ${pxToRem(16)}`
-							},
-							".linkitem-text": {
-								opacity: 1,
-								display: "block"
-							}
-						},
-						[breakpoints.up("sm")]: {
-							height: "calc(100vh - 2rem)",
-						},
-						[breakpoints.up("lg")]: {
-							width: 250,
-							".logo": {
-								background: `url(${logo})`,
-								backgroundSize: 90,
-								backgroundRepeat: "no-repeat",
-								backgroundPosition: "left",
-								mx: 2
-							},
-							".linkitem": {
-								padding: `${pxToRem(8)} ${pxToRem(10)}`,
-								margin: `${pxToRem(1.5)} ${pxToRem(16)}`
-							},
-							".linkitem-text": {
-								opacity: 1,
-								display: "block"
-							}
+				sx: ({ breakpoints }) => ({
+					width: 256,
+					height: "100vh",
+					position: "fixed",
+					top: 0,
+					left: 0,
+					backgroundColor: colors.dark.main,             // #202024
+					borderRight: `1px solid rgba(255, 255, 255, 0.06)`,
+					boxShadow: "none",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "space-between",
+					boxSizing: "border-box",
+					overflowX: "hidden",
+					overflowY: "auto",
+					zIndex: 1200,
+					[breakpoints.down("md")]: {
+						width: 72,
+						"& .linkitem-text, & .logo-text, & .user-profile-info, & .nav-section-title": {
+							display: "none"
 						}
-					};
-				}
+					}
+				})
 			}}
 		>
-			<Box component={NavLink} to="/" display="flex" alignItems="center">
+			<Box sx={{ px: 2, pt: 2.5 }}>
+				{/* Brand Header */}
 				<Box
-					sx={({ transitions }) => ({
-						mt: 2,
-						height: 20,
-						width: "100%",
-						background: `url(${logoMini})`,
-						backgroundSize: 40,
-						backgroundRepeat: "no-repeat",
-						backgroundPosition: "left",
-						mx: 1.2,
-						transition: transitions.create("margin", {
-							easing: transitions.easing.sharp,
-							duration: transitions.duration.shorter
-						})
-					})}
-					className="logo"
-				/>
-			</Box>
-			<Divider light />
-			<List
-				sx={{
-					height: "100%"
-				}}
-			>
-				{routes.map(route => (
-					<LinkItem
-						icon={route.icon}
-						name={route.name}
-						key={route.key}
-						route={route.route}
-						active={route.route === activeRoute}
-					/>
-				))}
-				<div
-					onClick={() => {
-						dispatch(logout());
-					}}
-					style={{
-						position: "absolute",
-						bottom: 10,
-						width: "100%"
+					component={NavLink}
+					to="/"
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						gap: 1.5,
+						textDecoration: "none",
+						px: 1,
+						pb: 2.5
 					}}
 				>
-					<LinkItem icon={<Logout fontSize={"small"} />} name="Sign out" route="/login" />
-				</div>
-			</List>
+					<Box
+						component="img"
+						src={logo}
+						alt="4LIFE"
+						sx={{
+							height: 32,
+							width: "auto",
+							objectFit: "contain"
+						}}
+					/>
+					<Box className="logo-text" display="flex" alignItems="center" gap={1}>
+						<Box
+							sx={{
+								fontSize: 10,
+								fontWeight: 700,
+								textTransform: "uppercase",
+								letterSpacing: "0.06em",
+								px: 1,
+								py: 0.25,
+								borderRadius: "8px",
+								backgroundColor: "rgba(88, 101, 242, 0.15)",
+								color: colors.primary.main
+							}}
+						>
+							Admin
+						</Box>
+					</Box>
+				</Box>
+
+				<Divider sx={{ my: 1.5, borderColor: "rgba(255, 255, 255, 0.06)" }} />
+
+				{/* Section Label */}
+				<Typography
+					className="nav-section-title"
+					variant="overline"
+					sx={{
+						px: 1.5,
+						display: "block",
+						color: colors.text.main,
+						fontSize: 10.5,
+						fontWeight: 700,
+						letterSpacing: "0.08em",
+						mb: 1
+					}}
+				>
+					Operations
+				</Typography>
+
+				{/* Navigation Links */}
+				<List sx={{ p: 0 }}>
+					{routes.map(route => (
+						<LinkItem
+							icon={route.icon}
+							name={route.name}
+							key={route.key}
+							route={route.route}
+							active={route.route === activeRoute}
+						/>
+					))}
+				</List>
+			</Box>
+
+			{/* User Profile & Logout Footer */}
+			<Box sx={{ px: 2, pb: 2.5 }}>
+				<Divider sx={{ my: 1.5, borderColor: "rgba(255, 255, 255, 0.06)" }} />
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "space-between",
+						p: 1.25,
+						borderRadius: "12px",
+						backgroundColor: "rgba(255, 255, 255, 0.06)",
+						border: "none"
+					}}
+				>
+					<Box display="flex" alignItems="center" gap={1.25} minWidth={0}>
+						<Avatar
+							src={user?.avatar}
+							alt={user?.name || "Admin"}
+							sx={{
+								width: 34,
+								height: 34,
+								fontSize: 13,
+								fontWeight: 600,
+								bgcolor: colors.primary.main,
+								color: colors.white.main
+							}}
+						>
+							{user?.name ? user.name.charAt(0).toUpperCase() : "A"}
+						</Avatar>
+						<Box className="user-profile-info" minWidth={0}>
+							<Typography
+								variant="body2"
+								fontWeight={600}
+								color={colors.white.main}
+								noWrap
+								sx={{ fontSize: 13, lineHeight: 1.2 }}
+							>
+								{user?.name || "Administrator"}
+							</Typography>
+							<Typography
+								variant="caption"
+								color={colors.text.main}
+								noWrap
+								sx={{ fontSize: 11, display: "block" }}
+							>
+								{user?.email || "Super Admin"}
+							</Typography>
+						</Box>
+					</Box>
+
+					<Tooltip title="Sign Out">
+						<IconButton
+							size="small"
+							onClick={() => dispatch(logout())}
+							sx={{
+								color: colors.text.main,
+								"&:hover": {
+									color: colors.error.main,
+									backgroundColor: "rgba(237, 66, 69, 0.15)"
+								}
+							}}
+						>
+							<Logout fontSize="small" />
+						</IconButton>
+					</Tooltip>
+				</Box>
+			</Box>
 		</Drawer>
 	);
 };
+
 export default Sidenav;

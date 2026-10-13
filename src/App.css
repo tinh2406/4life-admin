@@ -1,8 +1,47 @@
-body,#root {
+/**
+ * Discord Design System — App CSS
+ * Dark theme baseline, custom scrollbar, selection color
+ */
+:root {
+  --font-sans: "gg sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, #root {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
-  background-color: "#f0f2f5";
+  background-color: #060A0B;
+  font-family: var(--font-sans);
+  color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(88, 101, 242, 0.3);
+  color: #FFFFFF;
+}
+
+/* Discord-style custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2C2F33;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #727377;
 }

@@ -1,32 +1,33 @@
+/**
+ * Discord Design System — Button Root
+ * Standard (12px) border-radius, 200ms transitions, disabled at 50% opacity
+ */
 import typography from "../../base/typography";
 import borders from "../../base/borders";
-
-// Material Dashboard 2 React Helper Functions
 import pxToRem from "../../functions/pxToRem";
 import { CSSInterpolation } from "@mui/styled-engine";
 
-const { fontWeightBold, size } = typography;
+const { size } = typography;
 const { borderRadius } = borders;
 
-const root:CSSInterpolation = {
+const root: CSSInterpolation = {
   display: "inline-flex",
   justifyContent: "center",
   alignItems: "center",
-  fontSize: size.xs,
-  fontWeight: fontWeightBold,
-  borderRadius: borderRadius.lg,
-  padding: `${pxToRem(6.302)} ${pxToRem(16.604)}`,
-  lineHeight: 1.4,
+  fontSize: size.lg,                    // 16px — Button / UI Text
+  fontWeight: typography.fontWeightRegular,
+  borderRadius: borderRadius.md,        // 12px — Standard
+  padding: `${pxToRem(10)} ${pxToRem(24)}`,
+  lineHeight: 1.5,                      // 24px
   textAlign: "center",
-  textTransform: "uppercase",
+  textTransform: "none",
   userSelect: "none",
-  backgroundSize: "150% !important",
-  backgroundPositionX: "25% !important",
-  transition: "all 150ms ease-in",
+  transition: "all 200ms ease-in-out",
 
   "&:disabled": {
-    pointerEvent: "none",
-    opacity: 0.65,
+    pointerEvents: "none",
+    opacity: 0.5,
+    cursor: "not-allowed",
   },
 
   "& .material-icons": {

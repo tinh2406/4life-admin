@@ -1,4 +1,4 @@
-import { Box, Card, CircularProgress, Divider, Grid, ListItemButton, Modal, Typography } from "@mui/material";
+import { Box, Card, CircularProgress, Grid, ListItemButton, Modal, Typography } from "@mui/material";
 import { Fragment, useCallback, useMemo, useRef, useState } from "react";
 import { useInfiniteScroll } from "../../shared/hooks/useInfiniteScroll";
 import { Amenity } from "./api/Amenity";
@@ -77,46 +77,71 @@ const Amenities = () => {
 		<Box pb={3}>
 			<Grid container spacing={6}>
 				<Grid item xs={12} md={6}>
-					<Card>
+					<Card
+						sx={{
+							backgroundColor: colors.dark.main,
+							border: `1px solid ${colors.grey[300]}`,
+							borderRadius: 2.5,
+							boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)"
+						}}
+					>
 						<Box
 							ref={boxRef}
 							onScroll={handleScroll}
 							minHeight={500}
 							p={2}
-							sx={{ overflow: "scroll", height: "calc(100vh - 12rem)" }}
+							sx={{ overflowY: "auto", height: "calc(100vh - 12rem)" }}
 						>
 							{amenities?.map(item => (
 								<Fragment key={item.id}>
 									<ListItemButton
-										style={{
+										sx={{
 											width: "100%",
-											borderRadius: borders.borderRadius.md,
-											backgroundColor: item.id === id ? "rgba(255, 56, 92, 0.08)" : "transparent",
-											padding: "4px 8px",
-											transition: "background-color 150ms ease"
+											borderRadius: 2,
+											backgroundColor: item.id === id ? "#fff1f2" : "transparent",
+											border: item.id === id ? "1px solid rgba(225, 29, 72, 0.15)" : "1px solid transparent",
+											padding: "6px 12px",
+											my: 0.25,
+											transition: "all 150ms ease",
+											"&:hover": {
+												backgroundColor: item.id === id ? "#fff1f2" : colors.grey[100]
+											}
 										}}
 										component="button"
 										onClick={() => {
 											handleSelect(item);
 										}}
 									>
-										<LazyLoadImage
-											src={item.icon}
-											alt={item.name}
-											width={60}
-											height={60}
-											style={{ padding: 10, borderRadius: 16, overflow: "hidden" }}
-										/>
+										<Box
+											sx={{
+												width: 44,
+												height: 44,
+												borderRadius: 2,
+												overflow: "hidden",
+												backgroundColor: colors.grey[100],
+												border: `1px solid ${colors.grey[200]}`,
+												display: "grid",
+												placeItems: "center",
+												flexShrink: 0
+											}}
+										>
+											<LazyLoadImage
+												src={item.icon}
+												alt={item.name}
+												width={28}
+												height={28}
+												style={{ objectFit: "contain" }}
+											/>
+										</Box>
 										<Typography
-											ml={1}
-											fontWeight={typography.fontWeightBold}
-											fontSize={typography.size.sm}
-											color={colors.text.main}
+											ml={1.5}
+											fontWeight={item.id === id ? 600 : 500}
+											fontSize={13.5}
+											color={item.id === id ? colors.primary.main : colors.text.focus}
 										>
 											{item.name}
 										</Typography>
 									</ListItemButton>
-									<Divider sx={{ m: 0 }} />
 								</Fragment>
 							))}
 							{/* {remain && (
@@ -169,7 +194,14 @@ const Amenities = () => {
 						}
 					})}
 				>
-					<Card>
+					<Card
+						sx={{
+							backgroundColor: colors.dark.main,
+							border: `1px solid ${colors.grey[300]}`,
+							borderRadius: 2.5,
+							boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)"
+						}}
+					>
 						<Box p={2} height={300}>
 							<ManageAmenity
 								id={id}

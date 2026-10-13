@@ -1,38 +1,34 @@
+/**
+ * Discord Design System — Typography
+ * Source of truth: DesignMD /discover/discord
+ * Font: gg sans fallback → system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
+ */
 import colors from "./colors";
-
-// Material Dashboard 2 React Helper Functions
 import pxToRem from "../functions/pxToRem";
 
-const { dark } = colors;
-
 const baseProperties = {
-  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-  fontWeightLighter: 100,
-  fontWeightLight: 300,
+  fontFamily: '"gg sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  fontWeightLighter: 300,
+  fontWeightLight: 400,
   fontWeightRegular: 400,
-  fontWeightMedium: 600,
+  fontWeightMedium: 500,
+  fontWeightSemiBold: 600,
   fontWeightBold: 700,
-  fontSizeXXS: pxToRem(10.4),
+  fontSizeXXS: pxToRem(11),
   fontSizeXS: pxToRem(12),
   fontSizeSM: pxToRem(14),
-  fontSizeMD: pxToRem(16),
-  fontSizeLG: pxToRem(18),
-  fontSizeXL: pxToRem(20),
-  fontSize2XL: pxToRem(24),
-  fontSize3XL: pxToRem(30),
+  fontSizeMD: pxToRem(14.7),
+  fontSizeLG: pxToRem(16),
+  fontSizeXL: pxToRem(16.8),
+  fontSize2XL: pxToRem(20),
+  fontSize3XL: pxToRem(22),
+  fontSize4XL: pxToRem(37.8),
 };
 
 const baseHeadingProperties = {
   fontFamily: baseProperties.fontFamily,
-  color: dark.main,
+  color: colors.white.main,
   fontWeight: baseProperties.fontWeightBold,
-};
-
-const baseDisplayProperties = {
-  fontFamily: baseProperties.fontFamily,
-  color: dark.main,
-  fontWeight: baseProperties.fontWeightLight,
-  lineHeight: 1.2,
 };
 
 const typography = {
@@ -41,119 +37,102 @@ const typography = {
   fontWeightLight: baseProperties.fontWeightLight,
   fontWeightRegular: baseProperties.fontWeightRegular,
   fontWeightMedium: baseProperties.fontWeightMedium,
+  fontWeightSemiBold: baseProperties.fontWeightSemiBold,
   fontWeightBold: baseProperties.fontWeightBold,
 
   h1: {
-    fontSize: pxToRem(48),
-    lineHeight: 1.25,
+    fontSize: pxToRem(37.8),
+    lineHeight: 1.11,           // 42px / 37.8px
     ...baseHeadingProperties,
+    fontWeight: 600,
   },
 
   h2: {
-    fontSize: pxToRem(36),
-    lineHeight: 1.3,
+    fontSize: pxToRem(22),
+    lineHeight: 0.8,            // 17.6px / 22px
     ...baseHeadingProperties,
   },
 
   h3: {
-    fontSize: pxToRem(30),
-    lineHeight: 1.375,
+    fontSize: pxToRem(16.8),
+    lineHeight: 1.5,            // 25.2px / 16.8px
     ...baseHeadingProperties,
+    fontWeight: 600,
   },
 
   h4: {
-    fontSize: pxToRem(24),
-    lineHeight: 1.375,
+    fontSize: pxToRem(16),
+    lineHeight: 1.5,            // 24px / 16px
     ...baseHeadingProperties,
+    fontWeight: 500,
   },
 
   h5: {
-    fontSize: pxToRem(20),
-    lineHeight: 1.375,
+    fontSize: pxToRem(14.7),
+    lineHeight: 1.43,           // 21px / 14.7px
     ...baseHeadingProperties,
+    fontWeight: 600,
   },
 
   h6: {
-    fontSize: pxToRem(16),
-    lineHeight: 1.625,
+    fontSize: pxToRem(14),
+    lineHeight: 1.43,           // 20px / 14px
     ...baseHeadingProperties,
+    fontWeight: 600,
   },
 
   subtitle1: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeXL,
-    fontWeight: baseProperties.fontWeightLight,
-    lineHeight: 1.625,
+    fontSize: baseProperties.fontSizeXL,  // 16.8px
+    fontWeight: baseProperties.fontWeightRegular,
+    lineHeight: 1.5,                       // 25.2px
+    color: colors.text.focus,
   },
 
   subtitle2: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeMD,
-    fontWeight: baseProperties.fontWeightLight,
-    lineHeight: 1.6,
+    fontSize: baseProperties.fontSizeMD,  // 14.7px
+    fontWeight: baseProperties.fontWeightMedium,
+    lineHeight: 1.43,                      // 21px
+    color: colors.text.main,
   },
 
   body1: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeXL,
+    fontSize: baseProperties.fontSizeXL,  // 16.8px — Body Standard
     fontWeight: baseProperties.fontWeightRegular,
-    lineHeight: 1.625,
+    lineHeight: 1.5,                       // 25.2px
   },
 
   body2: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeMD,
-    fontWeight: baseProperties.fontWeightLight,
-    lineHeight: 1.6,
+    fontSize: baseProperties.fontSizeMD,  // 14.7px
+    fontWeight: baseProperties.fontWeightRegular,
+    lineHeight: 1.43,                      // 21px
   },
 
   button: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeSM,
-    fontWeight: baseProperties.fontWeightLight,
-    lineHeight: 1.5,
-    textTransform: "uppercase",
+    fontSize: baseProperties.fontSizeLG,  // 16px — Button / UI Text
+    fontWeight: baseProperties.fontWeightRegular,
+    lineHeight: 1.5,                       // 24px
+    textTransform: "none" as const,
   },
 
   caption: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeXS,
-    fontWeight: baseProperties.fontWeightLight,
-    lineHeight: 1.25,
+    fontSize: baseProperties.fontSizeSM,  // 14px — Caption / Metadata
+    fontWeight: baseProperties.fontWeightRegular,
+    lineHeight: 1.43,                      // 20px
+    color: colors.text.main,
   },
 
   overline: {
     fontFamily: baseProperties.fontFamily,
-  },
-
-  d1: {
-    fontSize: pxToRem(80),
-    ...baseDisplayProperties,
-  },
-
-  d2: {
-    fontSize: pxToRem(72),
-    ...baseDisplayProperties,
-  },
-
-  d3: {
-    fontSize: pxToRem(64),
-    ...baseDisplayProperties,
-  },
-
-  d4: {
-    fontSize: pxToRem(56),
-    ...baseDisplayProperties,
-  },
-
-  d5: {
-    fontSize: pxToRem(48),
-    ...baseDisplayProperties,
-  },
-
-  d6: {
-    fontSize: pxToRem(40),
-    ...baseDisplayProperties,
+    fontSize: baseProperties.fontSizeXXS,
+    fontWeight: baseProperties.fontWeightSemiBold,
+    textTransform: "uppercase" as const,
+    letterSpacing: "0.06em",
   },
 
   size: {

@@ -1,56 +1,40 @@
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import { Button, ButtonProps } from "@mui/material";
-import linearGradient from "../assets/theme/functions/linearGradient";
 import colors from "../assets/theme/base/colors";
-import boxShadow from "../assets/theme/functions/boxShadow";
-const GButton = ({ color = "primary", size = "medium",children,...other }: ButtonProps) => {
-	const background = useMemo(() => {
-		if (color === "inherit") color = "primary";
-		return linearGradient(colors.gradients[color].main, colors.gradients[color].state);
-	}, [color]);
-	const shadow = useMemo(() => {
-		if (color === "inherit") color = "primary";
-		return `${boxShadow([0, 3], [3, 0], colors[color].main, 0.15)}, 
-        ${boxShadow([0, 3], [1, -2], colors[color].main, 0.2)}, 
-        ${boxShadow([0, 1], [5, 0], colors[color].main, 0.15)}`;
-	}, [color]);
-	const hoverShadow = useMemo(() => {
-		if (color === "inherit") color = "primary";
-		return `${boxShadow([0, 14], [26, -12], colors[color].main, 0.4)}, 
-        ${boxShadow([0, 4],[23, 0],colors[color].main,0.15)}, 
-        ${boxShadow([0, 8], [10, -5], colors[color].main, 0.2)}`
-	}, [color]);
+
+const GButton = memo(function GButton({ color = "primary", size = "medium", children, ...other }: ButtonProps) {
+	const resolvedColor = color === "inherit" ? "primary" : color;
+	const mainBg = colors[resolvedColor]?.main || colors.primary.main;
+	const focusBg = colors[resolvedColor]?.focus || colors.primary.focus;
+
 	return (
 		<Button
 			size={size}
 			variant="contained"
-			color={color}
 			fullWidth
-            {...other}
+			{...other}
 			sx={{
-				background,
-				color: "#ffffff",
-				boxShadow: shadow,
-				outlineStyle:"none",
-
+				backgroundColor: mainBg,
+				color: "#ffffff !important",
+				borderRadius: 2,
+				textTransform: "none",
+				fontWeight: 600,
+				fontSize: 14,
+				boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+				transition: "all 150ms ease",
 				"&:hover": {
-					boxShadow: hoverShadow
+					backgroundColor: focusBg,
+					boxShadow: "0 4px 12px 0 rgba(225, 29, 72, 0.25)"
 				},
-
-				"&:focus:not(:hover)": {
-					boxShadow: shadow,
-                    outlineStyle:"none"
-				},
-
 				"&:disabled": {
-					background,
-					color: "#ffffff"
+					backgroundColor: colors.grey[400],
+					color: colors.grey[600]
 				}
 			}}
 		>
 			{children}
 		</Button>
 	);
-};
+});
 
-export default memo(GButton)
+export default GButton;

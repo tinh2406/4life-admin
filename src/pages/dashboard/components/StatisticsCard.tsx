@@ -2,7 +2,7 @@ import { Box, Card, Typography } from "@mui/material";
 import { TrendingDown, TrendingUp } from "@mui/icons-material";
 import colors from "../../../assets/theme/base/colors";
 import { ColorType } from "./type";
-import linearGradient from "../../../assets/theme/functions/linearGradient";
+
 import { memo } from "react";
 
 type StatisticsCardProps = {
@@ -27,28 +27,35 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 	const isPositive = percentage.color === "success";
 	const isNegative = percentage.color === "error";
 
-	const gradientBg =
-		color === "light"
-			? linearGradient(colors.grey[200], colors.grey[300])
-			: color === "dark"
-			? linearGradient("#344767", "#1e2e4a")
-			: colors.gradients[color]
-			? linearGradient(colors.gradients[color].main, colors.gradients[color].state)
-			: linearGradient(colors.gradients.primary.main, colors.gradients.primary.state);
+	const iconBg =
+		color === "primary"
+			? "rgba(88, 101, 242, 0.15)"
+			: color === "info"
+			? "rgba(0, 176, 244, 0.15)"
+			: color === "success"
+			? "rgba(53, 237, 126, 0.15)"
+			: color === "warning"
+			? "rgba(254, 231, 92, 0.15)"
+			: color === "error"
+			? "rgba(237, 66, 69, 0.15)"
+			: "rgba(255, 255, 255, 0.08)";
 
-	const badgeBg =
-		isPositive
-			? "rgba(76, 175, 80, 0.12)"
-			: isNegative
-			? "rgba(244, 67, 53, 0.12)"
-			: "rgba(123, 128, 154, 0.12)";
-
-	const badgeColor =
-		isPositive
+	const iconColor =
+		color === "primary"
+			? colors.primary.main
+			: color === "info"
+			? colors.info.main
+			: color === "success"
 			? colors.success.main
-			: isNegative
+			: color === "warning"
+			? colors.warning.main
+			: color === "error"
 			? colors.error.main
-			: colors.text.main;
+			: colors.text.focus;
+
+	const deltaBg = isPositive ? "rgba(53, 237, 126, 0.15)" : isNegative ? "rgba(237, 66, 69, 0.15)" : "rgba(255, 255, 255, 0.08)";
+	const deltaColor = isPositive ? colors.success.main : isNegative ? colors.error.main : colors.text.main;
+	const deltaBorder = isPositive ? "rgba(53, 237, 126, 0.25)" : isNegative ? "rgba(237, 66, 69, 0.25)" : "rgba(255, 255, 255, 0.1)";
 
 	return (
 		<Card
@@ -58,25 +65,32 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "space-between",
-				transition: "transform 150ms ease, box-shadow 150ms ease",
+				backgroundColor: colors.dark.main,
+				border: `1px solid rgba(255, 255, 255, 0.06)`,
+				borderRadius: "16px",
+				boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
+				transition: "border-color 150ms ease, box-shadow 150ms ease",
 				"&:hover": {
-					transform: "translateY(-3px)",
-					boxShadow: 4
+					borderColor: colors.grey[400],
+					boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)"
 				}
 			}}
 		>
 			<Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
 				<Box
 					sx={{
-						width: 48,
-						height: 48,
-						borderRadius: 3,
-						background: gradientBg,
-						color: color === "light" ? colors.dark.main : "#ffffff",
+						width: 44,
+						height: 44,
+						borderRadius: 2,
+						backgroundColor: iconBg,
+						color: iconColor,
 						display: "grid",
 						placeItems: "center",
-						boxShadow: 2,
-						flexShrink: 0
+						flexShrink: 0,
+						border: `1px solid ${colors.grey[300]}`,
+						"& svg": {
+							fontSize: 22
+						}
 					}}
 				>
 					{icon}
@@ -85,15 +99,24 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 				<Box textAlign="right">
 					<Typography
 						variant="caption"
-						fontWeight="medium"
+						fontWeight={500}
 						color="text.secondary"
-						textTransform="capitalize"
 						display="block"
 						mb={0.5}
+						sx={{ fontSize: 12.5 }}
 					>
 						{title}
 					</Typography>
-					<Typography variant="h4" fontWeight="bold" color="text.primary">
+					<Typography
+						variant="h4"
+						fontWeight={700}
+						color="text.primary"
+						sx={{
+							fontVariantNumeric: "tabular-nums",
+							letterSpacing: "-0.02em",
+							fontSize: 26
+						}}
+					>
 						{count}
 					</Typography>
 				</Box>
@@ -103,8 +126,7 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 				display="flex"
 				alignItems="center"
 				pt={1.5}
-				borderTop="1px solid"
-				borderColor={colors.grey[200]}
+				borderTop={`1px solid ${colors.grey[200]}`}
 				gap={1}
 			>
 				<Box
@@ -115,18 +137,24 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 						px: 1,
 						py: 0.25,
 						borderRadius: 1.5,
-						backgroundColor: badgeBg,
-						color: badgeColor,
-						fontWeight: "bold",
-						fontSize: 12
+						backgroundColor: deltaBg,
+						color: deltaColor,
+						border: `1px solid ${deltaBorder}`,
+						fontWeight: 600,
+						fontSize: 11.5
 					}}
 				>
-					{isPositive && <TrendingUp sx={{ fontSize: 16 }} />}
-					{isNegative && <TrendingDown sx={{ fontSize: 16 }} />}
+					{isPositive && <TrendingUp sx={{ fontSize: 14 }} />}
+					{isNegative && <TrendingDown sx={{ fontSize: 14 }} />}
 					<span>{percentage.amount}</span>
 				</Box>
 
-				<Typography variant="caption" color="text.secondary" noWrap>
+				<Typography
+					variant="caption"
+					color="text.secondary"
+					noWrap
+					sx={{ fontSize: 12 }}
+				>
 					{percentage.label}
 				</Typography>
 			</Box>

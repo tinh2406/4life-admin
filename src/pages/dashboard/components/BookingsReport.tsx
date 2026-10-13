@@ -5,7 +5,7 @@ import { bookingGrowth } from "../api/bookingStatistics";
 import ReportsLineChart from "./ReportsLineChart";
 import { useStatistic } from "../../../context/statistics";
 
-const BookingsReport = () => {
+const BookingsReport = memo(function BookingsReport() {
 	const { value, setAction } = useStatistic();
 
 	const { data: bookings } = useQuery({
@@ -53,6 +53,6 @@ const BookingsReport = () => {
 			</Box>
 		</Grid>
 	);
-};
+});
 
-export default memo(BookingsReport);
+export default BookingsReport;

@@ -38,6 +38,15 @@ const ReportsLineChart = memo(function ReportsLineChart({
 			? colors.dark.main
 			: colors.primary.main;
 
+	const chartBg =
+		color === "primary"
+			? "rgba(225, 29, 72, 0.08)"
+			: color === "success"
+			? "rgba(5, 150, 105, 0.08)"
+			: color === "info"
+			? "rgba(37, 99, 235, 0.08)"
+			: "rgba(24, 24, 27, 0.06)";
+
 	const chartData = useMemo(
 		() => ({
 			labels,
@@ -45,19 +54,19 @@ const ReportsLineChart = memo(function ReportsLineChart({
 				{
 					label: datasets.label,
 					tension: 0.35,
-					pointRadius: 4,
+					pointRadius: 3,
 					pointHoverRadius: 6,
 					pointBorderColor: "#ffffff",
 					pointBackgroundColor: lineColor,
 					borderColor: lineColor,
-					borderWidth: 3,
-					backgroundColor: "rgba(255, 56, 92, 0.08)",
+					borderWidth: 2.5,
+					backgroundColor: chartBg,
 					fill: true,
 					data: datasets.data
 				}
 			]
 		}),
-		[labels, datasets.label, datasets.data, lineColor]
+		[labels, datasets.label, datasets.data, lineColor, chartBg]
 	);
 
 	const chartOptions = useMemo(
@@ -71,7 +80,9 @@ const ReportsLineChart = memo(function ReportsLineChart({
 					titleColor: "#ffffff",
 					bodyColor: "#ffffff",
 					padding: 10,
-					cornerRadius: 8
+					cornerRadius: 8,
+					titleFont: { family: '"Plus Jakarta Sans", sans-serif', weight: "bold" as const },
+					bodyFont: { family: '"Plus Jakarta Sans", sans-serif' }
 				}
 			},
 			scales: {
@@ -80,20 +91,20 @@ const ReportsLineChart = memo(function ReportsLineChart({
 						display: true,
 						drawOnChartArea: true,
 						drawTicks: false,
-						color: "rgba(0, 0, 0, 0.05)"
+						color: "rgba(0, 0, 0, 0.04)"
 					},
 					ticks: {
 						padding: 8,
-						font: { size: 11, family: "Roboto, sans-serif" },
-						color: colors.text.main
+						font: { size: 11, family: '"Plus Jakarta Sans", sans-serif' },
+						color: colors.grey[600]
 					}
 				},
 				x: {
 					grid: { display: false },
 					ticks: {
 						padding: 8,
-						font: { size: 11, family: "Roboto, sans-serif" },
-						color: colors.text.main
+						font: { size: 11, family: '"Plus Jakarta Sans", sans-serif' },
+						color: colors.grey[600]
 					}
 				}
 			}
@@ -109,17 +120,23 @@ const ReportsLineChart = memo(function ReportsLineChart({
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "space-between",
-				transition: "transform 150ms ease, box-shadow 150ms ease",
-				"&:hover": { transform: "translateY(-2px)", boxShadow: 3 }
+				backgroundColor: colors.dark.main,
+				border: `1px solid ${colors.grey[300]}`,
+				borderRadius: 2.5,
+				boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
+				transition: "border-color 150ms ease, box-shadow 150ms ease",
+				"&:hover": { borderColor: colors.grey[400], boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)" }
 			}}
 		>
 			<Box mb={2}>
-				<Typography variant="subtitle1" fontWeight="bold" color="text.primary" textTransform="capitalize">
+				<Typography variant="subtitle1" fontWeight={600} color="text.primary">
 					{title}
 				</Typography>
-				<Typography variant="caption" color="text.secondary">
-					{description}
-				</Typography>
+				{description && (
+					<Typography variant="caption" color="text.secondary">
+						{description}
+					</Typography>
+				)}
 			</Box>
 
 			<Box height="12rem" width="100%" mb={2}>
@@ -130,12 +147,11 @@ const ReportsLineChart = memo(function ReportsLineChart({
 				display="flex"
 				alignItems="center"
 				pt={1.5}
-				borderTop="1px solid"
-				borderColor={colors.grey[200]}
+				borderTop={`1px solid ${colors.grey[200]}`}
 				gap={0.75}
 			>
-				<Schedule sx={{ fontSize: 16, color: colors.text.main }} />
-				<Typography variant="caption" color="text.secondary">
+				<Schedule sx={{ fontSize: 15, color: colors.grey[500] }} />
+				<Typography variant="caption" color="text.secondary" sx={{ fontSize: 11.5 }}>
 					{date}
 				</Typography>
 			</Box>

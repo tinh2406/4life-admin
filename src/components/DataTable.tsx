@@ -43,15 +43,23 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 			component={Paper}
 			sx={{
 				boxShadow: "none",
-				border: "1px solid",
-				borderColor: colors.grey[300],
-				borderRadius: 3,
-				overflow: "hidden"
+				border: "1px solid rgba(255, 255, 255, 0.06)",
+				borderRadius: "16px",
+				overflow: "hidden",
+				backgroundColor: colors.dark.main
 			}}
 		>
-			{isLoading && <LinearProgress sx={{ height: 3 }} />}
+			{isLoading && (
+				<LinearProgress
+					sx={{
+						height: 2.5,
+						backgroundColor: "rgba(88, 101, 242, 0.15)",
+						"& .MuiLinearProgress-bar": { backgroundColor: colors.primary.main }
+					}}
+				/>
+			)}
 			<Table sx={{ minWidth: 650 }} aria-label="data table">
-				<TableHead sx={{ backgroundColor: colors.grey[100] }}>
+				<TableHead sx={{ backgroundColor: "rgba(255, 255, 255, 0.04)" }}>
 					<TableRow>
 						{columns.map(column => (
 							<TableCell
@@ -59,19 +67,19 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 								align={column.align || "left"}
 								sx={{
 									width: column.width,
-									py: 1.5,
+									py: 1.25,
 									px: 2,
-									borderBottom: `1px solid ${colors.grey[300]}`
+									borderBottom: `1px solid rgba(255, 255, 255, 0.06)`
 								}}
 							>
 								<Typography
 									variant="caption"
-									fontWeight="bold"
-									color="text.secondary"
 									sx={{
 										textTransform: "uppercase",
-										letterSpacing: "0.05em",
-										fontSize: 11
+										letterSpacing: "0.06em",
+										fontSize: 11,
+										fontWeight: 700,
+										color: colors.text.main
 									}}
 								>
 									{column.headerName || String(column.field)}
@@ -88,7 +96,7 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 							sx={{
 								transition: "background-color 120ms ease",
 								"&:hover": {
-									backgroundColor: "rgba(0, 0, 0, 0.02)"
+									backgroundColor: "rgba(255, 255, 255, 0.04)"
 								},
 								"&:last-child td, &:last-child th": {
 									border: 0
@@ -101,9 +109,9 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 									align={column.align || "left"}
 									sx={{
 										width: column.width,
-										py: 1.5,
+										py: 1.25,
 										px: 2,
-										borderBottom: `1px solid ${colors.grey[200]}`
+										borderBottom: `1px solid rgba(255, 255, 255, 0.04)`
 									}}
 								>
 									{typeof row[column.field] === "string" || typeof row[column.field] === "number" ? (
@@ -122,8 +130,8 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 						<TableRow>
 							<TableCell colSpan={columns.length} sx={{ py: 6, textAlign: "center" }}>
 								<Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-									<InboxOutlined sx={{ fontSize: 40, color: colors.text.main, mb: 1, opacity: 0.6 }} />
-									<Typography variant="body2" color="text.secondary">
+									<InboxOutlined sx={{ fontSize: 36, color: colors.grey[400], mb: 1 }} />
+									<Typography variant="body2" color="text.secondary" fontSize={13}>
 										{emptyMessage}
 									</Typography>
 								</Box>

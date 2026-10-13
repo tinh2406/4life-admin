@@ -80,13 +80,19 @@ const RequestDetail = memo(function RequestDetail() {
 	return (
 		<Box pb={4}>
 			{/* Top Action Bar */}
-			<Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+			<Box display="flex" justifyContent="space-between" alignItems="center" mb={3} flexWrap="wrap" gap={2}>
 				<Button
 					component={Link}
 					to="/requests"
 					startIcon={<ArrowBack />}
 					variant="text"
-					sx={{ color: colors.dark.main, fontWeight: "bold" }}
+					sx={{
+						color: colors.text.focus,
+						fontWeight: 600,
+						fontSize: 13,
+						textTransform: "none",
+						"&:hover": { backgroundColor: colors.grey[200] }
+					}}
 				>
 					Back to Queue
 				</Button>
@@ -100,11 +106,23 @@ const RequestDetail = memo(function RequestDetail() {
 							rejectModMutation.isLoading ? (
 								<CircularProgress size={16} color="inherit" />
 							) : (
-								<Close />
+								<Close fontSize="small" />
 							)
 						}
 						onClick={() => setRejectModalOpen(true)}
-						sx={{ minHeight: 40, px: 3, fontWeight: "bold" }}
+						sx={{
+							minHeight: 38,
+							px: 2.5,
+							fontWeight: 600,
+							fontSize: 13,
+							textTransform: "none",
+							borderColor: colors.grey[300],
+							color: colors.error.main,
+							"&:hover": {
+								borderColor: colors.error.main,
+								backgroundColor: "rgba(237, 66, 69, 0.15)"
+							}
+						}}
 					>
 						Reject Application
 					</Button>
@@ -117,18 +135,22 @@ const RequestDetail = memo(function RequestDetail() {
 							acceptModMutation.isLoading ? (
 								<CircularProgress size={16} color="inherit" />
 							) : (
-								<Check />
+								<Check fontSize="small" />
 							)
 						}
 						onClick={() => acceptModMutation.mutate(user.id)}
 						sx={{
-							minHeight: 40,
-							px: 3,
-							color: "#ffffff",
+							minHeight: 38,
+							px: 2.5,
+							color: "#ffffff !important",
 							backgroundColor: colors.success.main,
-							fontWeight: "bold",
+							fontWeight: 600,
+							fontSize: 13,
+							textTransform: "none",
+							boxShadow: "none",
 							"&:hover": {
-								backgroundColor: colors.success.focus
+								backgroundColor: colors.success.focus,
+								boxShadow: "0 2px 4px 0 rgba(5, 150, 105, 0.2)"
 							}
 						}}
 					>
@@ -140,7 +162,15 @@ const RequestDetail = memo(function RequestDetail() {
 			<Grid container spacing={3}>
 				{/* Applicant Dossier Card */}
 				<Grid item xs={12}>
-					<Card sx={{ p: 3 }}>
+					<Card
+						sx={{
+							p: 3,
+							backgroundColor: colors.dark.main,
+							border: `1px solid ${colors.grey[300]}`,
+							borderRadius: 2.5,
+							boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)"
+						}}
+					>
 						<Box display="flex" flexDirection={{ xs: "column", sm: "row" }} alignItems="center" gap={3}>
 							<Avatar
 								src={user.avatar}

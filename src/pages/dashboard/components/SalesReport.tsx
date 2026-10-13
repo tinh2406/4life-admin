@@ -5,7 +5,7 @@ import { salesGrowth } from "../api/salesStatistics";
 import ReportsMultiLineChart from "./ReportsMultiLineChart";
 import { useStatistic } from "../../../context/statistics";
 
-const SalesReport = () => {
+const SalesReport = memo(function SalesReport() {
 	const { value, setAction } = useStatistic();
 	const { data: sales_total } = useQuery({
 		queryKey: ["reports-sales", ...Object.values(value.SalesReport.params)],
@@ -98,6 +98,7 @@ const SalesReport = () => {
 			</Box>
 		</Grid>
 	);
-};
+});
 
-export default memo(SalesReport);
+export default SalesReport;
+

@@ -1,12 +1,20 @@
-
+/**
+ * Discord Design System — Border Radius Scale
+ * Source of truth: DesignMD /discover/discord
+ *
+ * Sharp (0px): Input fields, text links
+ * Subtle (8px): Dropdown menus, small modals
+ * Standard (12px): Buttons, small cards, badges
+ * Rounded (14px): Icon buttons
+ * Extra Rounded (16px): Ghost buttons, medium cards
+ * Very Rounded (48px): Large feature cards
+ * Maximum (104px): Hero containers
+ */
 import colors from "./colors";
-
 import pxToRem from "../functions/pxToRem";
 
-const { grey } = colors;
-
 const borders = {
-  borderColor: grey[300],
+  borderColor: colors.inputBorderColor,
 
   borderWidth: {
     0: 0,
@@ -18,13 +26,13 @@ const borders = {
   },
 
   borderRadius: {
-    xs: pxToRem(1.6),
-    sm: pxToRem(2),
-    md: pxToRem(6),
-    lg: pxToRem(8),
-    xl: pxToRem(12),
-    xxl: pxToRem(16),
-    section: pxToRem(160),
+    xs: pxToRem(0),       // Sharp
+    sm: pxToRem(8),       // Subtle — dropdowns
+    md: pxToRem(12),      // Standard — buttons, badges
+    lg: pxToRem(14),      // Rounded — icon buttons
+    xl: pxToRem(16),      // Extra Rounded — ghost buttons, cards
+    xxl: pxToRem(48),     // Very Rounded — feature cards
+    section: pxToRem(104),// Maximum — hero containers
   },
 };
 

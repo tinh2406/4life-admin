@@ -11,6 +11,9 @@ import { PagingResponse } from "../../type/Paging";
 import { CollapseUser } from "./api/User";
 import { getUsers } from "./api/getList";
 
+import colors from "../../assets/theme/base/colors";
+import { IconButton, Tooltip } from "@mui/material";
+
 type RowType = {
 	id: string;
 	name: string;
@@ -23,19 +26,38 @@ type RowType = {
 
 const Block = memo(({ id }: { id: string }) => {
 	return (
-		<Delete
-			fontSize="small"
-			onClick={() => {
-				console.log("Delete id", id);
-			}}
-		/>
+		<Tooltip title="Delete or block user">
+			<IconButton
+				size="small"
+				sx={{
+					color: colors.grey[500],
+					"&:hover": { color: colors.error.main, backgroundColor: "rgba(237, 66, 69, 0.15)" }
+				}}
+				onClick={() => {
+					console.log("Delete id", id);
+				}}
+			>
+				<Delete fontSize="small" />
+			</IconButton>
+		</Tooltip>
 	);
 });
+
 const More = memo(({ id }: { id: string }) => {
 	return (
-		<Link to={id}>
-			<ChevronRight fontSize="small" color="action" />
-		</Link>
+		<Tooltip title="View user details">
+			<IconButton
+				component={Link}
+				to={id}
+				size="small"
+				sx={{
+					color: colors.grey[600],
+					"&:hover": { color: colors.primary.main, backgroundColor: "rgba(88, 101, 242, 0.15)" }
+				}}
+			>
+				<ChevronRight fontSize="small" />
+			</IconButton>
+		</Tooltip>
 	);
 });
 const columns: GridColDefMe<RowType>[] = [
@@ -93,10 +115,18 @@ const Users = () => {
 
 	return (
 		<Box pb={3}>
-			<Grid container spacing={6}>
+			<Grid container spacing={3}>
 				<Grid item xs={12}>
-					<Card>
-						<Box pt={2}>
+					<Card
+						sx={{
+							backgroundColor: colors.dark.main,
+							border: `1px solid ${colors.grey[300]}`,
+							borderRadius: 2.5,
+							boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
+							p: 2
+						}}
+					>
+						<Box>
 							<DataTable isLoading={isLoading} columns={columns} rows={users} />
 							<Stack alignItems="center" m={1} spacing={2}>
 								<Pagination

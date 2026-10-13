@@ -1,6 +1,7 @@
+/**
+ * Discord Design System — Global Styles
+ */
 import colors from "./colors";
-
-const { info, dark } = colors;
 
 const globals = {
   html: {
@@ -14,11 +15,11 @@ const globals = {
     textDecoration: "none !important",
   },
   "a.link, .link, a.link:link, .link:link, a.link:visited, .link:visited": {
-    color: `${dark.main} !important`,
-    transition: "color 150ms ease-in !important",
+    color: `${colors.white.main} !important`,
+    transition: "color 200ms ease-in-out !important",
   },
   "a.link:hover, .link:hover, a.link:focus, .link:focus": {
-    color: `${info.main} !important`,
+    color: `${colors.primary.main} !important`,
   },
   "@media (prefers-reduced-motion: reduce)": {
     "*, *::before, *::after": {

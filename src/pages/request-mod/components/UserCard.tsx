@@ -37,9 +37,15 @@ const UserCard = memo(function UserCard({
 			<Card
 				sx={{
 					position: "relative",
-					transition: "transform 150ms ease, box-shadow 150ms ease",
+					backgroundColor: colors.dark.main,
+					border: `1px solid ${colors.grey[300]}`,
+					borderRadius: 2.5,
+					boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
+					transition: "border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease",
 					"&:hover": {
-						transform: "translateY(-2px)"
+						borderColor: colors.grey[400],
+						boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)",
+						transform: "translateY(-1px)"
 					}
 				}}
 			>
@@ -49,8 +55,9 @@ const UserCard = memo(function UserCard({
 							position: "absolute",
 							top: 12,
 							right: 12,
-							backgroundColor: colors.primary.main,
-							color: "#ffffff",
+							backgroundColor: "rgba(88, 101, 242, 0.12)",
+							color: colors.primary.main,
+							border: "1px solid rgba(225, 29, 72, 0.2)",
 							fontSize: 10,
 							fontWeight: 700,
 							px: 1,
@@ -86,55 +93,59 @@ const UserCard = memo(function UserCard({
 								src={user.avatar}
 								alt={user.name || "Applicant avatar"}
 								sx={{
-									width: 48,
-									height: 48,
+									width: 44,
+									height: 44,
 									mr: 1.5,
-									boxShadow: 1
+									border: `1px solid ${colors.grey[300]}`,
+									bgcolor: colors.grey[200],
+									color: colors.text.focus,
+									fontSize: 14,
+									fontWeight: 600
 								}}
-							/>
+							>
+								{user.name ? user.name.charAt(0).toUpperCase() : "U"}
+							</Avatar>
 							<Box sx={{ minWidth: 0, flex: 1 }}>
 								<Typography
 									variant="subtitle2"
 									className="applicant-name"
-									fontWeight="bold"
-									textTransform="capitalize"
+									fontWeight={600}
 									noWrap
-									sx={{ transition: "color 150ms ease" }}
+									sx={{ transition: "color 150ms ease", fontSize: 14 }}
 								>
 									{user.name || "Unnamed Applicant"}
 								</Typography>
-								<Typography variant="caption" color="text.secondary" display="block" noWrap>
+								<Typography variant="caption" color="text.secondary" display="block" noWrap sx={{ fontSize: 11.5 }}>
 									ID: {user.id.slice(0, 8)}...
 								</Typography>
 							</Box>
 						</Box>
 
-						<Box mb={0.75}>
-							<Typography variant="caption" color="text.secondary">
+						<Box mb={0.5}>
+							<Typography variant="caption" color="text.secondary" sx={{ fontSize: 12 }}>
 								Phone:&nbsp;
-								<Typography component="span" variant="caption" fontWeight="medium" color="text.primary">
+								<Typography component="span" variant="caption" fontWeight={500} color="text.primary" sx={{ fontSize: 12 }}>
 									{user.phoneNumber || "Not provided"}
 								</Typography>
 							</Typography>
 						</Box>
 
 						<Box mb={2} sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-							<Typography variant="caption" color="text.secondary">
+							<Typography variant="caption" color="text.secondary" sx={{ fontSize: 12 }}>
 								Email:&nbsp;
-								<Typography component="span" variant="caption" fontWeight="medium" color="text.primary">
+								<Typography component="span" variant="caption" fontWeight={500} color="text.primary" sx={{ fontSize: 12 }}>
 									{user.email}
 								</Typography>
 							</Typography>
 						</Box>
 					</Box>
 
-					{/* Action Buttons with clear hit-boxes */}
+					{/* Action Buttons */}
 					<Box
 						display="flex"
 						gap={1}
 						pt={1.5}
-						borderTop="1px solid"
-						borderColor={colors.grey[200]}
+						borderTop={`1px solid ${colors.grey[200]}`}
 						alignItems="center"
 					>
 						<Button
@@ -155,10 +166,16 @@ const UserCard = memo(function UserCard({
 								setRejectModalOpen(true);
 							}}
 							sx={{
-								minHeight: 36,
+								minHeight: 34,
 								fontSize: 12,
 								fontWeight: 600,
-								textTransform: "none"
+								textTransform: "none",
+								borderColor: colors.grey[300],
+								color: colors.error.main,
+								"&:hover": {
+									borderColor: colors.error.main,
+									backgroundColor: "rgba(237, 66, 69, 0.15)"
+								}
 							}}
 						>
 							Reject
@@ -182,13 +199,15 @@ const UserCard = memo(function UserCard({
 								onAccept(user.id);
 							}}
 							sx={{
-								minHeight: 36,
+								minHeight: 34,
 								fontSize: 12,
 								fontWeight: 600,
-								color: "#ffffff",
+								color: "#ffffff !important",
 								backgroundColor: colors.success.main,
+								boxShadow: "none",
 								"&:hover": {
-									backgroundColor: colors.success.focus
+									backgroundColor: colors.success.focus,
+									boxShadow: "0 2px 4px 0 rgba(5, 150, 105, 0.2)"
 								},
 								textTransform: "none"
 							}}

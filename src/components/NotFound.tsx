@@ -2,7 +2,7 @@
 import { memo } from "react";
 // import colors from "../assets/theme/base/colors";
 
-function NotFound() {
+const NotFound = memo(function NotFound() {
 	// return (
 	// 	<div
 	// 		style={{
@@ -410,6 +410,7 @@ function NotFound() {
 			</svg>
 		</div>
 	);
-}
+});
 
-export default memo(NotFound);
+export default NotFound;
+

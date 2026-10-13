@@ -1,27 +1,28 @@
+/**
+ * Discord Design System — Contained Button
+ * Primary: #5865F2 → hover #4751DA → active #3E42B2
+ * Secondary: ghost overlay rgba(255,255,255,0.1)
+ */
 import colors from "../../base/colors";
-import typography from "../../base/typography";
-
-// Material Dashboard 2 React Helper Functions
 import pxToRem from "../../functions/pxToRem";
 
-const { white, text, info, secondary } = colors;
-const { size } = typography;
+const { white } = colors;
 
 const contained = {
   base: {
-    backgroundColor: white.main,
-    minHeight: pxToRem(40),
-    color: text.main,
-    outline:0,
-    padding: `${pxToRem(10)} ${pxToRem(24)}`,
-    outlineStyle:"none",
-    
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    minHeight: pxToRem(48),
+    color: white.main,
+    outline: 0,
+    padding: `${pxToRem(12)} ${pxToRem(24)}`,
+    outlineStyle: "none",
+
     "&:hover": {
-      backgroundColor: white.main,
+      backgroundColor: "rgba(255, 255, 255, 0.15)",
     },
 
     "&:active, &:active:focus, &:active:hover": {
-      opacity: 0.85,
+      backgroundColor: "rgba(255, 255, 255, 0.2)",
     },
 
     "& .material-icon, .material-icons-round, svg": {
@@ -30,9 +31,9 @@ const contained = {
   },
 
   small: {
-    minHeight: pxToRem(32),
-    padding: `${pxToRem(6)} ${pxToRem(16)}`,
-    fontSize: size.xs,
+    minHeight: pxToRem(40),
+    padding: `${pxToRem(8)} ${pxToRem(16)}`,
+    fontSize: pxToRem(14.7),
 
     "& .material-icon, .material-icons-round, svg": {
       fontSize: `${pxToRem(12)} !important`,
@@ -40,9 +41,9 @@ const contained = {
   },
 
   large: {
-    minHeight: pxToRem(47),
-    padding: `${pxToRem(12)} ${pxToRem(28)}`,
-    fontSize: size.sm,
+    minHeight: pxToRem(56),
+    padding: `${pxToRem(17.5)} ${pxToRem(24)}`,
+    fontSize: pxToRem(16),
 
     "& .material-icon, .material-icons-round, svg": {
       fontSize: `${pxToRem(22)} !important`,
@@ -50,26 +51,34 @@ const contained = {
   },
 
   primary: {
-    backgroundColor: info.main,
+    backgroundColor: colors.primary.main,       // #5865F2
+    color: `${white.main} !important`,
+    boxShadow: "none",
 
     "&:hover": {
-      backgroundColor: info.main,
+      backgroundColor: colors.primary.focus,     // #4751DA
     },
 
     "&:focus:not(:hover)": {
-      backgroundColor: info.focus,
+      backgroundColor: colors.primary.focus,
+      boxShadow: "0 0 0 3px rgba(88, 101, 242, 0.1)",
+    },
+
+    "&:active": {
+      backgroundColor: "#3E42B2",
     },
   },
 
   secondary: {
-    backgroundColor: secondary.main,
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    color: `${white.main} !important`,
 
     "&:hover": {
-      backgroundColor: secondary.main,
+      backgroundColor: "rgba(255, 255, 255, 0.15)",
     },
 
     "&:focus:not(:hover)": {
-      backgroundColor: secondary.focus,
+      backgroundColor: "rgba(255, 255, 255, 0.12)",
     },
   },
 };

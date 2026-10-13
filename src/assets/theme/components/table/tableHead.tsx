@@ -1,16 +1,12 @@
-import borders from "../../base/borders";
-
-// Material Dashboard 2 React helper functions
-import pxToRem from "../../functions/pxToRem";
-
-const { borderRadius } = borders;
-
+/**
+ * Discord Design System — TableHead
+ * CRITICAL: Do NOT set display: "block" — it breaks column alignment
+ * between thead and tbody. Let the browser use its default table-header-group.
+ */
 const tableHead = {
   styleOverrides: {
     root: {
-      display: "block",
-      padding: `${pxToRem(16)} ${pxToRem(16)} 0  ${pxToRem(16)}`,
-      borderRadius: `${borderRadius.xl} ${borderRadius.xl} 0 0`,
+      // Intentionally no display override — keep default table-header-group
     },
   },
 };

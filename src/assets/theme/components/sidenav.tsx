@@ -1,26 +1,19 @@
+/**
+ * Discord Design System — Sidenav (MuiDrawer override)
+ * Drawer root takes no flow width (Paper is position:fixed)
+ */
 import colors from "../base/colors";
-import borders from "../base/borders";
-
-// Material Dashboard 2 React helper functions
-import pxToRem from "../functions/pxToRem";
-
-const { white } = colors;
-const { borderRadius } = borders;
 
 const sidenav = {
   styleOverrides: {
     root: {
-      width: pxToRem(250),
-      whiteSpace: "nowrap",
+      width: 0,
+      whiteSpace: "nowrap" as const,
       border: "none",
     },
 
     paper: {
-      width: pxToRem(250),
-      backgroundColor: white.main,
-      height: `calc(100vh - ${pxToRem(32)})`,
-      margin: pxToRem(16),
-      borderRadius: borderRadius.xl,
+      backgroundColor: colors.background.paper,   // #202024
       border: "none",
     },
 

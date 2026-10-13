@@ -7,7 +7,7 @@ import { bookingGrowth } from "../api/bookingStatistics";
 import { CalcStatistics } from "../../../utils/CalcStatistics";
 import { useStatistic } from "../../../context/statistics";
 
-const BookingStatisticsCard = () => {
+const BookingStatisticsCard = memo(function BookingStatisticsCard() {
 	const { value, setAction } = useStatistic();
 
 	const { data: bookings } = useQuery({
@@ -69,6 +69,6 @@ const BookingStatisticsCard = () => {
 			</Box>
 		</Grid>
 	);
-};
+});
 
-export default memo(BookingStatisticsCard);
+export default BookingStatisticsCard;

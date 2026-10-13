@@ -15,14 +15,14 @@ const Breadcrumbs = memo(function Breadcrumbs({ title, route }: BreadcrumbsProps
 	const displayTitle = (title || "Dashboard").replace(/-/g, " ");
 
 	return (
-		<Box mr={{ xs: 0, xl: 4 }}>
+		<Box display="flex" alignItems="center">
 			<MuiBreadcrumbs
 				separator="/"
 				sx={{
 					"& .MuiBreadcrumbs-separator": {
-						color: colors.text.main,
+						color: colors.grey[500],
 						fontSize: 12,
-						mx: 0.5
+						mx: 0.75
 					}
 				}}
 			>
@@ -32,8 +32,9 @@ const Breadcrumbs = memo(function Breadcrumbs({ title, route }: BreadcrumbsProps
 					sx={{
 						display: "inline-flex",
 						alignItems: "center",
-						color: colors.text.main,
+						color: colors.grey[600],
 						textDecoration: "none",
+						transition: "color 150ms ease",
 						"&:hover": { color: colors.primary.main }
 					}}
 				>
@@ -47,9 +48,11 @@ const Breadcrumbs = memo(function Breadcrumbs({ title, route }: BreadcrumbsProps
 						to={`/${segment}`}
 						sx={{
 							textDecoration: "none",
-							color: colors.text.main,
-							fontSize: 12,
+							color: colors.grey[600],
+							fontSize: 13,
+							fontWeight: 500,
 							textTransform: "capitalize",
+							transition: "color 150ms ease",
 							"&:hover": { color: colors.primary.main }
 						}}
 					>
@@ -57,21 +60,19 @@ const Breadcrumbs = memo(function Breadcrumbs({ title, route }: BreadcrumbsProps
 					</Box>
 				))}
 
-				<Typography variant="caption" color="text.primary" fontWeight="bold" textTransform="capitalize">
+				<Typography
+					variant="body2"
+					sx={{
+						color: colors.text.focus,
+						fontWeight: 600,
+						fontSize: 13.5,
+						textTransform: "capitalize",
+						letterSpacing: "-0.01em"
+					}}
+				>
 					{displayTitle}
 				</Typography>
 			</MuiBreadcrumbs>
-
-			<Typography
-				variant="h6"
-				fontWeight="bold"
-				textTransform="capitalize"
-				color="text.primary"
-				noWrap
-				sx={{ mt: 0.25 }}
-			>
-				{displayTitle}
-			</Typography>
 		</Box>
 	);
 });

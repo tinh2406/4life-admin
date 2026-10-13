@@ -1,11 +1,16 @@
+/**
+ * Discord Design System — Color Tokens
+ * Source of truth: DesignMD /discover/discord
+ */
 const colors = {
   background: {
-    default: "#f0f2f5",
+    default: "#060A0B",
+    paper: "#202024",
   },
 
   text: {
-    main: "#595e72",
-    focus: "#344767",
+    main: "#A1A1A5",    // Medium Gray — secondary text
+    focus: "#FFFFFF",    // Primary text on dark
   },
 
   transparent: {
@@ -13,229 +18,175 @@ const colors = {
   },
 
   white: {
-    main: "#ffffff",
-    focus: "#ffffff",
+    main: "#FFFFFF",
+    focus: "#F7F7F7",
   },
 
   black: {
-    light: "#000000",
-    main: "#000000",
+    light: "#23272A",
+    main: "#060A0B",
     focus: "#000000",
   },
 
   primary: {
-    main: "#e91e63",
-    focus: "#e91e63",
+    main: "#5865F2",     // Discord Brand Purple
+    focus: "#4751DA",    // Hover (10% darker)
   },
 
   secondary: {
-    main: "#7b809a",
-    focus: "#8f93a9",
+    main: "#727377",     // Dark Gray
+    focus: "#A1A1A5",    // Medium Gray
   },
 
   info: {
-    main: "#1A73E8",
-    focus: "#1662C4",
+    main: "#00B0F4",     // Cyan Accent
+    focus: "#009DD9",
   },
 
   success: {
-    main: "#4CAF50",
-    focus: "#67bb6a",
+    main: "#35ED7E",     // Bright Green
+    focus: "#2FD471",
   },
 
   warning: {
-    main: "#fb8c00",
-    focus: "#fc9d26",
+    main: "#FEE75C",     // Discord Yellow
+    focus: "#E5D053",
   },
 
   error: {
-    main: "#F44335",
-    focus: "#f65f53",
+    main: "#ED4245",     // Discord Red
+    focus: "#D63638",
   },
 
   light: {
-    main: "#f0f2f5",
-    focus: "#f0f2f5",
+    main: "#2C2F33",     // Dark Surface Tertiary
+    focus: "#28282C",    // Dark Surface Quaternary
   },
 
   dark: {
-    main: "#344767",
-    focus: "#2c3c58",
+    main: "#202024",     // Dark Surface Primary
+    focus: "#060A0B",    // Discord Text Black
   },
 
   grey: {
-    100: "#f8f9fa",
-    200: "#f0f2f5",
-    300: "#dee2e6",
-    400: "#ced4da",
-    500: "#adb5bd",
-    600: "#6c757d",
-    700: "#495057",
-    800: "#343a40",
-    900: "#212529",
+    100: "#28282C",      // Quaternary surface
+    200: "#2C2F33",      // Tertiary surface
+    300: "#333333",      // Charcoal Gray
+    400: "#727377",      // Dark Gray
+    500: "#A1A1A5",      // Medium Gray
+    600: "#E1E1E5",      // Very Light Gray — borders
+    700: "#F7F7F7",      // Light Gray
+    800: "#FFFFFF",      // White
+    900: "#FFFFFF",
   },
 
   gradients: {
     primary: {
-      main: "#EC407A",
-      state: "#D81B60",
+      main: "#5865F2",
+      state: "#3E42B2",
     },
 
     secondary: {
-      main: "#747b8a",
-      state: "#495361",
+      main: "#727377",
+      state: "#333333",
     },
 
     info: {
-      main: "#49a3f1",
-      state: "#1A73E8",
+      main: "#00B0F4",
+      state: "#0088C0",
     },
 
     success: {
-      main: "#66BB6A",
-      state: "#43A047",
+      main: "#35ED7E",
+      state: "#28BA62",
     },
 
     warning: {
-      main: "#FFA726",
-      state: "#FB8C00",
+      main: "#FEE75C",
+      state: "#E5D053",
     },
 
     error: {
-      main: "#EF5350",
-      state: "#E53935",
+      main: "#ED4245",
+      state: "#B91C1C",
     },
 
     light: {
-      main: "#EBEFF4",
-      state: "#CED4DA",
+      main: "#2C2F33",
+      state: "#202024",
     },
 
     dark: {
-      main: "#42424a",
-      state: "#191919",
+      main: "#060A0B",
+      state: "#000000",
     },
   },
 
   socialMediaColors: {
-    facebook: {
-      main: "#3b5998",
-      dark: "#344e86",
-    },
-
-    twitter: {
-      main: "#55acee",
-      dark: "#3ea1ec",
-    },
-
-    instagram: {
-      main: "#125688",
-      dark: "#0e456d",
-    },
-
-    linkedin: {
-      main: "#0077b5",
-      dark: "#00669c",
-    },
-
-    pinterest: {
-      main: "#cc2127",
-      dark: "#b21d22",
-    },
-
-    youtube: {
-      main: "#e52d27",
-      dark: "#d41f1a",
-    },
-
-    vimeo: {
-      main: "#1ab7ea",
-      dark: "#13a3d2",
-    },
-
-    slack: {
-      main: "#3aaf85",
-      dark: "#329874",
-    },
-
-    dribbble: {
-      main: "#ea4c89",
-      dark: "#e73177",
-    },
-
-    github: {
-      main: "#24292e",
-      dark: "#171a1d",
-    },
-
-    reddit: {
-      main: "#ff4500",
-      dark: "#e03d00",
-    },
-
-    tumblr: {
-      main: "#35465c",
-      dark: "#2a3749",
-    },
+    facebook: { main: "#3b5998", dark: "#344e86" },
+    twitter: { main: "#55acee", dark: "#3ea1ec" },
+    instagram: { main: "#125688", dark: "#0e456d" },
+    linkedin: { main: "#0077b5", dark: "#00669c" },
+    pinterest: { main: "#cc2127", dark: "#b21d22" },
+    youtube: { main: "#e52d27", dark: "#d41f1a" },
+    vimeo: { main: "#1ab7ea", dark: "#13a3d2" },
+    slack: { main: "#3aaf85", dark: "#329874" },
+    dribbble: { main: "#ea4c89", dark: "#e73177" },
+    github: { main: "#24292e", dark: "#171a1d" },
+    reddit: { main: "#ff4500", dark: "#e03d00" },
+    tumblr: { main: "#35465c", dark: "#2a3749" },
   },
 
   badgeColors: {
     primary: {
-      background: "#f8b3ca",
-      text: "#cc084b",
+      background: "rgba(88, 101, 242, 0.15)",
+      text: "#798DF9",
     },
-
     secondary: {
-      background: "#d7d9e1",
-      text: "#6c757d",
+      background: "rgba(255, 255, 255, 0.1)",
+      text: "#A1A1A5",
     },
-
     info: {
-      background: "#aecef7",
-      text: "#095bc6",
+      background: "rgba(0, 176, 244, 0.15)",
+      text: "#00B0F4",
     },
-
     success: {
-      background: "#bce2be",
-      text: "#339537",
+      background: "rgba(53, 237, 126, 0.15)",
+      text: "#35ED7E",
     },
-
     warning: {
-      background: "#ffd59f",
-      text: "#c87000",
+      background: "rgba(254, 231, 92, 0.15)",
+      text: "#FEE75C",
     },
-
     error: {
-      background: "#fcd3d0",
-      text: "#f61200",
+      background: "rgba(237, 66, 69, 0.15)",
+      text: "#ED4245",
     },
-
     light: {
-      background: "#ffffff",
-      text: "#c7d3de",
+      background: "rgba(255, 255, 255, 0.1)",
+      text: "#E1E1E5",
     },
-
     dark: {
-      background: "#8097bf",
-      text: "#1e2e4a",
+      background: "#060A0B",
+      text: "#FFFFFF",
     },
   },
 
   coloredShadows: {
-    primary: "#e91e62",
-    secondary: "#110e0e",
-    info: "#00bbd4",
-    success: "#4caf4f",
-    warning: "#ff9900",
-    error: "#f44336",
-    light: "#adb5bd",
-    dark: "#404040",
+    primary: "rgba(88, 101, 242, 0.2)",
+    secondary: "rgba(114, 115, 119, 0.2)",
+    info: "rgba(0, 176, 244, 0.2)",
+    success: "rgba(53, 237, 126, 0.2)",
+    warning: "rgba(254, 231, 92, 0.2)",
+    error: "rgba(237, 66, 69, 0.2)",
+    light: "rgba(255, 255, 255, 0.05)",
+    dark: "rgba(0, 0, 0, 0.25)",
   },
 
-  inputBorderColor: "#d2d6da",
+  inputBorderColor: "#282828",
 
   tabs: {
-    indicator: { boxShadow: "#ddd" },
+    indicator: { boxShadow: "#5865F2" },
   },
 };
 

@@ -53,9 +53,11 @@ const Login = memo(function Login() {
 		<BasicLayout image={bgImage}>
 			<Card
 				sx={{
-					borderRadius: 3.5,
-					boxShadow: "0 20px 40px rgba(0, 0, 0, 0.24)",
-					overflow: "hidden"
+					borderRadius: 3,
+					boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+					overflow: "hidden",
+					border: "1px solid rgba(255, 255, 255, 0.2)",
+					backgroundColor: colors.dark.main
 				}}
 			>
 				<Box p={3.5}>
@@ -71,14 +73,14 @@ const Login = memo(function Login() {
 						/>
 						<Box
 							sx={{
-								backgroundColor: "rgba(255, 56, 92, 0.1)",
+								backgroundColor: "rgba(88, 101, 242, 0.12)",
 								color: colors.primary.main,
 								px: 1.25,
 								py: 0.25,
 								borderRadius: 1.5,
-								fontSize: 12,
-								fontWeight: "bold",
-								letterSpacing: "0.05em",
+								fontSize: 11,
+								fontWeight: 700,
+								letterSpacing: "0.06em",
 								textTransform: "uppercase"
 							}}
 						>

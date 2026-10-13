@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { HttpTransportType, HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import { ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useQueryClient } from "react-query";

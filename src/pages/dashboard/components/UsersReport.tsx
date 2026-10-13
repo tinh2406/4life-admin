@@ -5,7 +5,7 @@ import { userGrowth } from "../api/userStatistics";
 import ReportsBarChart from "./ReportsBarChart";
 import { useStatistic } from "../../../context/statistics";
 
-const UsersReport = () => {
+const UsersReport = memo(function UsersReport() {
 	const { value, setAction } = useStatistic();
 	const { data: users } = useQuery({
 		queryKey: ["reports-users", ...Object.values(value.UserReport.params)],
@@ -35,7 +35,7 @@ const UsersReport = () => {
 				data: users.valueCycles.map(i => i.value)
 			}
 		};
-	}, [users]);
+	}, [users, value.UserReport.params.TypeCycles]);
 
 	return (
 		<Grid
@@ -52,6 +52,6 @@ const UsersReport = () => {
 			</Box>
 		</Grid>
 	);
-};
+});
 
-export default memo(UsersReport);
+export default UsersReport;

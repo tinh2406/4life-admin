@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import breakpoints from "../base/breakpoints";
 
 // Material Dashboard 2 React helper functions

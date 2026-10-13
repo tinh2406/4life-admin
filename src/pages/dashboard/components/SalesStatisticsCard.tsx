@@ -7,7 +7,7 @@ import { memo, useMemo } from "react";
 import { CalcStatistics } from "../../../utils/CalcStatistics";
 import { useStatistic } from "../../../context/statistics";
 
-const SalesStasticsCard = () => {
+const SalesStasticsCard = memo(function SalesStasticsCard() {
 	const { value, setAction } = useStatistic();
 	const { data: sales } = useQuery({
 		queryKey: ["statistics-sales",value.Sales.params.TypeCycles],
@@ -67,6 +67,6 @@ const SalesStasticsCard = () => {
 			</Box>
 		</Grid>
 	);
-};
+});
 
-export default memo(SalesStasticsCard);
+export default SalesStasticsCard;
