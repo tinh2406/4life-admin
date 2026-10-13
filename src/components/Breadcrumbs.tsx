@@ -2,58 +2,78 @@ import { Box, Typography } from "@mui/material";
 import { Breadcrumbs as MuiBreadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
 import colors from "../assets/theme/base/colors";
-import { Home } from "@mui/icons-material";
-function Breadcrumbs({ title, route }: { title: string; route: string[] }) {
-	const routes = route.slice(1, -1);
-    
+import { HomeOutlined } from "@mui/icons-material";
+import { memo } from "react";
+
+type BreadcrumbsProps = {
+	title: string;
+	route: string[];
+};
+
+const Breadcrumbs = memo(function Breadcrumbs({ title, route }: BreadcrumbsProps) {
+	const ancestorRoutes = route.slice(1, -1);
+	const displayTitle = (title || "Dashboard").replace(/-/g, " ");
+
 	return (
-		<Box mr={{ xs: 0, xl: 8 }}>
+		<Box mr={{ xs: 0, xl: 4 }}>
 			<MuiBreadcrumbs
+				separator="/"
 				sx={{
 					"& .MuiBreadcrumbs-separator": {
-						color: colors.dark.main
+						color: colors.text.main,
+						fontSize: 12,
+						mx: 0.5
 					}
 				}}
 			>
-				<Link to="/">
-					<Typography
-						component="span"
-						variant="body2"
-						color={colors.dark.main}
-						sx={{ lineHeight: 0, opacity: 0.8 }}
-					>
-						<Home/>
-					</Typography>
-				</Link>
-				{routes.map(el => (
-					<Link to={`/${el}`} key={el}>
-						<Typography
-							component="span"
-							variant="button"
-							fontWeight="regular"
-							textTransform="capitalize"
-							color={colors.dark.main}
-							sx={{ lineHeight: 0, opacity: 0.8 }}
-						>
-							{el}
-						</Typography>
-					</Link>
-				))}
-				<Typography
-					variant="button"
-					fontWeight="regular"
-					textTransform="capitalize"
-					color={colors.dark.main}
-					sx={{ lineHeight: 0 }}
+				<Box
+					component={Link}
+					to="/"
+					sx={{
+						display: "inline-flex",
+						alignItems: "center",
+						color: colors.text.main,
+						textDecoration: "none",
+						"&:hover": { color: colors.primary.main }
+					}}
 				>
-					{title.replace("-", " ")}
+					<HomeOutlined sx={{ fontSize: 16 }} />
+				</Box>
+
+				{ancestorRoutes.map(segment => (
+					<Box
+						key={segment}
+						component={Link}
+						to={`/${segment}`}
+						sx={{
+							textDecoration: "none",
+							color: colors.text.main,
+							fontSize: 12,
+							textTransform: "capitalize",
+							"&:hover": { color: colors.primary.main }
+						}}
+					>
+						{segment.replace(/-/g, " ")}
+					</Box>
+				))}
+
+				<Typography variant="caption" color="text.primary" fontWeight="bold" textTransform="capitalize">
+					{displayTitle}
 				</Typography>
 			</MuiBreadcrumbs>
-			<Typography fontWeight="bold" textTransform="capitalize" variant="h6" color={colors.dark.main} noWrap>
-				{title.replace("-", " ")||"Dashboard"}
+
+			<Typography
+				variant="h6"
+				fontWeight="bold"
+				textTransform="capitalize"
+				color="text.primary"
+				noWrap
+				sx={{ mt: 0.25 }}
+			>
+				{displayTitle}
 			</Typography>
 		</Box>
 	);
-}
+});
 
 export default Breadcrumbs;

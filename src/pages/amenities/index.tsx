@@ -91,8 +91,9 @@ const Amenities = () => {
 										style={{
 											width: "100%",
 											borderRadius: borders.borderRadius.md,
-											backgroundColor: item.id === id ? "#e6e6e6" : "transparent",
-											padding: 0
+											backgroundColor: item.id === id ? "rgba(255, 56, 92, 0.08)" : "transparent",
+											padding: "4px 8px",
+											transition: "background-color 150ms ease"
 										}}
 										component="button"
 										onClick={() => {
@@ -226,17 +227,18 @@ const Amenities = () => {
 					display={{ xs: "flex", md: "none" }}
 					justifyContent="center"
 					alignItems="center"
-					width="2.5rem"
-					height="2.5rem"
+					width="3rem"
+					height="3rem"
 					bgcolor={colors.primary.main}
 					boxShadow={boxShadows.tabsBoxShadow}
 					borderRadius="50%"
 					position="fixed"
-					right="4rem"
-					bottom="4rem"
+					right="2rem"
+					bottom="2rem"
 					zIndex={99}
 					color="dark"
-					sx={{ cursor: "pointer" }}
+					aria-label="Add Amenity"
+					sx={{ cursor: "pointer", transition: "transform 150ms ease", "&:active": { transform: "scale(0.95)" } }}
 					onClick={handleOpenModal}
 				>
 					<Add
