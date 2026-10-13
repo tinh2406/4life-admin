@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "generated_by": "clean-code skill / scan_repo.py",
+  "root": "/Users/nguyeqoctih/Code/web/PBL6_FE_Admin",
+  "scope": "whole repository",
+  "reminder": "These are measurements, not verdicts. Fix a finding only if it blocks the current change, creates real risk, or your change introduced it.",
+  "totals": {
+    "code_files": 129,
+    "generated_files_skipped": 0,
+    "production_files": 129,
+    "test_files": 0,
+    "total_lines": 7867,
+    "scan_truncated": false
+  },
+  "large_files": [
+    {
+      "file": "src/components/Filter.tsx",
+      "lines": 489,
+      "is_test": false
+    },
+    {
+      "file": "src/components/NotFound.tsx",
+      "lines": 413,
+      "is_test": false
+    }
+  ],
+  "very_large_files": [],
+  "sibling_variants": [],
+  "junk_drawers": [
+    {
+      "directory": "src/utils",
+      "file_count": 2
+    }
+  ],
+  "debug_output": [
+    {
+      "file": "src/context/notify.tsx",
+      "count": 2,
+      "first_lines": [
+        58,
+        66
+      ]
+    },
+    {
+      "file": "src/pages/amenities/api/addAmenity.ts",
+      "count": 1,
+      "first_lines": [
+        14
+      ]
+    },
+    {
+      "file": "src/pages/users/index.tsx",
+      "count": 1,
+      "first_lines": [
+        29
+      ]
+    }
+  ],
+  "commented_out_code": [
+    {
+      "file": "src/components/Navbar.tsx",
+      "count": 3,
+      "first_lines": [
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "file": "src/components/NotFound.tsx",
+      "count": 3,
+      "first_lines": [
+        1,
+        3,
+        6
+      ]
+    },
+    {
+      "file": "src/pages/amenities/index.tsx",
+      "count": 3,
+      "first_lines": [
+        10,
+        50,
+        51
+      ]
+    },
+    {
+      "file": "src/pages/locations/index.tsx",
+      "count": 3,
+      "first_lines": [
+        8,
+        48,
+        49
+      ]
+    },
+    {
+      "file": "src/layouts/dashboard.tsx",
+      "count": 2,
+      "first_lines": [
+        20,
+        28
+      ]
+    },
+    {
+      "file": "src/assets/theme/components/form/switchButton.tsx",
+      "count": 1,
+      "first_lines": [
+        6
+      ]
+    },
+    {
+      "file": "src/layouts/basic.tsx",
+      "count": 1,
+      "first_lines": [
+        1
+      ]
+    },
+    {
+      "file": "src/pages/request-mod/api/getList.ts",
+      "count": 1,
+      "first_lines": [
+        8
+      ]
+    },
+    {
+      "file": "src/pages/users/index.tsx",
+      "count": 1,
+      "first_lines": [
+        83
+      ]
+    }
+  ],
+  "comment_blocks": [
+    {
+      "file": "src/layouts/dashboard.tsx",
+      "count": 1,
+      "first_lines": [
+        20
+      ]
+    }
+  ],
+  "todo_markers": [],
+  "skipped_tests": [],
+  "long_lines": [
+    {
+      "file": "src/components/NotFound.tsx",
+      "count": 10,
+      "first_lines": [
+        140,
+        192,
+        196,
+        343,
+        347
+      ]
+    },
+    {
+      "file": "src/assets/theme/components/form/checkbox.tsx",
+      "count": 2,
+      "first_lines": [
+        41,
+        56
+      ]
+    }
+  ],
+  "areas_by_test_presence": [
+    {
+      "area": "src",
+      "production": 127,
+      "test": 0
+    },
+    {
+      "area": "(repository root)",
+      "production": 2,
+      "test": 0
+    }
+  ]
+}

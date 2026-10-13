@@ -1,0 +1,3380 @@
+{
+  "schema_version": 1,
+  "generated_by": "clean-code skill / map_structure.py",
+  "generated": "2026-10-13",
+  "commit": "bc392d5",
+  "root": "/Users/nguyeqoctih/Code/web/PBL6_FE_Admin",
+  "packs": [
+    "references/languages/typescript.md",
+    "references/languages/javascript.md",
+    "references/frameworks/react.md"
+  ],
+  "depth": 2,
+  "truncated": false,
+  "unparsed": [],
+  "languages": {
+    "typescript": 128,
+    "javascript": 1
+  },
+  "file_count": 129,
+  "test_file_count": 0,
+  "symbol_count": 98,
+  "changed": null,
+  "findings": {
+    "misplaced": [],
+    "mixed": [],
+    "duplicates": [],
+    "name_clashes": [
+      {
+        "name": "CollapseUser",
+        "language": "js",
+        "members": [
+          {
+            "path": "src/pages/request-mod/api/User.ts",
+            "line": 1,
+            "kind": "type"
+          },
+          {
+            "path": "src/pages/users/api/User.ts",
+            "line": 1,
+            "kind": "type"
+          }
+        ]
+      },
+      {
+        "name": "DetailUser",
+        "language": "js",
+        "members": [
+          {
+            "path": "src/pages/request-mod/api/User.ts",
+            "line": 8,
+            "kind": "type"
+          },
+          {
+            "path": "src/pages/users/api/User.ts",
+            "line": 8,
+            "kind": "type"
+          }
+        ]
+      }
+    ],
+    "synonyms": [],
+    "names": [
+      {
+        "rule": "vague",
+        "name": "data",
+        "kind": "variable",
+        "path": "src/context/notify.tsx",
+        "line": 55,
+        "cites": "N1"
+      },
+      {
+        "rule": "vague",
+        "name": "res",
+        "kind": "variable",
+        "path": "src/pages/dashboard/api/bookingStatistics.ts",
+        "line": 5,
+        "cites": "N1"
+      },
+      {
+        "rule": "vague",
+        "name": "res",
+        "kind": "variable",
+        "path": "src/pages/dashboard/api/salesStatistics.ts",
+        "line": 5,
+        "cites": "N1"
+      },
+      {
+        "rule": "vague",
+        "name": "res",
+        "kind": "variable",
+        "path": "src/pages/dashboard/api/userStatistics.ts",
+        "line": 5,
+        "cites": "N1"
+      },
+      {
+        "rule": "vague",
+        "name": "res",
+        "kind": "variable",
+        "path": "src/pages/dashboard/components/Sales.tsx",
+        "line": 62,
+        "cites": "N1"
+      },
+      {
+        "rule": "vague",
+        "name": "data",
+        "kind": "parameter",
+        "path": "src/pages/login/api/login.ts",
+        "line": 12,
+        "cites": "N1"
+      },
+      {
+        "rule": "vague",
+        "name": "data",
+        "kind": "parameter",
+        "path": "src/pages/login/index.tsx",
+        "line": 25,
+        "cites": "N1"
+      },
+      {
+        "rule": "vague",
+        "name": "res",
+        "kind": "variable",
+        "path": "src/utils/UploadImage.ts",
+        "line": 6,
+        "cites": "N1"
+      }
+    ],
+    "cycles": [
+      {
+        "components": [
+          "src/components",
+          "src/context",
+          "src/store"
+        ],
+        "edges": [
+          {
+            "from": "src/components",
+            "to": "src/context",
+            "count": 4
+          },
+          {
+            "from": "src/components",
+            "to": "src/store",
+            "count": 2
+          },
+          {
+            "from": "src/context",
+            "to": "src/store",
+            "count": 1
+          },
+          {
+            "from": "src/store",
+            "to": "src/components",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "family": [],
+    "junk_drawer": [
+      {
+        "folder": "src/utils",
+        "splits": [
+          {
+            "by": "unsorted",
+            "name": null,
+            "files": [
+              "src/utils/CalcStatistics.ts",
+              "src/utils/UploadImage.ts"
+            ],
+            "to": null
+          }
+        ],
+        "rename": null
+      }
+    ],
+    "flat_folder": [],
+    "unreferenced": [
+      {
+        "path": "src/assets/theme/functions/gradientChartLine.tsx"
+      }
+    ],
+    "comment_heavy": []
+  },
+  "moves": [],
+  "components": [
+    {
+      "name": ".",
+      "files": 2,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 0,
+      "ce": 0,
+      "instability": null,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src",
+      "files": 3,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 0,
+      "ce": 16,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src/assets",
+      "files": 50,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 21,
+      "ce": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src/components",
+      "files": 11,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 12,
+      "ce": 16,
+      "instability": 0.571,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src/constants",
+      "files": 2,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 23,
+      "ce": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src/context",
+      "files": 3,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 16,
+      "ce": 3,
+      "instability": 0.158,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src/hooks",
+      "files": 1,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 1,
+      "ce": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src/layouts",
+      "files": 2,
+      "types": 1,
+      "abstract_types": 1,
+      "ca": 2,
+      "ce": 3,
+      "instability": 0.6,
+      "abstractness": 1.0,
+      "distance": 0.6
+    },
+    {
+      "name": "src/pages",
+      "files": 46,
+      "types": 2,
+      "abstract_types": 2,
+      "ca": 1,
+      "ce": 22,
+      "instability": 0.957,
+      "abstractness": 1.0,
+      "distance": 0.957
+    },
+    {
+      "name": "src/store",
+      "files": 4,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 6,
+      "ce": 3,
+      "instability": 0.333,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src/type",
+      "files": 3,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 19,
+      "ce": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance": null
+    },
+    {
+      "name": "src/utils",
+      "files": 2,
+      "types": 0,
+      "abstract_types": 0,
+      "ca": 5,
+      "ce": 2,
+      "instability": 0.286,
+      "abstractness": null,
+      "distance": null
+    }
+  ],
+  "edges": [
+    {
+      "from": "src",
+      "to": "src/assets",
+      "count": 1
+    },
+    {
+      "from": "src",
+      "to": "src/components",
+      "count": 1
+    },
+    {
+      "from": "src",
+      "to": "src/context",
+      "count": 3
+    },
+    {
+      "from": "src",
+      "to": "src/layouts",
+      "count": 1
+    },
+    {
+      "from": "src",
+      "to": "src/pages",
+      "count": 8
+    },
+    {
+      "from": "src",
+      "to": "src/store",
+      "count": 2
+    },
+    {
+      "from": "src/components",
+      "to": "src/assets",
+      "count": 24
+    },
+    {
+      "from": "src/components",
+      "to": "src/constants",
+      "count": 2
+    },
+    {
+      "from": "src/components",
+      "to": "src/context",
+      "count": 4
+    },
+    {
+      "from": "src/components",
+      "to": "src/store",
+      "count": 2
+    },
+    {
+      "from": "src/components",
+      "to": "src/type",
+      "count": 1
+    },
+    {
+      "from": "src/context",
+      "to": "src/store",
+      "count": 1
+    },
+    {
+      "from": "src/context",
+      "to": "src/type",
+      "count": 2
+    },
+    {
+      "from": "src/layouts",
+      "to": "src/assets",
+      "count": 1
+    },
+    {
+      "from": "src/layouts",
+      "to": "src/components",
+      "count": 2
+    },
+    {
+      "from": "src/pages",
+      "to": "src/assets",
+      "count": 20
+    },
+    {
+      "from": "src/pages",
+      "to": "src/components",
+      "count": 11
+    },
+    {
+      "from": "src/pages",
+      "to": "src/constants",
+      "count": 19
+    },
+    {
+      "from": "src/pages",
+      "to": "src/context",
+      "count": 12
+    },
+    {
+      "from": "src/pages",
+      "to": "src/hooks",
+      "count": 1
+    },
+    {
+      "from": "src/pages",
+      "to": "src/layouts",
+      "count": 1
+    },
+    {
+      "from": "src/pages",
+      "to": "src/store",
+      "count": 1
+    },
+    {
+      "from": "src/pages",
+      "to": "src/type",
+      "count": 14
+    },
+    {
+      "from": "src/pages",
+      "to": "src/utils",
+      "count": 5
+    },
+    {
+      "from": "src/store",
+      "to": "src/components",
+      "count": 1
+    },
+    {
+      "from": "src/store",
+      "to": "src/constants",
+      "count": 1
+    },
+    {
+      "from": "src/store",
+      "to": "src/type",
+      "count": 2
+    },
+    {
+      "from": "src/utils",
+      "to": "src/constants",
+      "count": 1
+    },
+    {
+      "from": "src/utils",
+      "to": "src/type",
+      "count": 1
+    }
+  ],
+  "files": [
+    {
+      "path": ".eslintrc.cjs",
+      "language": "javascript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 18,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "vite.config.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 7,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/App.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 108,
+      "imports": [
+        "src/components/NotFound.tsx",
+        "src/layouts/dashboard.tsx",
+        "src/pages/amenities/index.tsx",
+        "src/pages/dashboard/index.tsx",
+        "src/pages/locations/index.tsx",
+        "src/pages/login/index.tsx",
+        "src/pages/request-mod/detail.tsx",
+        "src/pages/request-mod/index.tsx",
+        "src/pages/users/detail.tsx",
+        "src/pages/users/index.tsx",
+        "src/store/auth/type.ts"
+      ],
+      "symbols": [
+        {
+          "name": "NotAuthElement",
+          "kind": "function",
+          "line": 16,
+          "end_line": 27,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "ProtectedElement",
+          "kind": "function",
+          "line": 28,
+          "end_line": 39,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "App",
+          "kind": "function",
+          "line": 104,
+          "end_line": 106,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/main.tsx",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 33,
+      "imports": [
+        "src/App.tsx",
+        "src/assets/theme/index.ts",
+        "src/context/filter.tsx",
+        "src/context/notify.tsx",
+        "src/context/statistics.tsx",
+        "src/store/ReduxProvider.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/vite-env.d.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 1,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/index.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 78,
+      "imports": [
+        "src/assets/theme/base/breakpoints.ts",
+        "src/assets/theme/base/globals.ts",
+        "src/assets/theme/components/appBar.tsx",
+        "src/assets/theme/components/avatar.tsx",
+        "src/assets/theme/components/breadcrumbs.tsx",
+        "src/assets/theme/components/button/index.tsx",
+        "src/assets/theme/components/buttonBase.tsx",
+        "src/assets/theme/components/card/cardContent.tsx",
+        "src/assets/theme/components/card/cardMedia.tsx",
+        "src/assets/theme/components/card/index.tsx",
+        "src/assets/theme/components/container.tsx",
+        "src/assets/theme/components/divider.tsx",
+        "src/assets/theme/components/form/autocomplete.tsx",
+        "src/assets/theme/components/form/input.tsx",
+        "src/assets/theme/components/form/inputLabel.tsx",
+        "src/assets/theme/components/form/inputOutlined.tsx",
+        "src/assets/theme/components/form/textField.tsx",
+        "src/assets/theme/components/icon.tsx",
+        "src/assets/theme/components/iconButton.tsx",
+        "src/assets/theme/components/linearProgress.tsx",
+        "src/assets/theme/components/list/index.tsx",
+        "src/assets/theme/components/list/listItem.tsx",
+        "src/assets/theme/components/list/listItemText.tsx",
+        "src/assets/theme/components/menu/index.tsx",
+        "src/assets/theme/components/menu/menuItem.tsx",
+        "src/assets/theme/components/sidenav.tsx",
+        "src/assets/theme/components/svgIcon.tsx",
+        "src/assets/theme/components/table/tableCell.tsx",
+        "src/assets/theme/components/table/tableContainer.tsx",
+        "src/assets/theme/components/table/tableHead.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/base/borders.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 31,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/base/boxShadows.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 96,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/boxShadow.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/base/breakpoints.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 12,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/base/colors.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 242,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/base/globals.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 25,
+      "imports": [
+        "src/assets/theme/base/colors.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/base/typography.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 177,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/appBar.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 20,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/avatar.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 21,
+      "imports": [
+        "src/assets/theme/base/borders.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/breadcrumbs.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 20,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/buttonBase.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 21,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/container.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 58,
+      "imports": [
+        "src/assets/theme/base/breakpoints.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/divider.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 52,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/pxToRem.ts",
+        "src/assets/theme/functions/rgba.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/icon.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 29,
+      "imports": [
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/iconButton.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 15,
+      "imports": [
+        "src/assets/theme/base/colors.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/linearProgress.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 44,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/sidenav.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 33,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/svgIcon.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 28,
+      "imports": [
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/button/contained.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 77,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/button/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 35,
+      "imports": [
+        "src/assets/theme/components/button/contained.tsx",
+        "src/assets/theme/components/button/outlined.tsx",
+        "src/assets/theme/components/button/root.tsx",
+        "src/assets/theme/components/button/text.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/button/outlined.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 66,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/button/root.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 37,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/button/text.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 88,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/card/cardContent.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 13,
+      "imports": [
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/card/cardMedia.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 21,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/card/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 34,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/rgba.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/autocomplete.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 91,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/checkbox.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 67,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/linearGradient.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/formControlLabel.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 34,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/formLabel.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 13,
+      "imports": [
+        "src/assets/theme/base/colors.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/input.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 30,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/inputLabel.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 44,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/inputOutlined.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 52,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/select.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 33,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/switchButton.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 72,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/linearGradient.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/form/textField.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 13,
+      "imports": [
+        "src/assets/theme/base/colors.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/list/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 25,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/list/listItem.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 29,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/list/listItemText.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 25,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/menu/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 38,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/menu/menuItem.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 31,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/table/tableCell.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 18,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/table/tableContainer.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 19,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/components/table/tableHead.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 18,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/functions/pxToRem.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/assets/theme/functions/boxShadow.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 14,
+      "imports": [
+        "src/assets/theme/functions/pxToRem.ts",
+        "src/assets/theme/functions/rgba.ts"
+      ],
+      "symbols": [
+        {
+          "name": "boxShadow",
+          "kind": "function",
+          "line": 4,
+          "end_line": 12,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/assets/theme/functions/gradientChartLine.tsx",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 15,
+      "imports": [
+        "src/assets/theme/functions/rgba.ts"
+      ],
+      "symbols": [
+        {
+          "name": "gradientChartLine",
+          "kind": "function",
+          "line": 3,
+          "end_line": 13,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/assets/theme/functions/hexToRgb.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 7,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "hexToRgb",
+          "kind": "function",
+          "line": 3,
+          "end_line": 5,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/assets/theme/functions/linearGradient.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 5,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "linearGradient",
+          "kind": "function",
+          "line": 1,
+          "end_line": 3,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/assets/theme/functions/pxToRem.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 5,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "pxToRem",
+          "kind": "function",
+          "line": 1,
+          "end_line": 3,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/assets/theme/functions/rgba.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 7,
+      "imports": [
+        "src/assets/theme/functions/hexToRgb.ts"
+      ],
+      "symbols": [
+        {
+          "name": "rgba",
+          "kind": "function",
+          "line": 3,
+          "end_line": 5,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/components/Breadcrumbs.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 59,
+      "imports": [
+        "src/assets/theme/base/colors.ts"
+      ],
+      "symbols": [
+        {
+          "name": "Breadcrumbs",
+          "kind": "function",
+          "line": 6,
+          "end_line": 57,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/components/DataTable.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 101,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts"
+      ],
+      "symbols": [
+        {
+          "name": "GridColDefMe",
+          "kind": "type",
+          "line": 18,
+          "end_line": 21,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "DataTable",
+          "kind": "function",
+          "line": 72,
+          "end_line": 72,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/components/Filter.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 489,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/context/filter.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/components/GradientBox.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 30,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/linearGradient.ts"
+      ],
+      "symbols": [
+        {
+          "name": "ColorType",
+          "kind": "type",
+          "line": 7,
+          "end_line": 7,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "GradientBox",
+          "kind": "function",
+          "line": 8,
+          "end_line": 28,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/components/GradientButton.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 56,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/boxShadow.ts",
+        "src/assets/theme/functions/linearGradient.ts"
+      ],
+      "symbols": [
+        {
+          "name": "GButton",
+          "kind": "function",
+          "line": 6,
+          "end_line": 54,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/components/Loading.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 18,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/components/Navbar.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 184,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/functions/pxToRem.ts",
+        "src/assets/theme/functions/rgba.ts",
+        "src/components/Breadcrumbs.tsx",
+        "src/components/Filter.tsx",
+        "src/components/Notifications.tsx",
+        "src/components/StatisticsFilter.tsx",
+        "src/context/notify.tsx",
+        "src/store/auth/type.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/components/NotFound.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 413,
+      "imports": [
+        "src/assets/theme/base/colors.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/components/Notifications.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 136,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/constants/AxiosInstance.ts",
+        "src/context/notify.tsx",
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "NotifyType",
+          "kind": "type",
+          "line": 12,
+          "end_line": 20,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "Notifys",
+          "kind": "function",
+          "line": 88,
+          "end_line": 134,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/components/Sidenav.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 221,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/assets/theme/functions/linearGradient.ts",
+        "src/assets/theme/functions/pxToRem.ts",
+        "src/constants/routes.tsx",
+        "src/store/auth/slice.ts"
+      ],
+      "symbols": [
+        {
+          "name": "LinkItem",
+          "kind": "function",
+          "line": 16,
+          "end_line": 101,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "Sidenav",
+          "kind": "function",
+          "line": 103,
+          "end_line": 220,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/components/StatisticsFilter.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 96,
+      "imports": [
+        "src/context/statistics.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/constants/AxiosInstance.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 11,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/constants/routes.tsx",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 34,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/context/filter.tsx",
+      "language": "typescript",
+      "role": "context",
+      "home_role": "context",
+      "test": false,
+      "purpose": "",
+      "lines": 67,
+      "imports": [
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "UsersParams",
+          "kind": "type",
+          "line": 5,
+          "end_line": 5,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": "type RequestModParams = PagingParams<\"Name\" | \"Email\" | \"PhoneNumber\">;"
+        },
+        {
+          "name": "FilterContextType",
+          "kind": "type",
+          "line": 7,
+          "end_line": 16,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "useFilter",
+          "kind": "function",
+          "line": 30,
+          "end_line": 32,
+          "exported": true,
+          "parent": null,
+          "role": "hook",
+          "doc": ""
+        },
+        {
+          "name": "FilterProvider",
+          "kind": "function",
+          "line": 34,
+          "end_line": 67,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/context/notify.tsx",
+      "language": "typescript",
+      "role": "context",
+      "home_role": "context",
+      "test": false,
+      "purpose": "",
+      "lines": 109,
+      "imports": [
+        "src/store/auth/type.ts"
+      ],
+      "symbols": [
+        {
+          "name": "AnyObject",
+          "kind": "type",
+          "line": 6,
+          "end_line": 8,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "NotifyContextValue",
+          "kind": "type",
+          "line": 9,
+          "end_line": 21,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "useNotify",
+          "kind": "function",
+          "line": 32,
+          "end_line": 34,
+          "exported": true,
+          "parent": null,
+          "role": "hook",
+          "doc": ""
+        },
+        {
+          "name": "NotifyProvider",
+          "kind": "function",
+          "line": 35,
+          "end_line": 109,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/context/statistics.tsx",
+      "language": "typescript",
+      "role": "context",
+      "home_role": "context",
+      "test": false,
+      "purpose": "",
+      "lines": 143,
+      "imports": [
+        "src/type/Statistics.ts"
+      ],
+      "symbols": [
+        {
+          "name": "TypeReport",
+          "kind": "type",
+          "line": 4,
+          "end_line": 4,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "Analyst",
+          "kind": "type",
+          "line": 5,
+          "end_line": 7,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "StatisticsContextType",
+          "kind": "type",
+          "line": 8,
+          "end_line": 37,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "useStatistic",
+          "kind": "function",
+          "line": 84,
+          "end_line": 86,
+          "exported": true,
+          "parent": null,
+          "role": "hook",
+          "doc": ""
+        },
+        {
+          "name": "StatisticsProvider",
+          "kind": "function",
+          "line": 88,
+          "end_line": 143,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/hooks/useWindowSize.tsx",
+      "language": "typescript",
+      "role": "hook",
+      "home_role": "hook",
+      "test": false,
+      "purpose": "",
+      "lines": 16,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "useWindowSize",
+          "kind": "function",
+          "line": 3,
+          "end_line": 14,
+          "exported": true,
+          "parent": null,
+          "role": "hook",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/layouts/basic.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 42,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "BasicLayoutProps",
+          "kind": "interface",
+          "line": 4,
+          "end_line": 7,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "BasicLayout",
+          "kind": "function",
+          "line": 9,
+          "end_line": 40,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/layouts/dashboard.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 60,
+      "imports": [
+        "src/assets/theme/functions/pxToRem.ts",
+        "src/components/Navbar.tsx",
+        "src/components/Sidenav.tsx"
+      ],
+      "symbols": [
+        {
+          "name": "MainLayout",
+          "kind": "function",
+          "line": 19,
+          "end_line": 58,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": "type StateType = { miniSidenav: boolean; transparentSidenav: boolean; whiteSidenav: boolean; side..."
+        }
+      ]
+    },
+    {
+      "path": "src/pages/amenities/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 268,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/context/filter.tsx",
+        "src/pages/amenities/api/Amenity.ts",
+        "src/pages/amenities/api/getList.ts",
+        "src/pages/amenities/components/ManageAmenity.tsx",
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "Amenities",
+          "kind": "function",
+          "line": 17,
+          "end_line": 266,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/amenities/api/Amenity.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 10,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "Amenity",
+          "kind": "type",
+          "line": 1,
+          "end_line": 5,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "AddAmenityDTO",
+          "kind": "type",
+          "line": 6,
+          "end_line": 9,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "UpdateAmenityDTO",
+          "kind": "type",
+          "line": 10,
+          "end_line": 10,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/amenities/api/addAmenity.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 17,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/amenities/api/Amenity.ts",
+        "src/utils/UploadImage.ts"
+      ],
+      "symbols": [
+        {
+          "name": "addAmenity",
+          "kind": "function",
+          "line": 5,
+          "end_line": 17,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/amenities/api/deleteAmenity.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 6,
+      "imports": [
+        "src/constants/AxiosInstance.ts"
+      ],
+      "symbols": [
+        {
+          "name": "deleteAmenity",
+          "kind": "function",
+          "line": 3,
+          "end_line": 6,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/amenities/api/getList.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 14,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/amenities/api/Amenity.ts",
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "getAmenities",
+          "kind": "function",
+          "line": 5,
+          "end_line": 14,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/amenities/api/updateAmenity.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 22,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/amenities/api/Amenity.ts",
+        "src/utils/UploadImage.ts"
+      ],
+      "symbols": [
+        {
+          "name": "updateAmenity",
+          "kind": "function",
+          "line": 5,
+          "end_line": 22,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/amenities/components/ManageAmenity.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 220,
+      "imports": [
+        "src/pages/amenities/api/addAmenity.ts",
+        "src/pages/amenities/api/deleteAmenity.ts",
+        "src/pages/amenities/api/updateAmenity.ts"
+      ],
+      "symbols": [
+        {
+          "name": "MangageAmenityProps",
+          "kind": "interface",
+          "line": 11,
+          "end_line": 20,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 36,
+      "imports": [
+        "src/pages/dashboard/components/BookingStatisticsCard.tsx",
+        "src/pages/dashboard/components/BookingsReport.tsx",
+        "src/pages/dashboard/components/Sales.tsx",
+        "src/pages/dashboard/components/SalesReport.tsx",
+        "src/pages/dashboard/components/SalesStatisticsCard.tsx",
+        "src/pages/dashboard/components/UsersReport.tsx",
+        "src/pages/dashboard/components/UsersStatisticsCard.tsx"
+      ],
+      "symbols": [
+        {
+          "name": "DashBoard",
+          "kind": "function",
+          "line": 10,
+          "end_line": 34,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/api/bookingStatistics.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 13,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/type/Statistics.ts"
+      ],
+      "symbols": [
+        {
+          "name": "bookingGrowth",
+          "kind": "function",
+          "line": 4,
+          "end_line": 13,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/api/salesStatistics.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 10,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/type/Statistics.ts"
+      ],
+      "symbols": [
+        {
+          "name": "salesGrowth",
+          "kind": "function",
+          "line": 4,
+          "end_line": 10,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/api/userStatistics.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 14,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/type/Statistics.ts"
+      ],
+      "symbols": [
+        {
+          "name": "userGrowth",
+          "kind": "function",
+          "line": 4,
+          "end_line": 14,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/BookingStatisticsCard.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 74,
+      "imports": [
+        "src/context/statistics.tsx",
+        "src/pages/dashboard/api/bookingStatistics.ts",
+        "src/pages/dashboard/components/StatisticsCard.tsx",
+        "src/utils/CalcStatistics.ts"
+      ],
+      "symbols": [
+        {
+          "name": "BookingStatisticsCard",
+          "kind": "function",
+          "line": 10,
+          "end_line": 72,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/BookingsReport.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 58,
+      "imports": [
+        "src/context/statistics.tsx",
+        "src/pages/dashboard/api/bookingStatistics.ts",
+        "src/pages/dashboard/components/ReportsLineChart.tsx"
+      ],
+      "symbols": [
+        {
+          "name": "BookingsReport",
+          "kind": "function",
+          "line": 8,
+          "end_line": 56,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/ReportsBarChart.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 125,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/components/GradientBox.tsx",
+        "src/pages/dashboard/components/type.ts"
+      ],
+      "symbols": [
+        {
+          "name": "ReportsBarChart",
+          "kind": "function",
+          "line": 13,
+          "end_line": 123,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/ReportsLineChart.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 138,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/components/GradientBox.tsx",
+        "src/pages/dashboard/components/type.ts"
+      ],
+      "symbols": [
+        {
+          "name": "ReportsLineChart",
+          "kind": "function",
+          "line": 23,
+          "end_line": 135,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/ReportsMultiLineChart.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 235,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/components/GradientBox.tsx",
+        "src/pages/dashboard/components/type.ts"
+      ],
+      "symbols": [
+        {
+          "name": "ReportsMultiLineChart",
+          "kind": "function",
+          "line": 25,
+          "end_line": 233,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/Sales.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 174,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/components/DataTable.tsx",
+        "src/constants/AxiosInstance.ts",
+        "src/type/Paging.ts",
+        "src/type/User.ts"
+      ],
+      "symbols": [
+        {
+          "name": "RowType",
+          "kind": "type",
+          "line": 14,
+          "end_line": 24,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "RevenueResponse",
+          "kind": "type",
+          "line": 25,
+          "end_line": 31,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "Sales",
+          "kind": "function",
+          "line": 43,
+          "end_line": 172,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/SalesReport.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 103,
+      "imports": [
+        "src/context/statistics.tsx",
+        "src/pages/dashboard/api/salesStatistics.ts",
+        "src/pages/dashboard/components/ReportsMultiLineChart.tsx"
+      ],
+      "symbols": [
+        {
+          "name": "SalesReport",
+          "kind": "function",
+          "line": 8,
+          "end_line": 101,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/SalesStatisticsCard.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 72,
+      "imports": [
+        "src/context/statistics.tsx",
+        "src/pages/dashboard/api/salesStatistics.ts",
+        "src/pages/dashboard/components/StatisticsCard.tsx",
+        "src/utils/CalcStatistics.ts"
+      ],
+      "symbols": [
+        {
+          "name": "SalesStasticsCard",
+          "kind": "function",
+          "line": 10,
+          "end_line": 70,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/StatisticsCard.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 59,
+      "imports": [
+        "src/assets/theme/base/colors.ts",
+        "src/components/GradientBox.tsx",
+        "src/pages/dashboard/components/type.ts"
+      ],
+      "symbols": [
+        {
+          "name": "ComplexStatisticsCard",
+          "kind": "function",
+          "line": 6,
+          "end_line": 57,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/UsersReport.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 57,
+      "imports": [
+        "src/context/statistics.tsx",
+        "src/pages/dashboard/api/userStatistics.ts",
+        "src/pages/dashboard/components/ReportsBarChart.tsx"
+      ],
+      "symbols": [
+        {
+          "name": "UsersReport",
+          "kind": "function",
+          "line": 8,
+          "end_line": 55,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/UsersStatisticsCard.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 73,
+      "imports": [
+        "src/context/statistics.tsx",
+        "src/pages/dashboard/api/userStatistics.ts",
+        "src/pages/dashboard/components/StatisticsCard.tsx",
+        "src/utils/CalcStatistics.ts"
+      ],
+      "symbols": [
+        {
+          "name": "UsersStatisticsCard",
+          "kind": "function",
+          "line": 10,
+          "end_line": 71,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/dashboard/components/type.ts",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 30,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "ColorType",
+          "kind": "type",
+          "line": 3,
+          "end_line": 3,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "ReportChartType",
+          "kind": "type",
+          "line": 5,
+          "end_line": 17,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "ReportMultiChartType",
+          "kind": "type",
+          "line": 18,
+          "end_line": 30,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/locations/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 260,
+      "imports": [
+        "src/assets/theme/base/borders.ts",
+        "src/assets/theme/base/boxShadows.ts",
+        "src/assets/theme/base/colors.ts",
+        "src/assets/theme/base/typography.ts",
+        "src/context/filter.tsx",
+        "src/pages/locations/api/Location.ts",
+        "src/pages/locations/api/getList.ts",
+        "src/pages/locations/components/ManageLocation.tsx",
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "Locations",
+          "kind": "function",
+          "line": 16,
+          "end_line": 258,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/locations/api/Location.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 11,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "Location",
+          "kind": "type",
+          "line": 1,
+          "end_line": 5,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "AddLocationDTO",
+          "kind": "type",
+          "line": 7,
+          "end_line": 10,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "UpdateLocationDTO",
+          "kind": "type",
+          "line": 11,
+          "end_line": 11,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/locations/api/addLocation.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 7,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/locations/api/Location.ts"
+      ],
+      "symbols": [
+        {
+          "name": "addLocation",
+          "kind": "function",
+          "line": 4,
+          "end_line": 7,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/locations/api/deleteLocation.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 6,
+      "imports": [
+        "src/constants/AxiosInstance.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/pages/locations/api/getList.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 12,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/locations/api/Location.ts",
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "getLocations",
+          "kind": "function",
+          "line": 5,
+          "end_line": 12,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/locations/api/updateLocation.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 9,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/locations/api/Location.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/pages/locations/components/ManageLocation.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 184,
+      "imports": [
+        "src/pages/locations/api/addLocation.ts",
+        "src/pages/locations/api/deleteLocation.ts",
+        "src/pages/locations/api/updateLocation.ts"
+      ],
+      "symbols": [
+        {
+          "name": "MangageLocationProps",
+          "kind": "interface",
+          "line": 9,
+          "end_line": 16,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/login/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 103,
+      "imports": [
+        "src/components/GradientButton.tsx",
+        "src/layouts/basic.tsx",
+        "src/pages/login/api/login.ts",
+        "src/pages/login/schema.ts",
+        "src/store/auth/slice.ts"
+      ],
+      "symbols": [
+        {
+          "name": "Login",
+          "kind": "function",
+          "line": 14,
+          "end_line": 101,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/login/schema.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 12,
+      "imports": [],
+      "symbols": []
+    },
+    {
+      "path": "src/pages/login/api/login.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 23,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/type/User.ts"
+      ],
+      "symbols": [
+        {
+          "name": "LoginData",
+          "kind": "type",
+          "line": 3,
+          "end_line": 6,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "LoginResponse",
+          "kind": "type",
+          "line": 7,
+          "end_line": 10,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "login",
+          "kind": "function",
+          "line": 12,
+          "end_line": 23,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/request-mod/detail.tsx",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 154,
+      "imports": [
+        "src/assets/theme/base/typography.ts",
+        "src/components/Loading.tsx",
+        "src/components/NotFound.tsx",
+        "src/pages/request-mod/api/User.ts",
+        "src/pages/request-mod/api/acceptRequest.ts",
+        "src/pages/request-mod/api/denyRequest.ts",
+        "src/pages/request-mod/api/getDetail.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/pages/request-mod/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 113,
+      "imports": [
+        "src/assets/theme/base/breakpoints.ts",
+        "src/context/filter.tsx",
+        "src/context/notify.tsx",
+        "src/hooks/useWindowSize.tsx",
+        "src/pages/request-mod/api/User.ts",
+        "src/pages/request-mod/api/getList.ts",
+        "src/pages/request-mod/components/UserCard.tsx",
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "RequestsMod",
+          "kind": "function",
+          "line": 16,
+          "end_line": 111,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/request-mod/api/User.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 19,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "CollapseUser",
+          "kind": "type",
+          "line": 1,
+          "end_line": 7,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "DetailUser",
+          "kind": "type",
+          "line": 8,
+          "end_line": 19,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/request-mod/api/acceptRequest.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 5,
+      "imports": [
+        "src/constants/AxiosInstance.ts"
+      ],
+      "symbols": [
+        {
+          "name": "acceptMod",
+          "kind": "function",
+          "line": 3,
+          "end_line": 5,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/request-mod/api/denyRequest.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 5,
+      "imports": [
+        "src/constants/AxiosInstance.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/pages/request-mod/api/getDetail.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 7,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/request-mod/api/User.ts"
+      ],
+      "symbols": [
+        {
+          "name": "getUser",
+          "kind": "function",
+          "line": 4,
+          "end_line": 7,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/request-mod/api/getList.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 14,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/request-mod/api/User.ts",
+        "src/type/Paging.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/pages/request-mod/components/UserCard.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": "component",
+      "test": false,
+      "purpose": "",
+      "lines": 109,
+      "imports": [
+        "src/context/notify.tsx",
+        "src/pages/request-mod/api/User.ts",
+        "src/pages/request-mod/api/acceptRequest.ts",
+        "src/pages/request-mod/api/denyRequest.ts"
+      ],
+      "symbols": [
+        {
+          "name": "UserCard",
+          "kind": "function",
+          "line": 11,
+          "end_line": 107,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/users/detail.tsx",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 116,
+      "imports": [
+        "src/assets/theme/base/typography.ts",
+        "src/components/Loading.tsx",
+        "src/components/NotFound.tsx",
+        "src/pages/users/api/User.ts",
+        "src/pages/users/api/getDetail.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/pages/users/index.tsx",
+      "language": "typescript",
+      "role": "component",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 121,
+      "imports": [
+        "src/components/DataTable.tsx",
+        "src/context/filter.tsx",
+        "src/pages/users/api/User.ts",
+        "src/pages/users/api/getList.tsx",
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "RowType",
+          "kind": "type",
+          "line": 14,
+          "end_line": 22,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        },
+        {
+          "name": "Users",
+          "kind": "function",
+          "line": 50,
+          "end_line": 119,
+          "exported": true,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/users/api/User.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 19,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "CollapseUser",
+          "kind": "type",
+          "line": 1,
+          "end_line": 7,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "DetailUser",
+          "kind": "type",
+          "line": 8,
+          "end_line": 19,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/users/api/getDetail.ts",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 7,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/users/api/User.ts"
+      ],
+      "symbols": [
+        {
+          "name": "getUser",
+          "kind": "function",
+          "line": 4,
+          "end_line": 7,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/pages/users/api/getList.tsx",
+      "language": "typescript",
+      "role": "api",
+      "home_role": "api",
+      "test": false,
+      "purpose": "",
+      "lines": 14,
+      "imports": [
+        "src/constants/AxiosInstance.ts",
+        "src/pages/users/api/User.ts",
+        "src/type/Paging.ts"
+      ],
+      "symbols": [
+        {
+          "name": "getUsers",
+          "kind": "function",
+          "line": 5,
+          "end_line": 14,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/store/ReduxProvider.tsx",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 49,
+      "imports": [
+        "src/components/Loading.tsx",
+        "src/constants/AxiosInstance.ts",
+        "src/store/auth/slice.ts",
+        "src/store/auth/type.ts",
+        "src/store/index.ts",
+        "src/type/User.ts"
+      ],
+      "symbols": [
+        {
+          "name": "ReduxProvider",
+          "kind": "function",
+          "line": 39,
+          "end_line": 47,
+          "exported": false,
+          "parent": null,
+          "role": "component",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/store/index.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 26,
+      "imports": [
+        "src/store/auth/slice.ts",
+        "src/store/auth/type.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/store/auth/slice.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 22,
+      "imports": [
+        "src/store/auth/type.ts"
+      ],
+      "symbols": []
+    },
+    {
+      "path": "src/store/auth/type.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 6,
+      "imports": [
+        "src/type/User.ts"
+      ],
+      "symbols": [
+        {
+          "name": "AuthStateType",
+          "kind": "type",
+          "line": 3,
+          "end_line": 6,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/type/Paging.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 17,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "PagingParams",
+          "kind": "type",
+          "line": 1,
+          "end_line": 7,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "PagingResponse",
+          "kind": "type",
+          "line": 9,
+          "end_line": 17,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/type/Statistics.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 15,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "Column",
+          "kind": "type",
+          "line": 1,
+          "end_line": 6,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "StatisticsParam",
+          "kind": "type",
+          "line": 7,
+          "end_line": 10,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        },
+        {
+          "name": "StatisticsResponse",
+          "kind": "type",
+          "line": 11,
+          "end_line": 15,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/type/User.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 10,
+      "imports": [],
+      "symbols": [
+        {
+          "name": "User",
+          "kind": "type",
+          "line": 1,
+          "end_line": 10,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/utils/CalcStatistics.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 22,
+      "imports": [
+        "src/type/Statistics.ts"
+      ],
+      "symbols": [
+        {
+          "name": "CalcStatistics",
+          "kind": "function",
+          "line": 3,
+          "end_line": 22,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "path": "src/utils/UploadImage.ts",
+      "language": "typescript",
+      "role": "-",
+      "home_role": null,
+      "test": false,
+      "purpose": "",
+      "lines": 12,
+      "imports": [
+        "src/constants/AxiosInstance.ts"
+      ],
+      "symbols": [
+        {
+          "name": "UploadImage",
+          "kind": "function",
+          "line": 3,
+          "end_line": 12,
+          "exported": true,
+          "parent": null,
+          "role": null,
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

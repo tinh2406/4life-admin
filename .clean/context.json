@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "generated_by": "clean-code skill / detect_stack.py",
+  "root": "/Users/nguyeqoctih/Code/web/PBL6_FE_Admin",
+  "confidence": "inferred from file layout; verify before relying on it",
+  "primary_language": "TypeScript",
+  "languages": {
+    "TypeScript": 128,
+    "CSS": 1,
+    "HTML": 1,
+    "JavaScript": 1
+  },
+  "ecosystems": [
+    "Node.js"
+  ],
+  "manifests": [
+    {
+      "path": "package.json",
+      "ecosystem": "Node.js",
+      "suggested_verify_command": "npm test",
+      "depth": 0
+    }
+  ],
+  "frameworks": [
+    "React"
+  ],
+  "packs": [
+    "references/languages/typescript.md",
+    "references/languages/javascript.md",
+    "references/frameworks/react.md"
+  ],
+  "pack_scopes": {},
+  "test_runners": [],
+  "tests": {
+    "test_file_count": 0,
+    "test_directories": []
+  },
+  "dependencies": [
+    {
+      "name": "@emotion/react",
+      "version": "^11.11.1",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@emotion/styled",
+      "version": "^11.11.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@hookform/resolvers",
+      "version": "^3.3.2",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@microsoft/signalr",
+      "version": "^8.0.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@mui/icons-material",
+      "version": "^5.15.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@mui/lab",
+      "version": "^5.0.0-alpha.156",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@mui/material",
+      "version": "^5.15.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@mui/x-data-grid",
+      "version": "^6.18.5",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@reduxjs/toolkit",
+      "version": "^2.0.1",
+      "manifest": "package.json"
+    },
+    {
+      "name": "axios",
+      "version": "^1.6.2",
+      "manifest": "package.json"
+    },
+    {
+      "name": "chart.js",
+      "version": "^4.4.1",
+      "manifest": "package.json"
+    },
+    {
+      "name": "chroma-js",
+      "version": "^2.4.2",
+      "manifest": "package.json"
+    },
+    {
+      "name": "date-fns",
+      "version": "^2.30.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react",
+      "version": "^18.2.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-chartjs-2",
+      "version": "^5.2.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-dom",
+      "version": "^18.2.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-hook-form",
+      "version": "^7.49.2",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-lazy-load-image-component",
+      "version": "^1.6.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-query",
+      "version": "^3.39.3",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-redux",
+      "version": "^9.0.4",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-router-dom",
+      "version": "^6.20.1",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-toastify",
+      "version": "^9.1.3",
+      "manifest": "package.json"
+    },
+    {
+      "name": "react-use",
+      "version": "^17.4.2",
+      "manifest": "package.json"
+    },
+    {
+      "name": "redux-persist",
+      "version": "^6.0.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "yup",
+      "version": "^1.3.2",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@types/chroma-js",
+      "version": "^2.4.3",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@types/react",
+      "version": "^18.2.43",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@types/react-dom",
+      "version": "^18.2.17",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@types/react-lazy-load-image-component",
+      "version": "^1.6.3",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@typescript-eslint/eslint-plugin",
+      "version": "^6.14.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@typescript-eslint/parser",
+      "version": "^6.14.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "@vitejs/plugin-react",
+      "version": "^4.2.1",
+      "manifest": "package.json"
+    },
+    {
+      "name": "eslint",
+      "version": "^8.55.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "eslint-plugin-react-hooks",
+      "version": "^4.6.0",
+      "manifest": "package.json"
+    },
+    {
+      "name": "eslint-plugin-react-refresh",
+      "version": "^0.4.5",
+      "manifest": "package.json"
+    },
+    {
+      "name": "typescript",
+      "version": "^5.2.2",
+      "manifest": "package.json"
+    },
+    {
+      "name": "vite",
+      "version": "^5.0.8",
+      "manifest": "package.json"
+    }
+  ],
+  "suggested_verify_commands": [
+    "npm test"
+  ],
+  "source_roots": [
+    "src"
+  ],
+  "layer_candidates": {
+    "adapter": {
+      "api": 22
+    }
+  },
+  "quality_tools": [
+    "Prettier"
+  ],
+  "existing_context_files": [],
+  "purpose": {
+    "signals": [
+      "containerized deployment",
+      "CI configured",
+      "no tests detected: treat every change as higher risk"
+    ],
+    "note": "Purpose is inferred from layout only. Confirm it with the user before letting it influence a design decision."
+  },
+  "files_scanned": 148,
+  "scan_truncated": false
+}
