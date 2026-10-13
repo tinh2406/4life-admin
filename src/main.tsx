@@ -3,7 +3,7 @@ import App from "./App.tsx";
 import { ThemeProvider } from "@mui/material";
 import theme from "./assets/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
-import ReduxProvider from "./store/ReduxProvider.tsx";
+import ReduxProvider from "./app/providers/ReduxProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { NotifyProvider } from "./context/notify.tsx";

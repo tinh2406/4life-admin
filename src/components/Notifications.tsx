@@ -25,7 +25,7 @@ const NotificationItem = memo(({ notify, isNew }: { notify: NotifyType; isNew: b
 		if (last < Date.parse(notify.createdDate)) {
 			if (addNoti) addNoti(notify.id);
 		}
-	}, []);
+	}, [addNoti, last, notify.createdDate, notify.id]);
 
 	return (
 		<MenuItem
@@ -127,10 +127,11 @@ const Notifys = ({
 			sx={{ mt: 2, maxHeight: 500 }}
 		>
 			{notifys.map(i => (
-				<NotificationItem isNew={newNoti.hasOwnProperty(i.id)} notify={i} key={i.id} />
+				<NotificationItem isNew={Boolean(newNoti[i.id])} notify={i} key={i.id} />
 			))}
 		</Menu>
 	);
 };
 
-export default memo(Notifys);
+const MemoizedNotifys = memo(Notifys);
+export default MemoizedNotifys;

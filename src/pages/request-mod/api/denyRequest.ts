@@ -1,5 +1,1 @@
-import axiosInstance from "../../../constants/AxiosInstance";
-
-export const denyMod = async(id:string)=>{
-    await axiosInstance.put(`/users/reject-user/${id}`);
-}
+export { denyMod } from "../../../features/request-mod/request-mod.api";

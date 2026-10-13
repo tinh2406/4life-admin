@@ -1,7 +1,8 @@
 import rgba from "./rgba";
 
-function gradientChartLine(chart:any, color:string, opacity = 0.2) {
+function gradientChartLine(chart: HTMLCanvasElement, color: string, opacity = 0.2) {
   const ctx = chart.getContext("2d");
+  if (!ctx) return "";
   const gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
   const primaryColor = rgba(color, opacity).toString();
 

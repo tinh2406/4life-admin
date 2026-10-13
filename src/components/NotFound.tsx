@@ -2,7 +2,7 @@
 import { memo } from "react";
 // import colors from "../assets/theme/base/colors";
 
-export default memo(() => {
+function NotFound() {
 	// return (
 	// 	<div
 	// 		style={{
@@ -410,4 +410,6 @@ export default memo(() => {
 			</svg>
 		</div>
 	);
-});
+}
+
+export default memo(NotFound);

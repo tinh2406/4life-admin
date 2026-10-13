@@ -1,7 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { PagingParams } from "../type/Paging";
 
-// type RequestModParams = PagingParams<"Name" | "Email" | "PhoneNumber">;
 export type UsersParams = PagingParams<"Name" | "Email" | "PhoneNumber"> & { Role: "User" | "Mod" | "Admin" };
 
 type FilterContextType = {
@@ -18,7 +17,7 @@ type FilterContextType = {
 const FilterContext = createContext<FilterContextType>({
 	requestParams: {
 		PageSize: 12,
-		IsDescending:false
+		IsDescending: false
 	},
 	userParams: {
 		Role: "User"
@@ -31,37 +30,48 @@ export const useFilter = () => {
 	return useContext(FilterContext);
 };
 
+const sanitizeParams = <T extends { Keyword?: string }>(params: T): T => {
+	if (params.Keyword === "") {
+		const copy = { ...params };
+		delete copy.Keyword;
+		return copy;
+	}
+	return params;
+};
+
 export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
 	const [requestParams, setRequestParams] = useState<PagingParams<"Name" | "Email" | "PhoneNumber">>({
 		PageSize: 12,
-		SortBy:"Name",
-		IsDescending:false,
+		SortBy: "Name",
+		IsDescending: false
 	});
-	const [userParams, setUserParams] = useState<UsersParams>({ Role: "User",SortBy:"Email",IsDescending:false });
+	const [userParams, setUserParams] = useState<UsersParams>({
+		Role: "User",
+		SortBy: "Email",
+		IsDescending: false
+	});
 	const [amenityParams, setAmenityParams] = useState<PagingParams<"Name" | "CreatedDate">>({
-		SortBy:"Name",
-		IsDescending:false
+		SortBy: "Name",
+		IsDescending: false
 	});
 	const [locationParams, setLocationParams] = useState<PagingParams<"City" | "District">>({
-		SortBy:"City",
-		IsDescending:false
+		SortBy: "City",
+		IsDescending: false
 	});
 
-	if (requestParams.Keyword === "") delete requestParams.Keyword;
-	if (userParams.Keyword === "") delete userParams.Keyword;
-	if (amenityParams.Keyword === "") delete amenityParams.Keyword;
-	if (locationParams.Keyword === "") delete locationParams.Keyword;
-
-	const value = {
-		requestParams,
-		userParams,
-		amenityParams,
-		locationParams,
-		setUserParams,
-		setRequestParams,
-		setAmenityParams,
-		setLocationParams
-	};
+	const value = useMemo(
+		() => ({
+			requestParams: sanitizeParams(requestParams),
+			userParams: sanitizeParams(userParams),
+			amenityParams: sanitizeParams(amenityParams),
+			locationParams: sanitizeParams(locationParams),
+			setUserParams,
+			setRequestParams,
+			setAmenityParams,
+			setLocationParams
+		}),
+		[requestParams, userParams, amenityParams, locationParams]
+	);
 
 	return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
 };

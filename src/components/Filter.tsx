@@ -1,6 +1,6 @@
 import { ArrowDownward, ArrowUpward, KeyboardArrowDown } from "@mui/icons-material";
 import { Box, Button, Menu, MenuItem, TextField } from "@mui/material";
-import { memo, useState } from "react";
+import { memo, useRef, useState } from "react";
 import colors from "../assets/theme/base/colors";
 import { useFilter } from "../context/filter";
 
@@ -11,7 +11,7 @@ const requestMap = {
 };
 
 export const RequestFilter = memo(({ visible }: { visible?: boolean }) => {
-	const [timerId, setTimerId] = useState<any>();
+	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -90,13 +90,11 @@ export const RequestFilter = memo(({ visible }: { visible?: boolean }) => {
 					}
 				}}
 				onChange={e => {
-					if (timerId) clearInterval(timerId);
+					if (timerRef.current) clearTimeout(timerRef.current);
 
-					setTimerId(
-						setTimeout(() => {
-							if (setRequestParams) setRequestParams(state => ({ ...state, Keyword: e.target.value }));
-						}, 300)
-					);
+					timerRef.current = setTimeout(() => {
+						if (setRequestParams) setRequestParams(state => ({ ...state, Keyword: e.target.value }));
+					}, 300);
 				}}
 			/>
 			<Menu
@@ -138,7 +136,7 @@ export const RequestFilter = memo(({ visible }: { visible?: boolean }) => {
 });
 
 export const UserFilter = memo(({ visible }: { visible?: boolean }) => {
-	const [timerId, setTimerId] = useState<any>();
+	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const { userParams, setUserParams } = useFilter();
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -211,13 +209,11 @@ export const UserFilter = memo(({ visible }: { visible?: boolean }) => {
 					}
 				}}
 				onChange={e => {
-					if (timerId) clearInterval(timerId);
+					if (timerRef.current) clearTimeout(timerRef.current);
 
-					setTimerId(
-						setTimeout(() => {
-							if (setUserParams) setUserParams(state => ({ ...state, Keyword: e.target.value }));
-						}, 300)
-					);
+					timerRef.current = setTimeout(() => {
+						if (setUserParams) setUserParams(state => ({ ...state, Keyword: e.target.value }));
+					}, 300);
 				}}
 			/>
 			<Menu
@@ -258,7 +254,7 @@ export const UserFilter = memo(({ visible }: { visible?: boolean }) => {
 	);
 });
 export const LocationFilter = memo(({ visible }: { visible?: boolean }) => {
-	const [timerId, setTimerId] = useState<any>();
+	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const { locationParams, setLocationParams } = useFilter();
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -331,13 +327,11 @@ export const LocationFilter = memo(({ visible }: { visible?: boolean }) => {
 					}
 				}}
 				onChange={e => {
-					if (timerId) clearInterval(timerId);
+					if (timerRef.current) clearTimeout(timerRef.current);
 
-					setTimerId(
-						setTimeout(() => {
-							if (setLocationParams) setLocationParams(state => ({ ...state, Keyword: e.target.value }));
-						}, 300)
-					);
+					timerRef.current = setTimeout(() => {
+						if (setLocationParams) setLocationParams(state => ({ ...state, Keyword: e.target.value }));
+					}, 300);
 				}}
 			/>
 			<Menu
@@ -375,7 +369,7 @@ const amenityMap = {
 	CreatedDate: "Create date"
 };
 export const AmenityFilter = memo(({ visible }: { visible?: boolean }) => {
-	const [timerId, setTimerId] = useState<any>();
+	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const { amenityParams, setAmenityParams } = useFilter();
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -449,13 +443,11 @@ export const AmenityFilter = memo(({ visible }: { visible?: boolean }) => {
 					}
 				}}
 				onChange={e => {
-					if (timerId) clearInterval(timerId);
+					if (timerRef.current) clearTimeout(timerRef.current);
 
-					setTimerId(
-						setTimeout(() => {
-							if (setAmenityParams) setAmenityParams(state => ({ ...state, Keyword: e.target.value }));
-						}, 300)
-					);
+					timerRef.current = setTimeout(() => {
+						if (setAmenityParams) setAmenityParams(state => ({ ...state, Keyword: e.target.value }));
+					}, 300);
 				}}
 			/>
 			<Menu

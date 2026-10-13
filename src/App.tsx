@@ -1,48 +1,45 @@
-import React, { useEffect } from "react";
+import React, { Suspense, lazy } from "react";
 import { useSelector } from "react-redux";
-import { Outlet, RouterProvider, createBrowserRouter, useNavigate } from "react-router-dom";
-import MainLayout from "../src/layouts/dashboard";
+import { Navigate, Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import MainLayout from "./layouts/dashboard";
 import "./App.css";
-import Amenities from "./pages/amenities";
-import DashBoard from "./pages/dashboard";
-import LoginPage from "./pages/login";
-import RequestsMod from "./pages/request-mod";
-import Detail from "./pages/request-mod/detail";
-import UserDetail from "./pages/users/detail";
-import Users from "./pages/users";
 import { AuthStateType } from "./store/auth/type";
-import Locations from "./pages/locations";
 import NotFound from "./components/NotFound";
+import Loading from "./components/Loading";
+
+const Amenities = lazy(() => import("./pages/amenities"));
+const DashBoard = lazy(() => import("./pages/dashboard"));
+const LoginPage = lazy(() => import("./pages/login"));
+const RequestsMod = lazy(() => import("./pages/request-mod"));
+const RequestDetail = lazy(() => import("./pages/request-mod/detail"));
+const UserDetail = lazy(() => import("./pages/users/detail"));
+const Users = lazy(() => import("./pages/users"));
+const Locations = lazy(() => import("./pages/locations"));
+
 const NotAuthElement = ({ children }: { children?: React.ReactNode }) => {
-	const navigate = useNavigate();
 	const user = useSelector((state: AuthStateType) => state.user);
-
-	useEffect(() => {
-		if (user) {
-			navigate("/");
-		}
-	});
-
-	return children;
+	if (user) {
+		return <Navigate to="/" replace />;
+	}
+	return <>{children}</>;
 };
+
 const ProtectedElement = ({ children }: { children?: React.ReactNode }) => {
-	const navigate = useNavigate();
 	const user = useSelector((state: AuthStateType) => state.user);
-
-	useEffect(() => {
-		if (!user) {
-			navigate("/login");
-		}
-	});
-
-	return children;
+	if (!user) {
+		return <Navigate to="/login" replace />;
+	}
+	return <>{children}</>;
 };
+
 const router = createBrowserRouter([
 	{
 		path: "/login",
 		element: (
 			<NotAuthElement>
-				<LoginPage />
+				<Suspense fallback={<Loading />}>
+					<LoginPage />
+				</Suspense>
 			</NotAuthElement>
 		)
 	},
@@ -61,12 +58,20 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: ":id",
-						element: <Detail />
+						element: (
+							<Suspense fallback={<Loading />}>
+								<RequestDetail />
+							</Suspense>
+						)
 					},
 					{
+						index: true,
 						path: "*",
-						element: <RequestsMod />,
-						index: true
+						element: (
+							<Suspense fallback={<Loading />}>
+								<RequestsMod />
+							</Suspense>
+						)
 					}
 				]
 			},
@@ -76,26 +81,46 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: ":id",
-						element: <UserDetail />
+						element: (
+							<Suspense fallback={<Loading />}>
+								<UserDetail />
+							</Suspense>
+						)
 					},
 					{
+						index: true,
 						path: "*",
-						element: <Users />,
-						index: true
+						element: (
+							<Suspense fallback={<Loading />}>
+								<Users />
+							</Suspense>
+						)
 					}
 				]
 			},
 			{
 				path: "/amenities",
-				element: <Amenities />
+				element: (
+					<Suspense fallback={<Loading />}>
+						<Amenities />
+					</Suspense>
+				)
 			},
 			{
 				path: "/locations",
-				element: <Locations />
+				element: (
+					<Suspense fallback={<Loading />}>
+						<Locations />
+					</Suspense>
+				)
 			},
 			{
 				path: "/",
-				element: <DashBoard />
+				element: (
+					<Suspense fallback={<Loading />}>
+						<DashBoard />
+					</Suspense>
+				)
 			}
 		]
 	}

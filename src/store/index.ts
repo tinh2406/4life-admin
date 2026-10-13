@@ -4,7 +4,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, PersistConfig, REGISTER, REHYDRATE, persi
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 import { AuthStateType } from "./auth/type";
-const persistConfig:PersistConfig<AuthStateType, any, any, any> = {
+const persistConfig: PersistConfig<AuthStateType> = {
 	key: "root",
 	version: 1,
 	storage,

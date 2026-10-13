@@ -18,7 +18,7 @@ function ComplexStatisticsCard({
         amount: string,
         label: string
     };
-	icon: any;
+	icon: React.ReactNode;
 }) {
 	return (
 		<Card>

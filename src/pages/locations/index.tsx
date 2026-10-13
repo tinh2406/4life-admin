@@ -1,5 +1,6 @@
 import { Box, Card, CircularProgress, Divider, Grid, ListItemButton, Modal, Typography } from "@mui/material";
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useCallback, useMemo, useRef, useState } from "react";
+import { useInfiniteScroll } from "../../shared/hooks/useInfiniteScroll";
 import { PagingResponse } from "../../type/Paging";
 import { useInfiniteQuery } from "react-query";
 import borders from "../../assets/theme/base/borders";
@@ -45,13 +46,6 @@ const Locations = () => {
 		return newData;
 	}, [data]);
 
-	// const remain = useMemo(() => {
-	// 	return (
-	// 		data?.pages &&
-	// 		data.pages[data.pages.length - 1].meta.pageIndex < data.pages[data.pages.length - 1].meta.totalPages
-	// 	);
-	// }, [data]);
-
 	const handleSelect = (i: Location) => {
 		setId(i.id);
 		setCity(i.city);
@@ -68,20 +62,12 @@ const Locations = () => {
 		setCity("");
 		setDistrict("");
 	}, []);
-	const boxRef = useRef();
-	const onScroll = () => {
-		if (boxRef.current) {
-			const { scrollTop, scrollHeight, clientHeight } = boxRef.current;
-			const isNearBottom = scrollTop + clientHeight >= scrollHeight;
-
-			if (isNearBottom && !(isFetching || isLoading)) {
-				fetchNextPage();
-			}
-		}
-	};
-	useEffect(() => {
-		onScroll();
-	}, [boxRef.current]);
+	const boxRef = useRef<HTMLDivElement>(null);
+	const { handleScroll } = useInfiniteScroll({
+		ref: boxRef,
+		isFetching: isFetching || isLoading,
+		onLoadMore: () => fetchNextPage()
+	});
 
 	return (
 		<Box pb={3}>
@@ -90,7 +76,7 @@ const Locations = () => {
 					<Card>
 						<Box
 							ref={boxRef}
-							onScroll={onScroll}
+							onScroll={handleScroll}
 							minHeight={500}
 							p={2}
 							sx={{ overflow: "scroll", height: "calc(100vh - 12rem)" }}

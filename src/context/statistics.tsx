@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { StatisticsParam } from "../type/Statistics";
 
 type TypeReport = "BookingReport" | "UserReport" | "SalesReport" | "Booking" | "User" | "Sales";
@@ -108,36 +108,47 @@ export const StatisticsProvider = ({ children }: { children: React.ReactNode }) 
 	const [salesParams, setSalesParams] = useState<Analyst>({
 		TypeCycles: "Week"
 	});
-	const value: StatisticsContextType = {
-		action,
-		setAction,
-		value: {
-			BookingReport: {
-				params: bookingReportParams,
-				setParams: setBookingReportParams
-			},
-			UserReport: {
-				params: userReportParams,
-				setParams: setUserReportParams
-			},
-			User: {
-				params: userParams,
-				setParams: setUserParams
-			},
-			Booking: {
-				params: bookingParams,
-				setParams: setBookingParams
-			},
-			Sales: {
-				params: salesParams,
-				setParams: setSalesParams
-			},
-			SalesReport:{
-				params: salesReportParams,
-				setParams: setSalesReportParams
+	const value: StatisticsContextType = useMemo(
+		() => ({
+			action,
+			setAction,
+			value: {
+				BookingReport: {
+					params: bookingReportParams,
+					setParams: setBookingReportParams
+				},
+				UserReport: {
+					params: userReportParams,
+					setParams: setUserReportParams
+				},
+				User: {
+					params: userParams,
+					setParams: setUserParams
+				},
+				Booking: {
+					params: bookingParams,
+					setParams: setBookingParams
+				},
+				Sales: {
+					params: salesParams,
+					setParams: setSalesParams
+				},
+				SalesReport: {
+					params: salesReportParams,
+					setParams: setSalesReportParams
+				}
 			}
-		}
-	};
+		}),
+		[
+			action,
+			bookingReportParams,
+			userReportParams,
+			userParams,
+			bookingParams,
+			salesParams,
+			salesReportParams
+		]
+	);
 
 	return <StatisticsContext.Provider value={value}>{children}</StatisticsContext.Provider>;
 };

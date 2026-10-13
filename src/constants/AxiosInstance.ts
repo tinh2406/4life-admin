@@ -1,11 +1,3 @@
-import axios, { AxiosInstance } from "axios";
+import httpClient from "../services/http/client";
 
-
-const axiosInstance: AxiosInstance = axios.create({
-    baseURL: "https://tuna.whitemage.tech/api",
-    headers: {
-        "Content-Type": "application/json"
-    }
-});
-
-export default axiosInstance
+export default httpClient;

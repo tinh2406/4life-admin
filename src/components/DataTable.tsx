@@ -4,72 +4,25 @@ import {
 	Table,
 	TableBody,
 	TableCell,
-	TableCellProps,
 	TableContainer,
-	// TableHead,
 	TableRow,
 	Typography
 } from "@mui/material";
-import { GridColDef } from "@mui/x-data-grid";
 import typography from "../assets/theme/base/typography";
 import colors from "../assets/theme/base/colors";
-import { memo } from "react";
 
-export type GridColDefMe<T> = GridColDef & {
+export type GridColDefMe<T> = {
 	field: keyof T;
-	width?: any;
+	headerName?: string;
+	width?: number | string;
+	align?: "left" | "right" | "center" | "inherit" | "justify";
+	type?: string;
+	sortable?: boolean;
+	valueGetter?: (params: unknown) => unknown;
+	[key: string]: unknown;
 };
 
-const TableHeader = memo(<T extends { [key: string]: any }>({ columns }: { columns: GridColDefMe<T>[] }) => {
-	return (
-		// <TableHead sx={{ p: 0 }}>
-		<TableRow sx={{ display: "flex" }}>
-			{columns.map(column => {
-				const { field, headerName, sortable, valueGetter, ...others } = column;
-
-				return (
-					<TableCell {...(others as TableCellProps)} sx={{ width: column.width }} key={column.field}>
-						<Typography
-							fontWeight={typography.fontWeightBold}
-							fontSize={typography.size.xs}
-							color={colors.text.main}
-						>
-							{headerName || field}
-						</Typography>
-					</TableCell>
-				);
-			})}
-		</TableRow>
-		// </TableHead>
-	);
-});
-
-const TableRowBody = memo(
-	<RowType extends { [key: string]: any }>({ columns, row }: { columns: GridColDefMe<RowType>[]; row: RowType }) => {
-		return (
-				<TableRow sx={{ display: "flex"}}>
-					{columns.map(column => {
-						const { width, field, headerName, sortable, valueGetter, ...others } = column;
-
-						return (
-							<TableCell {...(others as TableCellProps)} sx={{ width: column.width,display:"flex", alignItems:"center" }} key={column.field}>
-								<Typography
-									fontWeight={typography.fontWeightBold}
-									fontSize={typography.size.xs}
-									color={colors.text.main}
-									sx={{width:"100%"}}
-								>
-									{row[field] as string}
-								</Typography>
-							</TableCell>
-						);
-					})}
-				</TableRow>
-		);
-	}
-);
-
-const DataTable = <T extends { [key: string]: any }>({
+const DataTable = <T extends { [key: string]: unknown }>({
 	columns,
 	rows,
 	isLoading
@@ -87,9 +40,42 @@ const DataTable = <T extends { [key: string]: any }>({
 						flexDirection: "column"
 					}}
 				>
-					<TableHeader columns={columns} />
+					<TableRow sx={{ display: "flex" }}>
+						{columns.map(column => (
+							<TableCell
+								align={column.align}
+								sx={{ width: column.width }}
+								key={String(column.field)}
+							>
+								<Typography
+									fontWeight={typography.fontWeightBold}
+									fontSize={typography.size.xs}
+									color={colors.text.main}
+								>
+									{column.headerName || String(column.field)}
+								</Typography>
+							</TableCell>
+						))}
+					</TableRow>
 					{rows.map(row => (
-						<TableRowBody key={row.id} row={row} columns={columns} />
+						<TableRow sx={{ display: "flex" }} key={String(row.id ?? Math.random())}>
+							{columns.map(column => (
+								<TableCell
+									align={column.align}
+									sx={{ width: column.width, display: "flex", alignItems: "center" }}
+									key={String(column.field)}
+								>
+									<Typography
+										fontWeight={typography.fontWeightBold}
+										fontSize={typography.size.xs}
+										color={colors.text.main}
+										sx={{ width: "100%" }}
+									>
+										{row[column.field] as React.ReactNode}
+									</Typography>
+								</TableCell>
+							))}
+						</TableRow>
 					))}
 				</TableBody>
 			</Table>

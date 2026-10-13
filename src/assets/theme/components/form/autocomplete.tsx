@@ -5,20 +5,14 @@ import borders from "../../base/borders";
 
 // Material Dashboard 2 React helper functions
 import pxToRem from "../../functions/pxToRem";
-import { AutocompleteClasses, AutocompleteProps, Theme } from "@mui/material";
-import { OverridesStyleRules } from "@mui/material/styles/overrides";
+import { Components, Theme } from "@mui/material";
 
 const { lg } = boxShadows;
 const { size } = typography;
 const { text, white, transparent, light, dark, gradients } = colors;
 const { borderRadius } = borders;
 
-const autocomplete: {
-	defaultProps?: Partial<AutocompleteProps<any, any, any, any, "div">> | undefined;
-	styleOverrides?: Partial<
-		OverridesStyleRules<keyof AutocompleteClasses, "MuiAutocomplete", Omit<Theme, "components">>
-	>;
-} = {
+const autocomplete: Components<Theme>["MuiAutocomplete"] = {
 	styleOverrides: {
 		popper: {
 			boxShadow: lg,

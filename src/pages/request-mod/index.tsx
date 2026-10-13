@@ -56,7 +56,7 @@ const RequestsMod = () => {
 				{users?.map(user => (
 					<Grid key={user.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
 						<Box mb={1.5}>
-							<UserCard user={user} active={newRequest.hasOwnProperty(user.id)} />
+							<UserCard user={user} active={Boolean(newRequest[user.id])} />
 						</Box>
 					</Grid>
 				))}

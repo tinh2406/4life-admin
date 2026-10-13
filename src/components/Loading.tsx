@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import { memo } from "react";
 
-export default memo(() => {
+function Loading() {
 	return (
 		<div
 			style={{
@@ -15,4 +15,6 @@ export default memo(() => {
 			<CircularProgress color="primary" />
 		</div>
 	);
-});
+}
+
+export default memo(Loading);
