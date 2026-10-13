@@ -12,22 +12,32 @@ import { StatisticsProvider } from "./context/statistics.tsx";
 
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-	// <React.StrictMode>
-	<ReduxProvider>
-		<ThemeProvider theme={theme}>
-			<QueryClientProvider client={queryClient}>
-				<NotifyProvider>
-					<FilterProvider>
-						<StatisticsProvider>
-							<App />
-						</StatisticsProvider>
-					</FilterProvider>
-				</NotifyProvider>
-				<ToastContainer />
-			</QueryClientProvider>
-		</ThemeProvider>
-	</ReduxProvider>
+async function enableMocking() {
+	if (import.meta.env.VITE_ENABLE_MOCK === "true") {
+		const { worker } = await import("./mocks/browser");
+		return worker.start({
+			onUnhandledFrame: "bypass"
+		});
+	}
+}
 
-	// </React.StrictMode>,
-);
+enableMocking().then(() => {
+	ReactDOM.createRoot(document.getElementById("root")!).render(
+		// <React.StrictMode>
+		<ReduxProvider>
+			<ThemeProvider theme={theme}>
+				<QueryClientProvider client={queryClient}>
+					<NotifyProvider>
+						<FilterProvider>
+							<StatisticsProvider>
+								<App />
+							</StatisticsProvider>
+						</FilterProvider>
+					</NotifyProvider>
+					<ToastContainer />
+				</QueryClientProvider>
+			</ThemeProvider>
+		</ReduxProvider>
+		// </React.StrictMode>,
+	);
+});
