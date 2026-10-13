@@ -135,12 +135,13 @@ const Navbar = memo(() => {
 						}}
 					>
 						<IconButton
-							size="small"
+							size="medium"
 							disableRipple
 							color="inherit"
-							sx={{ px: 1 }}
+							aria-label="Notifications"
 							aria-controls="notification-menu"
 							aria-haspopup="true"
+							sx={{ minWidth: 44, minHeight: 44, p: 1 }}
 							onClick={event => {
 								setOpenMenu(event.currentTarget);
 								if (notify.setHasNew) notify.setHasNew(false);
@@ -150,7 +151,7 @@ const Navbar = memo(() => {
 							<NotificationsIcon
 								sx={{
 									color: notify?.hasNew
-										? "red"
+										? colors.error.main
 										: transparentNavbar
 										? rgba(colors.text.main, 0.6)
 										: colors.text.main
@@ -164,15 +165,20 @@ const Navbar = memo(() => {
 										right: "0.5rem",
 										top: "0.5rem",
 										fontSize: 12,
-										color: "gray"
+										color: colors.text.main
 									}}
 								>
 									{Object.keys(notify.newNoti).length}
 								</p>
 							)}
 						</IconButton>
-						<Button sx={{ px: 1 }} size="small" disableRipple>
-							<Avatar alt="avt" src={user?.avatar} sx={{ width: 30, height: 30 }} />
+						<Button
+							aria-label="User profile"
+							sx={{ minWidth: 44, minHeight: 44, p: 0.5 }}
+							size="small"
+							disableRipple
+						>
+							<Avatar alt={user?.name || "User avatar"} src={user?.avatar} sx={{ width: 34, height: 34 }} />
 						</Button>
 						<Notifycations close={handleCloseMenu} openMenu={openMenu} />
 					</Box>

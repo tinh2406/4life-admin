@@ -25,8 +25,12 @@ const LinkItem = ({
 	route: string;
 }) => {
 	return (
-		<Link to={route}>
-			<ListItem>
+		<ListItem
+			component={Link}
+			to={route}
+			aria-label={name}
+			sx={{ p: 0, textDecoration: "none", color: "inherit" }}
+		>
 				<Box
 					className="linkitem"
 					sx={({ transitions }) => ({
@@ -96,7 +100,6 @@ const LinkItem = ({
 					/>
 				</Box>
 			</ListItem>
-		</Link>
 	);
 };
 

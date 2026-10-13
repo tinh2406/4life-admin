@@ -20,6 +20,14 @@ const globals = {
   "a.link:hover, .link:hover, a.link:focus, .link:focus": {
     color: `${info.main} !important`,
   },
+  "@media (prefers-reduced-motion: reduce)": {
+    "*, *::before, *::after": {
+      animationDuration: "0.01ms !important",
+      animationIterationCount: "1 !important",
+      transitionDuration: "0.01ms !important",
+      scrollBehavior: "auto !important",
+    },
+  },
 };
 
 export default globals;

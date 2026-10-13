@@ -4,8 +4,8 @@ const colors = {
   },
 
   text: {
-    main: "#7b809a",
-    focus: "#7b809a",
+    main: "#595e72",
+    focus: "#344767",
   },
 
   transparent: {
