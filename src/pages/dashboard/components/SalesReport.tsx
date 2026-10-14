@@ -45,9 +45,9 @@ const SalesReport = memo(function SalesReport() {
 			return {
 				labels: [],
 				datasets: [
-					{ label: "Unpaid", data: [] },
-					{ label: "Paid", data: [] },
-					{ label: "Total", data: [] }
+					{ label: "Chưa thanh toán", data: [] },
+					{ label: "Đã thanh toán", data: [] },
+					{ label: "Tổng", data: [] }
 				]
 			};
 		return {
@@ -62,15 +62,15 @@ const SalesReport = memo(function SalesReport() {
 			}),
 			datasets: [
 				{
-					label: "Unpaid",
+					label: "Chưa thanh toán",
 					data: sales_unpaid.valueCycles.map(i => i.value)
 				},
 				{
-					label: "Paid",
+					label: "Đã thanh toán",
 					data: sales_paid.valueCycles.map(i => i.value)
 				},
 				{
-					label: "Total",
+					label: "Tổng",
 					data: sales_total.valueCycles.map(i => i.value)
 				}
 			]
@@ -90,9 +90,9 @@ const SalesReport = memo(function SalesReport() {
 			<Box mb={3}>
 				<ReportsMultiLineChart
 					color="dark"
-					title="Transactions"
+					title="Giao dịch"
 					description=""
-					date="just updated"
+					date="vừa cập nhật"
 					chart={calc}
 				/>
 			</Box>

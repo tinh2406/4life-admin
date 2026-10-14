@@ -9,7 +9,9 @@ import {
 	ListItemText,
 	Typography,
 	IconButton,
-	Tooltip
+	Tooltip,
+	useMediaQuery,
+	useTheme
 } from "@mui/material";
 import colors from "../assets/theme/base/colors";
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -25,17 +27,20 @@ const LinkItem = ({
 	active,
 	icon,
 	name,
-	route
+	route,
+	onNavigate
 }: {
 	active?: boolean;
 	icon: React.ReactNode;
 	name: string;
 	route: string;
+	onNavigate?: () => void;
 }) => {
 	return (
 		<ListItem
 			component={Link}
 			to={route}
+			onClick={onNavigate}
 			aria-label={name}
 			sx={{ p: 0, textDecoration: "none", color: "inherit", mb: 0.5 }}
 		>
@@ -49,11 +54,11 @@ const LinkItem = ({
 					borderRadius: "12px",
 					cursor: "pointer",
 					userSelect: "none",
-					backgroundColor: active ? "rgba(88, 101, 242, 0.15)" : "transparent",
+					backgroundColor: active ? "rgba(255, 56, 92, 0.14)" : "transparent",
 					color: active ? colors.primary.main : colors.text.main,
 					transition: "all 200ms ease-in-out",
 					"&:hover": {
-						backgroundColor: active ? "rgba(88, 101, 242, 0.15)" : "rgba(255, 255, 255, 0.08)",
+						backgroundColor: active ? "rgba(255, 56, 92, 0.14)" : "rgba(255, 255, 255, 0.08)",
 						color: active ? colors.primary.main : colors.white.main,
 						"& .linkitem-icon": {
 							color: active ? colors.primary.main : colors.white.main
@@ -102,8 +107,12 @@ const LinkItem = ({
 	);
 };
 
-const Sidenav = () => {
+type SidenavProps = { mobileOpen: boolean; onMobileClose: () => void };
+
+const Sidenav = ({ mobileOpen, onMobileClose }: SidenavProps) => {
 	const location = useLocation();
+	const theme = useTheme();
+	const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 	const dispatch = useDispatch();
 	const user = useSelector((state: AuthStateType) => state.user);
 
@@ -115,7 +124,9 @@ const Sidenav = () => {
 
 	return (
 		<Drawer
-			variant="permanent"
+			variant={isDesktop ? "permanent" : "temporary"}
+			open={isDesktop || mobileOpen}
+			onClose={onMobileClose}
 			PaperProps={{
 				sx: ({ breakpoints }) => ({
 					width: 256,
@@ -132,13 +143,13 @@ const Sidenav = () => {
 					boxSizing: "border-box",
 					overflowX: "hidden",
 					overflowY: "auto",
-					zIndex: 1200,
+					zIndex: theme.zIndex.drawer,
 					[breakpoints.down("md")]: {
-						width: 72,
-						"& .linkitem-text, & .logo-text, & .user-profile-info, & .nav-section-title": {
-							display: "none"
-						}
-					}
+						width: 264,
+						borderRight: `1px solid rgba(255, 255, 255, 0.1)`,
+						"& .linkitem-text, & .logo-text, & .user-profile-info, & .nav-section-title": { display: "block" }
+					},
+					"& .MuiDrawer-paperAnchorDockedLeft": { borderRight: `1px solid rgba(255, 255, 255, 0.08)` }
 				})
 			}}
 		>
@@ -176,7 +187,7 @@ const Sidenav = () => {
 								px: 1,
 								py: 0.25,
 								borderRadius: "8px",
-								backgroundColor: "rgba(88, 101, 242, 0.15)",
+							backgroundColor: "rgba(255, 56, 92, 0.14)",
 								color: colors.primary.main
 							}}
 						>
@@ -213,6 +224,7 @@ const Sidenav = () => {
 							key={route.key}
 							route={route.route}
 							active={route.route === activeRoute}
+							onNavigate={onMobileClose}
 						/>
 					))}
 				</List>

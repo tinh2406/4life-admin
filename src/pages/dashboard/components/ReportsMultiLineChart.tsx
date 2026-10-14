@@ -17,7 +17,7 @@ import { ReportMultiChartType } from "./type";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
-const PALETTE = ["#8792FF", "#63D995", "#F4C96B"];
+const PALETTE = ["#ff8094", "#63D995", "#F4C96B"];
 
 const ReportsMultiLineChart = memo(function ReportsMultiLineChart({
 	title,

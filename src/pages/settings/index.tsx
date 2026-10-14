@@ -288,7 +288,7 @@ const eyebrowSx = { color: "#A6A5AE", fontSize: 9.5, fontWeight: 700, letterSpac
 const unitSx = { color: "#A6A5AE", fontSize: 11, whiteSpace: "nowrap" as const };
 const smallIconButtonSx = { borderRadius: "6px", bgcolor: "#2A2A2C", color: "#D8D7DF", "&:hover": { bgcolor: "#353437" } };
 const monoFieldSx = { "& input": { color: "#C0C1FF", fontFamily: "monospace", fontSize: 12 } };
-const primaryButtonSx = { px: 1.5, py: 0.9, bgcolor: "#5865F2", color: "#fff", borderRadius: "7px", textTransform: "none", "&:hover": { bgcolor: "#4751DA" }, "&.Mui-disabled": { color: "#777782", bgcolor: "#2A2A2C" } };
+const primaryButtonSx = { px: 1.5, py: 0.9, bgcolor: "#ff385c", color: "#fff", borderRadius: "7px", textTransform: "none", "&:hover": { bgcolor: "#e02f50" }, "&.Mui-disabled": { color: "#777782", bgcolor: "#2A2A2C" } };
 const secondaryButtonSx = { px: 1.5, py: 0.9, color: "#D8D7DF", bgcolor: "#202024", borderRadius: "7px", textTransform: "none", "&:hover": { bgcolor: "#2A2A2C" }, "&.Mui-disabled": { color: "#777782" } };
 const dangerRowSx = { display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2, p: 1.5, bgcolor: "rgba(42,42,44,.48)", border: "1px solid rgba(255,255,255,.06)", borderRadius: "7px" };
 

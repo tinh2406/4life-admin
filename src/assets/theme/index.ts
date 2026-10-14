@@ -1,6 +1,5 @@
 /**
- * Discord Design System — MUI Theme
- * Source of truth: DesignMD /discover/discord
+ * 4LIFE Admin Design System - MUI Theme
  */
 import { createTheme } from "@mui/material/styles";
 
@@ -44,9 +43,9 @@ export default createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: colors.primary.main,        // #5865F2
-      dark: colors.primary.focus,       // #4751DA
-      light: "#798DF9",                 // Purple Muted
+      main: colors.primary.main,
+      dark: colors.primary.focus,
+      light: "#ff8094",
       contrastText: "#FFFFFF",
     },
     secondary: {
@@ -94,7 +93,7 @@ export default createTheme({
     ...typography,
   },
   shape: {
-    borderRadius: 12,  // Discord Standard border radius
+    borderRadius: 8,
   },
 
   components: {

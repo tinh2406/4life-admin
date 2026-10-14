@@ -1,5 +1,6 @@
 import { AppBar, Avatar, Box, Button, IconButton, Toolbar } from "@mui/material";
 import { memo, useMemo, useState } from "react";
+import { Menu as MenuIcon } from "@mui/icons-material";
 import colors from "../assets/theme/base/colors";
 import { useLocation } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -9,7 +10,9 @@ import { useSelector } from "react-redux";
 import { AuthStateType } from "../store/auth/type";
 import { useNotify } from "../context/notify";
 
-const Navbar = memo(() => {
+type NavbarProps = { onMenuClick: () => void; showMenu: boolean };
+
+const Navbar = memo(function Navbar({ onMenuClick, showMenu }: NavbarProps) {
 	const user = useSelector((state: AuthStateType) => state.user);
 	const notify = useNotify();
 	const [openMenu, setOpenMenu] = useState<(EventTarget & HTMLButtonElement) | undefined>();
@@ -39,10 +42,10 @@ const Navbar = memo(() => {
 					display: "flex",
 					justifyContent: "space-between",
 					alignItems: { xs: "stretch", lg: "center" },
-					flexDirection: { xs: "column", lg: "row" },
+					flexDirection: "row",
 					gap: { xs: 1, lg: 2 },
 					px: { xs: 0.5, sm: 1 },
-					py: { xs: 1, lg: 0 },
+					py: 1,
 					minHeight: "64px !important"
 				}
 			}}
@@ -52,12 +55,14 @@ const Navbar = memo(() => {
 					sx={{
 						display: "flex",
 						alignItems: "center",
+						gap: 1,
 						justifyContent: "space-between",
 						width: { xs: "100%", lg: "auto" },
 						minWidth: { lg: 170 },
 						flex: { lg: "0 0 22%" }
 					}}
 				>
+					{showMenu && <IconButton aria-label="Open navigation" onClick={onMenuClick} sx={{ width: 40, height: 40, color: colors.white.main, border: "1px solid #354041", borderRadius: "7px" }}><MenuIcon /></IconButton>}
 					<Breadcrumbs title={route[route.length - 1]} route={route} />
 				</Box>
 

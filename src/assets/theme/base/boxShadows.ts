@@ -1,6 +1,6 @@
 /**
- * Discord Design System — Box Shadows / Elevation
- * Source of truth: DesignMD /discover/discord
+ * 4LIFE Admin Design System — Box Shadows / Elevation
+ * Source of truth: DESIGN.md
  *
  * Shadow Philosophy: Minimal shadows, favor opacity-based depth.
  * Elevation 1: Subtle focus rings
@@ -16,7 +16,7 @@ const boxShadows = {
   xxl: "0px 16px 48px 0px rgba(0, 0, 0, 0.25)",
   inset: "inset 0 1px 2px 0 rgba(0, 0, 0, 0.1)",
   colored: {
-    primary: "0 0 0 3px rgba(88, 101, 242, 0.1)",
+    primary: "0 0 0 3px rgba(255, 56, 92, 0.14)",
     secondary: "0 0 0 3px rgba(114, 115, 119, 0.1)",
     info: "0 0 0 3px rgba(0, 176, 244, 0.1)",
     success: "0 0 0 3px rgba(53, 237, 126, 0.1)",
@@ -31,7 +31,7 @@ const boxShadows = {
     thumb: "0 1px 3px 0 rgba(0, 0, 0, 0.3)",
   },
   tabsBoxShadow: {
-    indicator: "0 0 0 2px rgba(88, 101, 242, 0.2)",
+    indicator: "0 0 0 2px rgba(255, 56, 92, 0.18)",
   },
 };
 

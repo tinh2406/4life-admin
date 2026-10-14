@@ -33,7 +33,7 @@ const columns: GridColDefMe<RowType>[] = [
 	{ field: "avatar", headerName: "", width: 64, align: "center" },
 	{ field: "name", headerName: "Moderator", width: "30%", align: "left", type: "string" },
 	{ field: "phoneNumber", headerName: "Phone number", width: "22%", align: "left", type: "string" },
-	{ field: "bookings", headerName: "Bookings", width: "18%", align: "right", type: "number" },
+	{ field: "bookings", headerName: "Lượt đặt phòng", width: "18%", align: "right", type: "number" },
 	{ field: "total", headerName: "Revenue", width: "20%", align: "right", type: "number" }
 ];
 
@@ -111,10 +111,10 @@ function Sales() {
 				<Box display="flex" alignItems="center" gap={1} flexWrap="wrap">
 					<Box sx={{ display: "flex", alignItems: "center", gap: 1, height: 38, px: 1.25, minWidth: { xs: "100%", sm: 220 }, bgcolor: "#24292A", borderRadius: "6px", transition: "box-shadow 150ms ease", "&:focus-within": { boxShadow: "0 0 0 2px rgba(135, 146, 255, 0.55)" } }}>
 						<Search sx={{ fontSize: 18, color: "#A1A8A5" }} />
-						<Box component="input" value={keyword} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setKeyword(event.target.value)} placeholder="Search moderators" aria-label="Search moderators" sx={{ width: "100%", border: 0, outline: 0, bgcolor: "transparent", color: "#F2F4F3", font: "inherit", fontSize: 13, "&::placeholder": { color: "#A1A8A5", opacity: 1 } }} />
+						<Box component="input" value={keyword} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setKeyword(event.target.value)} placeholder="Tìm điều hành viên" aria-label="Tìm điều hành viên" sx={{ width: "100%", border: 0, outline: 0, bgcolor: "transparent", color: "#F2F4F3", font: "inherit", fontSize: 13, "&::placeholder": { color: "#A1A8A5", opacity: 1 } }} />
 					</Box>
 					<Box sx={{ color: "#A1A8A5", fontSize: 12, whiteSpace: "nowrap" }}>{data?.meta.totalCount ?? 0} records</Box>
-					<Button aria-label="Choose reporting period" size="small" onClick={openMenu} startIcon={<CalendarMonth sx={{ fontSize: 17 }} />} endIcon={<ExpandMore sx={{ fontSize: 17 }} />} sx={{ color: "#E5E1E4", bgcolor: "#24292A", borderRadius: "6px", minWidth: 104, height: 38, textTransform: "none", fontSize: 12.5, "&:hover": { bgcolor: "#303738" } }}>
+					<Button aria-label="Chọn kỳ báo cáo" size="small" onClick={openMenu} startIcon={<CalendarMonth sx={{ fontSize: 17 }} />} endIcon={<ExpandMore sx={{ fontSize: 17 }} />} sx={{ color: "#E5E1E4", bgcolor: "#24292A", borderRadius: "6px", minWidth: 104, height: 38, textTransform: "none", fontSize: 12.5, "&:hover": { bgcolor: "#303738" } }}>
 						{params.TypeCycles}
 					</Button>
 				<Menu

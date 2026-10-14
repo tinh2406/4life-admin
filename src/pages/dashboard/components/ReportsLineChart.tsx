@@ -29,11 +29,11 @@ const ReportsLineChart = memo(function ReportsLineChart({
 
 	const lineColor =
 		color === "primary"
-			? "#8792FF"
+			? "#ff8094"
 			: color === "success"
 			? "#63D995"
 			: color === "info"
-			? "#8792FF"
+			? "#ff8094"
 			: color === "dark"
 			? "#A1A8A5"
 			: colors.primary.main;

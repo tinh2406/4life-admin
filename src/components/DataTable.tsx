@@ -54,7 +54,7 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 					sx={{
 						height: 2.5,
 						backgroundColor: "rgba(135, 146, 255, 0.16)",
-						"& .MuiLinearProgress-bar": { backgroundColor: "#8792FF" }
+						"& .MuiLinearProgress-bar": { backgroundColor: "#ff8094" }
 					}}
 				/>
 			)}

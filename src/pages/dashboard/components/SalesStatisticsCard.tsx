@@ -30,6 +30,7 @@ const SalesStasticsCard = memo(function SalesStasticsCard() {
 		<Grid
 			item
 			xs={12}
+			sm={6}
 			md={6}
 			lg={4}
 			onClick={() => {
@@ -39,14 +40,14 @@ const SalesStasticsCard = memo(function SalesStasticsCard() {
 			<Box mb={1.5}>
 				<ComplexStatisticsCard
 					icon={<Store fontSize="medium" />}
-					title={`Transactions ${
+					title={`Giao dịch ${
 						value.Sales.params.TypeCycles === "Day"
-							? "today"
+							? "hôm nay"
 							: value.Sales.params.TypeCycles === "Week"
-							? "this week"
+							? "tuần này"
 							: value.Sales.params.TypeCycles === "Month"
-							? "this month"
-							: "this year"
+							? "tháng này"
+							: "năm nay"
 					}`}
 					count={`${sales?.valueCycles[1].value || 0}$`}
 					percentage={{
@@ -54,12 +55,12 @@ const SalesStasticsCard = memo(function SalesStasticsCard() {
 						amount: calc?.value as string,
 						label: `than ${
 							value.Sales.params.TypeCycles === "Day"
-								? "yesterday"
+								? "hôm qua"
 								: value.Sales.params.TypeCycles === "Week"
-								? "last week"
+								? "tuần trước"
 								: value.Sales.params.TypeCycles === "Month"
-								? "last month"
-								: "last year"
+								? "tháng trước"
+								: "năm trước"
 						}`
 					}}
 				/>

@@ -1,5 +1,5 @@
 /**
- * Discord Design System — TableCell
+ * 4LIFE Admin Design System — TableCell
  */
 import pxToRem from "../../functions/pxToRem";
 

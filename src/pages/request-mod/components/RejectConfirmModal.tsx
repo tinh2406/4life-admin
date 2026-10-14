@@ -59,7 +59,7 @@ const RejectConfirmModal = ({
 			aria-describedby="reject-dialog-description"
 		>
 			<DialogTitle id="reject-dialog-title" sx={{ color: colors.dark.main, fontWeight: "bold" }}>
-				Reject Verification Request
+				Từ chối hồ sơ xác minh
 			</DialogTitle>
 			<DialogContent>
 				<DialogContentText id="reject-dialog-description" sx={{ mb: 2, color: colors.text.main }}>
@@ -106,7 +106,7 @@ const RejectConfirmModal = ({
 					color="error"
 					sx={{ color: "#ffffff" }}
 				>
-					{isLoading ? "Rejecting..." : "Confirm Rejection"}
+					{isLoading ? "Đang từ chối..." : "Xác nhận từ chối"}
 				</Button>
 			</DialogActions>
 		</Dialog>

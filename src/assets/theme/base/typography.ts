@@ -1,6 +1,6 @@
 /**
- * Discord Design System — Typography
- * Source of truth: DesignMD /discover/discord
+ * 4LIFE Admin Design System — Typography
+ * Source of truth: DESIGN.md
  * Font: gg sans fallback → system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
  */
 import colors from "./colors";

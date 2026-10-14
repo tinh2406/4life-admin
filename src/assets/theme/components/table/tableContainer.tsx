@@ -1,5 +1,5 @@
 /**
- * Discord Design System — TableContainer
+ * 4LIFE Admin Design System — TableContainer
  */
 import colors from "../../base/colors";
 

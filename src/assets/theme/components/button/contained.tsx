@@ -1,6 +1,6 @@
 /**
- * Discord Design System — Contained Button
- * Primary: #5865F2 → hover #4751DA → active #3E42B2
+ * 4LIFE Admin Design System — Contained Button
+ * Primary: 4LIFE coral with a deeper coral hover state.
  * Secondary: ghost overlay rgba(255,255,255,0.1)
  */
 import colors from "../../base/colors";
@@ -51,17 +51,17 @@ const contained = {
   },
 
   primary: {
-    backgroundColor: colors.primary.main,       // #5865F2
+    backgroundColor: colors.primary.main,
     color: `${white.main} !important`,
     boxShadow: "none",
 
     "&:hover": {
-      backgroundColor: colors.primary.focus,     // #4751DA
+      backgroundColor: colors.primary.focus,
     },
 
     "&:focus:not(:hover)": {
       backgroundColor: colors.primary.focus,
-      boxShadow: "0 0 0 3px rgba(88, 101, 242, 0.1)",
+      boxShadow: "0 0 0 3px rgba(255, 56, 92, 0.18)",
     },
 
     "&:active": {

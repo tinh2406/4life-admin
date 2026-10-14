@@ -33,7 +33,7 @@ const NotificationItem = memo(({ notify, isNew }: { notify: NotifyType; isNew: b
 				alignItems: "center",
 				width: "100%",
 				color: colors.white.main,
-				backgroundColor: isNew ? "rgba(88, 101, 242, 0.14)" : "transparent",
+				backgroundColor: isNew ? "rgba(255, 56, 92, 0.14)" : "transparent",
 				borderRadius: "6px",
 				transition: transitions.create("background-color", {
 					easing: transitions.easing.easeInOut,

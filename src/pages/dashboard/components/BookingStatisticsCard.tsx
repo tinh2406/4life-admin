@@ -32,6 +32,7 @@ const BookingStatisticsCard = memo(function BookingStatisticsCard() {
 		<Grid
 			item
 			xs={12}
+			sm={6}
 			md={6}
 			lg={4}
 			onClick={() => {
@@ -41,14 +42,14 @@ const BookingStatisticsCard = memo(function BookingStatisticsCard() {
 			<Box mb={1.5}>
 				<ComplexStatisticsCard
 					icon={<Weekend fontSize="medium" />}
-					title={`Bookings ${
+					title={`Lượt đặt phòng ${
 						value.Booking.params.TypeCycles === "Day"
-							? "today"
+							? "hôm nay"
 							: value.Booking.params.TypeCycles === "Week"
-							? "this week"
+							? "tuần này"
 							: value.Booking.params.TypeCycles === "Month"
-							? "this month"
-							: "this year"
+							? "tháng này"
+							: "năm nay"
 					}`}
 					count={bookings?.valueCycles[1]?.value || 0}
 					percentage={{
@@ -56,12 +57,12 @@ const BookingStatisticsCard = memo(function BookingStatisticsCard() {
 						amount: calc?.value as string,
 						label: `than ${
 							value.Booking.params.TypeCycles === "Day"
-								? "yesterday"
+								? "hôm qua"
 								: value.Booking.params.TypeCycles === "Week"
-								? "last week"
+								? "tuần trước"
 								: value.Booking.params.TypeCycles === "Month"
-								? "last month"
-								: "last year"
+								? "tháng trước"
+								: "năm trước"
 						}`
 					}}
 				/>

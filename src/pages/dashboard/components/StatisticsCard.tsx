@@ -23,8 +23,8 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 	const isPositive = percentage.color === "success";
 	const isNegative = percentage.color === "error";
 
-	const iconBg = "rgba(88, 101, 242, 0.12)";
-	const iconColor = "#AAB2FF";
+	const iconBg = "rgba(255, 56, 92, 0.12)";
+	const iconColor = "#ff8094";
 
 	const deltaBg = isPositive ? "rgba(53, 237, 126, 0.10)" : isNegative ? "rgba(237, 66, 69, 0.10)" : "rgba(255, 255, 255, 0.06)";
 	const deltaColor = isPositive ? "#76E6A2" : isNegative ? "#FF8587" : "#C2C8C5";
@@ -39,7 +39,7 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 				justifyContent: "space-between",
 				backgroundColor: "#171C1D",
 				border: "1px solid #303738",
-				borderRadius: "10px",
+				borderRadius: "8px",
 				boxShadow: "none",
 				transition: "border-color 150ms ease",
 				"&:hover": { borderColor: "#465151" }

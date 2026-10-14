@@ -1,26 +1,21 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, Button, Card, Grid, Skeleton, Typography } from "@mui/material";
-import { memo, useMemo, useState } from "react";
-import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
+import { memo, useMemo } from "react";
+import { useInfiniteQuery } from "react-query";
 import { PagingResponse } from "../../type/Paging";
 import { CollapseUser } from "./api/User";
 import { getRequestMod } from "./api/getList";
-import { acceptMod } from "./api/acceptRequest";
-import { denyMod } from "./api/denyRequest";
 import UserCard from "./components/UserCard";
 import { ArrowDropDownCircleOutlined, CheckCircleOutline } from "@mui/icons-material";
 import { useFilter } from "../../context/filter";
 import { useNotify } from "../../context/notify";
 import colors from "../../assets/theme/base/colors";
 import { RequestFilter } from "../../components/Filter";
-import { toast } from "react-toastify";
 
 const RequestsMod = memo(function RequestsMod() {
 	const SKELETON_COUNT = 8;
 	const { requestParams } = useFilter();
 	const { newRequest, removeRequest } = useNotify();
-	const queryClient = useQueryClient();
-	const [actingState, setActingState] = useState<{ id: string; type: "accept" | "reject" } | null>(null);
 
 	const { data, isLoading, isFetching, isError, fetchNextPage, refetch } = useInfiniteQuery<
 		PagingResponse<CollapseUser>,
@@ -38,34 +33,6 @@ const RequestsMod = memo(function RequestsMod() {
 			}
 		}
 	);
-
-	const acceptMutation = useMutation({
-		mutationFn: (id: string) => acceptMod(id),
-		onMutate: id => setActingState({ id, type: "accept" }),
-		onSuccess: (_, id) => {
-			toast.success("Host application approved successfully");
-			if (removeRequest) removeRequest(id);
-			queryClient.invalidateQueries({ queryKey: ["all-request-mod"] });
-		},
-		onError: () => {
-			toast.error("Failed to approve host application. Please try again.");
-		},
-		onSettled: () => setActingState(null)
-	});
-
-	const rejectMutation = useMutation({
-		mutationFn: (payload: { id: string; reason: string }) => denyMod(payload.id),
-		onMutate: ({ id }) => setActingState({ id, type: "reject" }),
-		onSuccess: (_, { id }) => {
-			toast.info("Host application rejected");
-			if (removeRequest) removeRequest(id);
-			queryClient.invalidateQueries({ queryKey: ["all-request-mod"] });
-		},
-		onError: () => {
-			toast.error("Failed to reject host application. Please try again.");
-		},
-		onSettled: () => setActingState(null)
-	});
 
 	const users = useMemo(() => {
 		if (!data?.pages) return [];
@@ -86,14 +53,14 @@ const RequestsMod = memo(function RequestsMod() {
 				<Box sx={{ mb: 2.5 }}>
 					<Box display="flex" alignItems="center" gap={1} flexWrap="wrap" mb={0.5}>
 						<Typography component="h1" variant="h5" sx={{ color: "#F2F4F3", fontWeight: 700, letterSpacing: "-0.03em" }}>
-							Host & Mod applications
+							Hồ sơ đăng ký chủ nhà và điều hành viên
 						</Typography>
 						<Box sx={{ px: 1, py: 0.35, bgcolor: "rgba(255, 178, 183, 0.1)", color: "#FFB2B7", borderRadius: "5px", fontSize: 11.5, fontWeight: 600 }}>
-							{totalApplications} awaiting review
+							{totalApplications} chờ xét duyệt
 						</Box>
 					</Box>
 					<Typography variant="body2" sx={{ color: "#B5BCB9" }}>
-						Review identity details and decide which applications can join the platform.
+						Kiểm tra giấy tờ tùy thân và xét duyệt hồ sơ tham gia nền tảng.
 					</Typography>
 				</Box>
 				<Box sx={{ width: "100%", minWidth: 0 }}>
@@ -101,8 +68,8 @@ const RequestsMod = memo(function RequestsMod() {
 				</Box>
 			</Box>
 				<Box display="flex" alignItems="center" justifyContent="space-between" gap={1} mb={1.5}>
-					<Typography variant="subtitle2" sx={{ color: "#E5E1E4", fontWeight: 600 }}>Applications awaiting review</Typography>
-					<Typography variant="caption" sx={{ color: "#A1A8A5" }}>{users.length} loaded</Typography>
+					<Typography variant="subtitle2" sx={{ color: "#E5E1E4", fontWeight: 600 }}>Hồ sơ chờ xét duyệt</Typography>
+					<Typography variant="caption" sx={{ color: "#A1A8A5" }}>{users.length} đã tải</Typography>
 				</Box>
 			<Grid container spacing={{ xs: 1.5, md: 2 }}>
 				{users.map(user => (
@@ -111,10 +78,6 @@ const RequestsMod = memo(function RequestsMod() {
 							<UserCard
 								user={user}
 								active={Boolean(newRequest[user.id])}
-								isAccepting={actingState?.id === user.id && actingState.type === "accept"}
-								isRejecting={actingState?.id === user.id && actingState.type === "reject"}
-								onAccept={id => acceptMutation.mutate(id)}
-								onReject={(id, reason) => rejectMutation.mutate({ id, reason })}
 								onCardClick={id => removeRequest?.(id)}
 							/>
 						</Box>
@@ -124,7 +87,7 @@ const RequestsMod = memo(function RequestsMod() {
 				{isLoading &&
 					Array.from({ length: SKELETON_COUNT }).map((_, index) => (
 						<Grid key={index} item xs={12} sm={6} md={6} lg={4} xl={3}>
-							<Card sx={{ p: 2, height: 220, bgcolor: "#171C1D", border: "1px solid #303738", borderRadius: "10px", boxShadow: "none" }}>
+							<Card sx={{ p: 2, height: 220, bgcolor: "#171C1D", border: "1px solid #303738", borderRadius: "8px", boxShadow: "none" }}>
 								<Box display="flex" alignItems="center" mb={2}>
 									<Skeleton variant="circular" width={48} height={48} sx={{ mr: 1.5 }} />
 									<Box flex={1}>
@@ -147,10 +110,10 @@ const RequestsMod = memo(function RequestsMod() {
 						<Card sx={{ p: { xs: 3, md: 5 }, textAlign: "center", bgcolor: "#171C1D", border: "1px solid #303738", borderRadius: "10px", boxShadow: "none" }}>
 							<CheckCircleOutline sx={{ fontSize: 44, color: colors.success.main, mb: 1.5 }} />
 							<Typography variant="h6" fontWeight="bold" sx={{ color: "#F2F4F3" }} gutterBottom>
-								Verification Queue Cleared
+								Đã xử lý hết hồ sơ
 							</Typography>
 							<Typography variant="body2" sx={{ color: "#B5BCB9" }}>
-								There are currently no pending host applications requiring moderation.
+								Hiện không có hồ sơ chủ nhà nào cần xét duyệt.
 							</Typography>
 						</Card>
 					</Grid>
@@ -159,8 +122,8 @@ const RequestsMod = memo(function RequestsMod() {
 				{isError && (
 					<Grid item xs={12}>
 						<Card sx={{ p: 3, bgcolor: "#171C1D", border: "1px solid rgba(237,66,69,.35)", borderRadius: "10px", boxShadow: "none" }}>
-							<Typography variant="body2" sx={{ color: "#F2F4F3", mb: 1.5 }}>Could not load applications. Check your connection and try again.</Typography>
-							<Button onClick={() => refetch()} size="small" sx={{ color: "#C7C9FF", textTransform: "none" }}>Try again</Button>
+							<Typography variant="body2" sx={{ color: "#F2F4F3", mb: 1.5 }}>Không thể tải hồ sơ. Kiểm tra kết nối rồi thử lại.</Typography>
+						<Button onClick={() => refetch()} size="small" sx={{ color: "#ff8094", textTransform: "none" }}>Thử lại</Button>
 						</Card>
 					</Grid>
 				)}
@@ -187,7 +150,7 @@ const RequestsMod = memo(function RequestsMod() {
 								}
 							}}
 						>
-							Load more applications
+							Tải thêm hồ sơ
 						</LoadingButton>
 					</Grid>
 				)}

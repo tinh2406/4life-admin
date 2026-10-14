@@ -3,12 +3,12 @@ import { memo, useState } from "react";
 import { useStatistic } from "../context/statistics";
 
 const map = {
-	Booking: "Booking statistics",
-	User: "User statistics",
-	BookingReport: "Booking report chart",
-	UserReport: "User report chart",
-	Sales: "Sales statistics",
-	SalesReport: "Sales report chart"
+	Booking: "Thống kê đặt phòng",
+	User: "Thống kê người dùng",
+	BookingReport: "Biểu đồ đặt phòng",
+	UserReport: "Biểu đồ người dùng",
+	Sales: "Thống kê giao dịch",
+	SalesReport: "Biểu đồ giao dịch"
 };
 
 const StatisticsFilter = ({ visible }: { visible: boolean }) => {
@@ -89,10 +89,10 @@ const StatisticsFilter = ({ visible }: { visible: boolean }) => {
 						}}
 						sx={selectControlSx}
 					>
-						<MenuItem value={"Day"}>Day</MenuItem>
-						<MenuItem value={"Week"}>Week</MenuItem>
-						<MenuItem value={"Month"}>Month</MenuItem>
-						<MenuItem value={"Year"}>Year</MenuItem>
+						<MenuItem value={"Day"}>Ngày</MenuItem>
+						<MenuItem value={"Week"}>Tuần</MenuItem>
+						<MenuItem value={"Month"}>Tháng</MenuItem>
+						<MenuItem value={"Year"}>Năm</MenuItem>
 					</Select>
 				</FormControl>
 			)}
@@ -107,8 +107,8 @@ const selectControlSx = {
 	"& .MuiSvgIcon-root": { color: "#A1A8A5" },
 	"& .MuiOutlinedInput-notchedOutline": { borderColor: "transparent !important" },
 	"& .MuiSelect-select": { py: "8px", pl: 1.25, pr: 3.5, color: "#F4F7F6 !important", backgroundColor: "#2A2A2C !important" },
-	"&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#5865F2 !important" },
-	"&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#8792FF !important", borderWidth: "1px" },
+	"&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#ff385c !important" },
+	"&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#ff8094 !important", borderWidth: "1px" },
 	"&.Mui-focused": { boxShadow: "0 0 0 2px rgba(135, 146, 255, 0.16)" }
 };
 

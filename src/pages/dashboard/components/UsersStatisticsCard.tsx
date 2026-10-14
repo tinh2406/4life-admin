@@ -31,6 +31,7 @@ const UsersStatisticsCard = memo(function UsersStatisticsCard() {
 		<Grid
 			item
 			xs={12}
+			sm={6}
 			md={6}
 			lg={4}
 			onClick={() => {
@@ -40,14 +41,14 @@ const UsersStatisticsCard = memo(function UsersStatisticsCard() {
 			<Box mb={1.5}>
 				<ComplexStatisticsCard
 					icon={<PersonAdd fontSize="medium" />}
-					title={`New users ${
+					title={`Người dùng mới ${
 						value.User.params.TypeCycles === "Day"
-							? "today"
+							? "hôm nay"
 							: value.User.params.TypeCycles === "Week"
-							? "this week"
+							? "tuần này"
 							: value.User.params.TypeCycles === "Month"
-							? "this month"
-							: "this year"
+							? "tháng này"
+							: "năm nay"
 					}`}
 					count={users?.valueCycles[1]?.value || 0}
 					percentage={{
@@ -55,12 +56,12 @@ const UsersStatisticsCard = memo(function UsersStatisticsCard() {
 						amount: calc?.value as string,
 						label: `than ${
 							value.User.params.TypeCycles === "Day"
-								? "yesterday"
+								? "hôm qua"
 								: value.User.params.TypeCycles === "Week"
-								? "last week"
+								? "tuần trước"
 								: value.User.params.TypeCycles === "Month"
-								? "last month"
-								: "last year"
+								? "tháng trước"
+								: "năm trước"
 						}`
 					}}
 				/>

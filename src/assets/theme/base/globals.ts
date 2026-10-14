@@ -1,5 +1,5 @@
 /**
- * Discord Design System — Global Styles
+ * 4LIFE Admin Design System — Global Styles
  */
 import colors from "./colors";
 

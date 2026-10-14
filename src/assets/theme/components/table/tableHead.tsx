@@ -1,5 +1,5 @@
 /**
- * Discord Design System — TableHead
+ * 4LIFE Admin Design System — TableHead
  * CRITICAL: Do NOT set display: "block" — it breaks column alignment
  * between thead and tbody. Let the browser use its default table-header-group.
  */

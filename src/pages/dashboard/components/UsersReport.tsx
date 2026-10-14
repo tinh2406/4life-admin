@@ -18,7 +18,7 @@ const UsersReport = memo(function UsersReport() {
 		if (!users)
 			return {
 				labels: [],
-				datasets: { label: "Users", data: [] }
+				datasets: { label: "Người dùng", data: [] }
 			};
 		return {
 			labels: users.valueCycles.map(i => {
@@ -31,7 +31,7 @@ const UsersReport = memo(function UsersReport() {
 				return new Date(Date.parse(i.dateFrom)).getDate().toString();
 			}),
 			datasets: {
-				label: "Users",
+				label: "Người dùng",
 				data: users.valueCycles.map(i => i.value)
 			}
 		};
@@ -48,7 +48,7 @@ const UsersReport = memo(function UsersReport() {
 			}}
 		>
 			<Box mb={3}>
-				<ReportsBarChart color="success" title="Users" description="" date="just updated" chart={calc} />
+				<ReportsBarChart color="success" title="Người dùng" description="" date="vừa cập nhật" chart={calc} />
 			</Box>
 		</Grid>
 	);

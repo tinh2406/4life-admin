@@ -80,10 +80,10 @@ const Users = () => {
 						<Typography sx={{ color: "#ff667f", fontSize: 12, fontWeight: 600 }}>Người dùng</Typography>
 					</Box>
 					<Typography component="h1" sx={{ fontSize: { xs: 23, sm: 27 }, fontWeight: 650, letterSpacing: "-.035em", color: "#f5f5f6" }}>
-						Danh sách người dùng
+						Users
 					</Typography>
 					<Typography sx={{ color: "#9b9da5", mt: 0.5, fontSize: 12.5 }}>
-						{totalCount.toLocaleString("vi-VN")} tài khoản trong nhóm {roleLabels[userParams.Role].toLowerCase()}.
+						{totalCount.toLocaleString("vi-VN")} tài khoản thuộc nhóm {roleLabels[userParams.Role].toLowerCase()}.
 					</Typography>
 				</Box>
 			</Box>
@@ -106,7 +106,7 @@ const Users = () => {
 						<Select
 							value={userParams.SortBy ?? "Email"}
 							onChange={handleSort}
-							inputProps={{ "aria-label": "Sắp xếp người dùng theo" }}
+							inputProps={{ "aria-label": "Sort users by" }}
 							MenuProps={{ PaperProps: { sx: { bgcolor: "#26272c", color: "#eeeeef", border: `1px solid ${borderColor}`, "& .MuiMenuItem-root.Mui-selected": { bgcolor: "rgba(232,67,96,.16)" } } } }}
 							sx={{ minWidth: 135, height: 34, color: "#e4e4e6", bgcolor: raisedSurface, borderRadius: "6px", fontSize: 12, ".MuiOutlinedInput-notchedOutline": { borderColor }, "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,.22)" }, ".MuiSvgIcon-root": { color: "#a5a6ad" } }}
 						>
@@ -149,11 +149,11 @@ const Users = () => {
 				</Box>
 				<Box sx={{ display: "flex", alignItems: { xs: "flex-start", sm: "center" }, justifyContent: "space-between", flexDirection: { xs: "column", sm: "row" }, gap: 1.5, px: 2, py: 1.5, bgcolor: "#121316", borderTop: `1px solid ${borderColor}` }}>
 					<Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 1, color: "#a3a5ad" }}>
-						<Typography sx={{ fontSize: 11.5 }}>Số dòng</Typography>
+						<Typography sx={{ fontSize: 11.5 }}>Số dòng mỗi trang</Typography>
 						<Select value={pageSize} onChange={handlePageSize} inputProps={{ "aria-label": "Số dòng mỗi trang" }} sx={{ minWidth: 64, height: 29, color: "#e4e4e6", bgcolor: raisedSurface, borderRadius: "5px", fontSize: 11, ".MuiOutlinedInput-notchedOutline": { borderColor }, ".MuiSvgIcon-root": { color: "#a5a6ad" } }} MenuProps={{ PaperProps: { sx: { bgcolor: "#26272c", color: "#eeeeef" } } }}>
 							<MenuItem value={10}>10</MenuItem><MenuItem value={25}>25</MenuItem><MenuItem value={50}>50</MenuItem>
 						</Select>
-						<Typography sx={{ fontSize: 11.5 }}>Hiển thị <Box component="span" sx={{ color: "#ededee", fontWeight: 600 }}>{firstResult}–{lastResult}</Box> trên <Box component="span" sx={{ color: "#ededee", fontWeight: 600 }}>{totalCount.toLocaleString("vi-VN")}</Box></Typography>
+						<Typography sx={{ fontSize: 11.5 }}>Hiển thị <Box component="span" sx={{ color: "#ededee", fontWeight: 600 }}>{firstResult}-{lastResult}</Box> trên <Box component="span" sx={{ color: "#ededee", fontWeight: 600 }}>{totalCount.toLocaleString("vi-VN")}</Box></Typography>
 						{isFetching && !isLoading && <CircularProgress size={13} sx={{ ml: 0.5, color: "#ff667f" }} />}
 					</Box>
 					<Pagination count={totalPages} page={page} onChange={(_, nextPage) => setUserParams?.(current => ({ ...current, PageIndex: nextPage }))} size="small" sx={{ "& .MuiPaginationItem-root": { minWidth: 29, height: 29, borderRadius: "5px", color: "#b7b8be", fontSize: 11, "&:hover": { bgcolor: "#292a30" } }, "& .MuiPaginationItem-root.Mui-selected": { bgcolor: "#e84360", color: "#fff", "&:hover": { bgcolor: "#f0526d" } } }} />

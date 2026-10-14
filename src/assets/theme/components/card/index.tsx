@@ -1,5 +1,5 @@
 /**
- * Discord Design System — Card Override
+ * 4LIFE Admin Design System — Card Override
  * Feature Card: rgba overlay bg, 48px border-radius, no border, subtle shadow
  */
 import colors from "../../base/colors";

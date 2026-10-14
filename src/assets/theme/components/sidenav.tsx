@@ -1,5 +1,5 @@
 /**
- * Discord Design System — Sidenav (MuiDrawer override)
+ * 4LIFE Admin Design System — Sidenav (MuiDrawer override)
  * Drawer root takes no flow width (Paper is position:fixed)
  */
 import colors from "../base/colors";

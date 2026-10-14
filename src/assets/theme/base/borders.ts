@@ -1,6 +1,6 @@
 /**
- * Discord Design System — Border Radius Scale
- * Source of truth: DesignMD /discover/discord
+ * 4LIFE Admin Design System — Border Radius Scale
+ * Source of truth: DESIGN.md
  *
  * Sharp (0px): Input fields, text links
  * Subtle (8px): Dropdown menus, small modals

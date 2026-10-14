@@ -1,6 +1,6 @@
 /**
- * Discord Design System — Color Tokens
- * Source of truth: DesignMD /discover/discord
+ * 4LIFE Admin Design System — Color Tokens
+ * Source of truth: DESIGN.md
  */
 const colors = {
   background: {
@@ -29,8 +29,8 @@ const colors = {
   },
 
   primary: {
-    main: "#5865F2",     // Discord Brand Purple
-    focus: "#4751DA",    // Hover (10% darker)
+    main: "#ff385c",
+    focus: "#e02f50",
   },
 
   secondary: {
@@ -49,12 +49,12 @@ const colors = {
   },
 
   warning: {
-    main: "#FEE75C",     // Discord Yellow
+    main: "#FEE75C",     // Warning semantic color
     focus: "#E5D053",
   },
 
   error: {
-    main: "#ED4245",     // Discord Red
+    main: "#ED4245",     // Error semantic color
     focus: "#D63638",
   },
 
@@ -65,7 +65,7 @@ const colors = {
 
   dark: {
     main: "#202024",     // Dark Surface Primary
-    focus: "#060A0B",    // Discord Text Black
+    focus: "#060A0B",    // Night canvas
   },
 
   grey: {
@@ -82,8 +82,8 @@ const colors = {
 
   gradients: {
     primary: {
-      main: "#5865F2",
-      state: "#3E42B2",
+      main: "#ff385c",
+      state: "#e02f50",
     },
 
     secondary: {
@@ -139,8 +139,8 @@ const colors = {
 
   badgeColors: {
     primary: {
-      background: "rgba(88, 101, 242, 0.15)",
-      text: "#798DF9",
+      background: "rgba(255, 56, 92, 0.14)",
+      text: "#ff8094",
     },
     secondary: {
       background: "rgba(255, 255, 255, 0.1)",
@@ -173,7 +173,7 @@ const colors = {
   },
 
   coloredShadows: {
-    primary: "rgba(88, 101, 242, 0.2)",
+    primary: "rgba(255, 56, 92, 0.2)",
     secondary: "rgba(114, 115, 119, 0.2)",
     info: "rgba(0, 176, 244, 0.2)",
     success: "rgba(53, 237, 126, 0.2)",
@@ -186,7 +186,7 @@ const colors = {
   inputBorderColor: "#282828",
 
   tabs: {
-    indicator: { boxShadow: "#5865F2" },
+    indicator: { boxShadow: "#ff385c" },
   },
 };
 

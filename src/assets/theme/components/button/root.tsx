@@ -1,5 +1,5 @@
 /**
- * Discord Design System — Button Root
+ * 4LIFE Admin Design System — Button Root
  * Standard (12px) border-radius, 200ms transitions, disabled at 50% opacity
  */
 import typography from "../../base/typography";

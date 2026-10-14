@@ -19,7 +19,7 @@ const BookingsReport = memo(function BookingsReport() {
 		if (!bookings)
 			return {
 				labels: [],
-				datasets: { label: "Bookings", data: [] }
+				datasets: { label: "Lượt đặt phòng", data: [] }
 			};
 		return {
 			labels: bookings.valueCycles.map(i => {
@@ -32,7 +32,7 @@ const BookingsReport = memo(function BookingsReport() {
 				return new Date(Date.parse(i.dateFrom)).getDate().toString();
 			}),
 			datasets: {
-				label: "Bookings",
+				label: "Lượt đặt phòng",
 				data: bookings.valueCycles.map(i => i.value)
 			}
 		};
@@ -49,7 +49,7 @@ const BookingsReport = memo(function BookingsReport() {
 			}}
 		>
 			<Box mb={3}>
-				<ReportsLineChart color="info" title="Bookings" description="" date="just updated" chart={calc} />
+				<ReportsLineChart color="info" title="Lượt đặt phòng" description="" date="vừa cập nhật" chart={calc} />
 			</Box>
 		</Grid>
 	);

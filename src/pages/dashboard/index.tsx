@@ -27,10 +27,10 @@ const DashBoard = () => {
 						variant="h5"
 						sx={{ color: "#F2F4F3", fontWeight: 700, letterSpacing: "-0.03em", mb: 0.5 }}
 					>
-						Overview
+						Tổng quan
 					</Typography>
 					<Typography variant="body2" sx={{ color: "#B5BCB9" }}>
-						Monitor bookings, revenue, and platform activity.
+						Theo dõi lượt đặt phòng, doanh thu và hoạt động nền tảng.
 					</Typography>
 				</Box>
 				<Box sx={{ width: { xs: "100%", md: "auto" }, minWidth: 0 }}>
