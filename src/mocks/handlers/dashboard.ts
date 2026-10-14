@@ -53,12 +53,14 @@ export const dashboardHandlers = [
 		const PageSize = Number(url.searchParams.get("PageSize")) || 10;
 		const PaidType = url.searchParams.get("PaidType") || "All";
 		const TypeCycles = url.searchParams.get("TypeCycles") || "Week";
+		const Keyword = url.searchParams.get("Keyword") || undefined;
 
 		const result = mockDb.getRevenueManagement({
 			PageIndex,
 			PageSize,
 			PaidType,
-			TypeCycles
+			TypeCycles,
+			Keyword
 		});
 
 		return HttpResponse.json(result);

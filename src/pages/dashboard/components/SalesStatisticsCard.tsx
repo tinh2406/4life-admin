@@ -38,7 +38,6 @@ const SalesStasticsCard = memo(function SalesStasticsCard() {
 		>
 			<Box mb={1.5}>
 				<ComplexStatisticsCard
-					color="success"
 					icon={<Store fontSize="medium" />}
 					title={`Transactions ${
 						value.Sales.params.TypeCycles === "Day"

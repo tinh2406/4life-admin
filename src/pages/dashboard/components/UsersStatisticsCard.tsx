@@ -39,7 +39,6 @@ const UsersStatisticsCard = memo(function UsersStatisticsCard() {
 		>
 			<Box mb={1.5}>
 				<ComplexStatisticsCard
-					color="primary"
 					icon={<PersonAdd fontSize="medium" />}
 					title={`New users ${
 						value.User.params.TypeCycles === "Day"

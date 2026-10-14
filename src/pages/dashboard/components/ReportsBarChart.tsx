@@ -19,14 +19,14 @@ const ReportsBarChart = memo(function ReportsBarChart({
 
 	const barColor =
 		color === "primary"
-			? colors.primary.main
+			? "#8792FF"
 			: color === "success"
-			? colors.success.main
+			? "#63D995"
 			: color === "info"
-			? colors.info.main
+			? "#8792FF"
 			: color === "dark"
-			? colors.dark.main
-			: colors.primary.main;
+			? "#A1A8A5"
+			: "#8792FF";
 
 	const chartData = useMemo(
 		() => ({
@@ -53,7 +53,7 @@ const ReportsBarChart = memo(function ReportsBarChart({
 			plugins: {
 				legend: { display: false },
 				tooltip: {
-					backgroundColor: colors.dark.main,
+					backgroundColor: "#202829",
 					titleColor: "#ffffff",
 					bodyColor: "#ffffff",
 					padding: 10,
@@ -66,12 +66,12 @@ const ReportsBarChart = memo(function ReportsBarChart({
 						display: true,
 						drawOnChartArea: true,
 						drawTicks: false,
-						color: "rgba(0, 0, 0, 0.05)"
+						color: "rgba(255, 255, 255, 0.07)"
 					},
 					ticks: {
 						padding: 8,
 						font: { size: 11, family: "Roboto, sans-serif" },
-						color: colors.text.main
+							color: "#A1A8A5"
 					}
 				},
 				x: {
@@ -79,7 +79,7 @@ const ReportsBarChart = memo(function ReportsBarChart({
 					ticks: {
 						padding: 8,
 						font: { size: 11, family: "Roboto, sans-serif" },
-						color: colors.text.main
+						color: "#A1A8A5"
 					}
 				}
 			}
@@ -95,15 +95,19 @@ const ReportsBarChart = memo(function ReportsBarChart({
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "space-between",
-				transition: "transform 150ms ease, box-shadow 150ms ease",
-				"&:hover": { transform: "translateY(-2px)", boxShadow: 3 }
+				backgroundColor: "#171C1D",
+				border: "1px solid #303738",
+				borderRadius: "10px",
+				boxShadow: "none",
+				transition: "border-color 150ms ease",
+				"&:hover": { borderColor: "#465151" }
 			}}
 		>
 			<Box mb={2}>
-				<Typography variant="subtitle1" fontWeight="bold" color="text.primary" textTransform="capitalize">
+				<Typography variant="subtitle1" fontWeight="bold" sx={{ color: "#F2F4F3" }} textTransform="capitalize">
 					{title}
 				</Typography>
-				<Typography variant="caption" color="text.secondary">
+				<Typography variant="caption" sx={{ color: "#A1A8A5" }}>
 					{description}
 				</Typography>
 			</Box>
@@ -117,11 +121,11 @@ const ReportsBarChart = memo(function ReportsBarChart({
 				alignItems="center"
 				pt={1.5}
 				borderTop="1px solid"
-				borderColor={colors.grey[200]}
+				borderColor="#303738"
 				gap={0.75}
 			>
 				<Schedule sx={{ fontSize: 16, color: colors.text.main }} />
-				<Typography variant="caption" color="text.secondary">
+				<Typography variant="caption" sx={{ color: "#A1A8A5" }}>
 					{date}
 				</Typography>
 			</Box>

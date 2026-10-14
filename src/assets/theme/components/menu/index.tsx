@@ -1,7 +1,6 @@
 import boxShadows from "../../base/boxShadows";
 import typography from "../../base/typography";
 import colors from "../../base/colors";
-import borders from "../../base/borders";
 
 // Material Dashboard 2 React helper functions
 import pxToRem from "../../functions/pxToRem";
@@ -10,8 +9,7 @@ import { OverridesStyleRules } from "@mui/material/styles/overrides";
 
 const { lg } = boxShadows;
 const { size } = typography;
-const { text, white } = colors;
-const { borderRadius } = borders;
+const { text, dark, grey } = colors;
 
 const menu: {
 	defaultProps?: Partial<MenuProps> | undefined;
@@ -27,10 +25,11 @@ const menu: {
 			boxShadow: lg,
 			padding: `${pxToRem(16)} ${pxToRem(8)}`,
 			fontSize: size.sm,
-			color: text.main,
 			textAlign: "left",
-			backgroundColor: `${white.main} !important`,
-			borderRadius: borderRadius.md
+			backgroundColor: `${dark.main} !important`,
+			border: `1px solid ${grey[300]}`,
+				borderRadius: "8px",
+				color: text.focus
 		}
 	}
 };

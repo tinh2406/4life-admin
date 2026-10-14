@@ -13,12 +13,11 @@ import {
 } from "chart.js";
 import { memo, useMemo } from "react";
 import { Line } from "react-chartjs-2";
-import colors from "../../../assets/theme/base/colors";
 import { ReportMultiChartType } from "./type";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
-const PALETTE = [colors.primary.main, colors.success.main, colors.warning.main];
+const PALETTE = ["#8792FF", "#63D995", "#F4C96B"];
 
 const ReportsMultiLineChart = memo(function ReportsMultiLineChart({
 	title,
@@ -61,11 +60,11 @@ const ReportsMultiLineChart = memo(function ReportsMultiLineChart({
 						boxHeight: 10,
 						usePointStyle: true,
 						font: { size: 11, family: "Roboto, sans-serif" },
-						color: colors.text.main
+						color: "#A1A8A5"
 					}
 				},
 				tooltip: {
-					backgroundColor: colors.dark.main,
+					backgroundColor: "#202829",
 					titleColor: "#ffffff",
 					bodyColor: "#ffffff",
 					padding: 10,
@@ -82,12 +81,12 @@ const ReportsMultiLineChart = memo(function ReportsMultiLineChart({
 						display: true,
 						drawOnChartArea: true,
 						drawTicks: false,
-						color: "rgba(0, 0, 0, 0.05)"
+						color: "rgba(255, 255, 255, 0.07)"
 					},
 					ticks: {
 						padding: 8,
 						font: { size: 11, family: "Roboto, sans-serif" },
-						color: colors.text.main
+						color: "#A1A8A5"
 					}
 				},
 				x: {
@@ -95,7 +94,7 @@ const ReportsMultiLineChart = memo(function ReportsMultiLineChart({
 					ticks: {
 						padding: 8,
 						font: { size: 11, family: "Roboto, sans-serif" },
-						color: colors.text.main
+						color: "#A1A8A5"
 					}
 				}
 			}
@@ -111,15 +110,19 @@ const ReportsMultiLineChart = memo(function ReportsMultiLineChart({
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "space-between",
-				transition: "transform 150ms ease, box-shadow 150ms ease",
-				"&:hover": { transform: "translateY(-2px)", boxShadow: 3 }
+				backgroundColor: "#171C1D",
+				border: "1px solid #303738",
+				borderRadius: "10px",
+				boxShadow: "none",
+				transition: "border-color 150ms ease",
+				"&:hover": { borderColor: "#465151" }
 			}}
 		>
 			<Box mb={2}>
-				<Typography variant="subtitle1" fontWeight="bold" color="text.primary" textTransform="capitalize">
+				<Typography variant="subtitle1" fontWeight="bold" sx={{ color: "#F2F4F3" }} textTransform="capitalize">
 					{title}
 				</Typography>
-				<Typography variant="caption" color="text.secondary">
+				<Typography variant="caption" sx={{ color: "#A1A8A5" }}>
 					{description}
 				</Typography>
 			</Box>
@@ -133,11 +136,11 @@ const ReportsMultiLineChart = memo(function ReportsMultiLineChart({
 				alignItems="center"
 				pt={1.5}
 				borderTop="1px solid"
-				borderColor={colors.grey[200]}
+				borderColor="#303738"
 				gap={0.75}
 			>
-				<Schedule sx={{ fontSize: 16, color: colors.text.main }} />
-				<Typography variant="caption" color="text.secondary">
+				<Schedule sx={{ fontSize: 16, color: "#A1A8A5" }} />
+				<Typography variant="caption" sx={{ color: "#A1A8A5" }}>
 					{date}
 				</Typography>
 			</Box>

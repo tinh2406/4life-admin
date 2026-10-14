@@ -3,7 +3,6 @@ import { format } from "date-fns";
 import { memo, useEffect, useMemo } from "react";
 import { useInfiniteQuery } from "react-query";
 import { Link } from "react-router-dom";
-import borders from "../assets/theme/base/borders";
 import colors from "../assets/theme/base/colors";
 import axiosInstance from "../constants/AxiosInstance";
 import { PagingResponse } from "../type/Paging";
@@ -33,9 +32,9 @@ const NotificationItem = memo(({ notify, isNew }: { notify: NotifyType; isNew: b
 				display: "flex",
 				alignItems: "center",
 				width: "100%",
-				color: colors.dark.main,
-				backgroundColor: isNew ? "#e7faff" : colors.white.main,
-				borderRadius: borders.borderRadius.md,
+				color: colors.white.main,
+				backgroundColor: isNew ? "rgba(88, 101, 242, 0.14)" : "transparent",
+				borderRadius: "6px",
 				transition: transitions.create("background-color", {
 					easing: transitions.easing.easeInOut,
 					duration: transitions.duration.standard
@@ -45,15 +44,13 @@ const NotificationItem = memo(({ notify, isNew }: { notify: NotifyType; isNew: b
 					transition: "color 100ms linear"
 				},
 
-				"&:not(:last-child)": {
-					mb: 1
-				},
+				"&:not(:last-child)": { mb: 0.5 },
 
 				"&:hover": {
-					backgroundColor: colors.light.main,
+					backgroundColor: "#2C3435",
 
 					"& *": {
-						color: colors.dark.main
+						color: colors.white.main
 					}
 				}
 			})}
@@ -72,10 +69,10 @@ const NotificationItem = memo(({ notify, isNew }: { notify: NotifyType; isNew: b
 			>
 				<LazyLoadImage alt={"avt"} height={40} src={notify.avatar} width={40} />
 				<Box sx={{ width: "100%", ml: 1 }}>
-					<Typography fontWeight="regular" color={colors.dark.main} sx={{ fontSize: 14 }}>
+					<Typography fontWeight="regular" color={colors.white.main} sx={{ fontSize: 14 }}>
 						{notify.content}
 					</Typography>
-					<Typography align="right" sx={{ fontSize: 10 }} color={colors.text.main}>
+					<Typography align="right" sx={{ fontSize: 10 }} color={colors.grey[500]}>
 						{format(Date.parse(notify.createdDate), "hh:mm dd:MM:yyyy")}
 					</Typography>
 					<Divider sx={{ mt: "4px", mb: 0 }} />
@@ -124,7 +121,7 @@ const Notifys = ({
 			}}
 			open={Boolean(openMenu)}
 			onClose={close}
-			sx={{ mt: 2, maxHeight: 500 }}
+			sx={{ mt: 2, "& .MuiPaper-root": { maxHeight: 500, width: { xs: "calc(100vw - 32px)", sm: 420 }, maxWidth: "calc(100vw - 32px)" } }}
 		>
 			{notifys.map(i => (
 				<NotificationItem isNew={Boolean(newNoti[i.id])} notify={i} key={i.id} />

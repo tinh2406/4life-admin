@@ -15,6 +15,7 @@ const RequestDetail = lazy(() => import("./pages/request-mod/detail"));
 const UserDetail = lazy(() => import("./pages/users/detail"));
 const Users = lazy(() => import("./pages/users"));
 const Locations = lazy(() => import("./pages/locations"));
+const SettingsPage = lazy(() => import("./pages/settings"));
 
 const NotAuthElement = ({ children }: { children?: React.ReactNode }) => {
 	const user = useSelector((state: AuthStateType) => state.user);
@@ -111,6 +112,14 @@ const router = createBrowserRouter([
 				element: (
 					<Suspense fallback={<Loading />}>
 						<Locations />
+					</Suspense>
+				)
+			},
+			{
+				path: "/settings",
+				element: (
+					<Suspense fallback={<Loading />}>
+						<SettingsPage />
 					</Suspense>
 				)
 			},

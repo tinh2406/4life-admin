@@ -40,7 +40,6 @@ const BookingStatisticsCard = memo(function BookingStatisticsCard() {
 		>
 			<Box mb={1.5}>
 				<ComplexStatisticsCard
-					color="dark"
 					icon={<Weekend fontSize="medium" />}
 					title={`Bookings ${
 						value.Booking.params.TypeCycles === "Day"

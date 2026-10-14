@@ -8,8 +8,6 @@ import Breadcrumbs from "./Breadcrumbs";
 import { useSelector } from "react-redux";
 import { AuthStateType } from "../store/auth/type";
 import { useNotify } from "../context/notify";
-import { AmenityFilter, LocationFilter, RequestFilter, UserFilter } from "./Filter";
-import StatisticsFilter from "./StatisticsFilter";
 
 const Navbar = memo(() => {
 	const user = useSelector((state: AuthStateType) => state.user);
@@ -28,22 +26,24 @@ const Navbar = memo(() => {
 			position="static"
 			elevation={0}
 			sx={{
-				backgroundColor: colors.dark.main,              // #202024
+				backgroundColor: "rgba(19, 23, 24, 0.88)",
 				color: colors.white.main,
-				border: `1px solid rgba(255, 255, 255, 0.06)`,
-				borderRadius: "12px",
+				borderBottom: "1px solid #303638",
+				borderRadius: 0,
 				boxShadow: "none",
-				py: 0.75,
-				px: { xs: 1, md: 1.5 },
+				backdropFilter: "blur(14px)",
+				py: 0,
+				px: { xs: 1, md: 2 },
 				zIndex: 100,
 				"& .MuiToolbar-root": {
 					display: "flex",
 					justifyContent: "space-between",
-					alignItems: "center",
-					flexDirection: { xs: "column", md: "row" },
-					gap: { xs: 1.5, md: 2 },
-					px: { xs: 1, sm: 2 },
-					minHeight: "56px !important"
+					alignItems: { xs: "stretch", lg: "center" },
+					flexDirection: { xs: "column", lg: "row" },
+					gap: { xs: 1, lg: 2 },
+					px: { xs: 0.5, sm: 1 },
+					py: { xs: 1, lg: 0 },
+					minHeight: "64px !important"
 				}
 			}}
 		>
@@ -53,40 +53,27 @@ const Navbar = memo(() => {
 						display: "flex",
 						alignItems: "center",
 						justifyContent: "space-between",
-						width: { xs: "100%", md: "max-content" }
+						width: { xs: "100%", lg: "auto" },
+						minWidth: { lg: 170 },
+						flex: { lg: "0 0 22%" }
 					}}
 				>
 					<Breadcrumbs title={route[route.length - 1]} route={route} />
 				</Box>
 
-				<Box
-					sx={{
-						display: "flex",
-						alignItems: "center",
-						justifyContent: { xs: "space-between", md: "flex-end" },
-						width: { xs: "100%", md: "auto" },
-						gap: 1.5,
-						flexWrap: "wrap"
-					}}
-				>
-					<RequestFilter visible={route[1] === "requests"} />
-					<UserFilter visible={route[1] === "users"} />
-					<LocationFilter visible={route[1] === "locations"} />
-					<AmenityFilter visible={route[1] === "amenities"} />
-					<StatisticsFilter visible={route[1] === ""} />
 
-					<Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-						<IconButton
+				<Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 1, flex: { lg: "0 0 22%" } }}>
+					<IconButton
 							size="medium"
 							aria-label="Notifications"
 							aria-controls="notification-menu"
 							aria-haspopup="true"
 							sx={{
 								color: colors.text.main,
-								border: `1px solid rgba(255, 255, 255, 0.1)`,
-								borderRadius: "14px",
-								width: 40,
-								height: 40,
+								border: "1px solid #354041",
+								borderRadius: "7px",
+								width: 36,
+								height: 36,
 								position: "relative",
 								"&:hover": {
 									backgroundColor: "rgba(255, 255, 255, 0.08)",
@@ -128,15 +115,15 @@ const Navbar = memo(() => {
 									{Object.keys(notify.newNoti).length}
 								</Box>
 							)}
-						</IconButton>
+					</IconButton>
 
-						<Button
+					<Button
 							aria-label="User profile"
 							sx={{
 								minWidth: 0,
 								p: 0.25,
-								borderRadius: "14px",
-								border: `1px solid rgba(255, 255, 255, 0.1)`,
+								borderRadius: "7px",
+								border: "1px solid #354041",
 								"&:hover": {
 									backgroundColor: "rgba(255, 255, 255, 0.08)"
 								}
@@ -156,10 +143,9 @@ const Navbar = memo(() => {
 							>
 								{user?.name ? user.name.charAt(0).toUpperCase() : "A"}
 							</Avatar>
-						</Button>
+					</Button>
 
-						<Notifycations close={handleCloseMenu} openMenu={openMenu} />
-					</Box>
+					<Notifycations close={handleCloseMenu} openMenu={openMenu} />
 				</Box>
 			</Toolbar>
 		</AppBar>

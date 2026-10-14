@@ -1,199 +1,94 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T22:10:00.000Z",
+  "generatedAt": "2026-10-14T00:00:00.000Z",
   "title": "Design System: 4LIFE Admin",
   "extensions": {
     "colorMeta": {
-      "primary": {
-        "role": "primary",
-        "displayName": "Living Coral",
-        "canonical": "#ff385c",
-        "tonalRamp": ["#40040f", "#80091e", "#bf0d2d", "#ff1a42", "#ff385c", "#ff6682", "#ff99ab", "#ffccd5"]
-      },
-      "primary-gradient-start": {
-        "role": "primary",
-        "displayName": "Coral Sunrise Pink",
-        "canonical": "#EC407A",
-        "tonalRamp": ["#3b081a", "#761034", "#b1184e", "#ec2068", "#ec407a", "#f1709b", "#f6a0bc", "#fbd0de"]
-      },
-      "primary-gradient-end": {
-        "role": "primary",
-        "displayName": "Deep Coral Magenta",
-        "canonical": "#D81B60",
-        "tonalRamp": ["#360718", "#6c0e30", "#a21548", "#d81b60", "#e45488", "#ec7ea6", "#f4a9c4", "#fbd4e2"]
-      },
-      "secondary": {
-        "role": "neutral",
-        "displayName": "Muted Lavender Slate",
-        "canonical": "#7b809a",
-        "tonalRamp": ["#1f2027", "#3e404d", "#5c6074", "#7b809a", "#9599ae", "#b0b3c3", "#cbccd7", "#e5e6eb"]
-      },
-      "info": {
-        "role": "secondary",
-        "displayName": "Cobalt Sky",
-        "canonical": "#1A73E8",
-        "tonalRamp": ["#071d3a", "#0d3a74", "#1456af", "#1a73e8", "#5396ee", "#7db0f3", "#a8cbf7", "#d3e5fb"]
-      },
-      "success": {
-        "role": "secondary",
-        "displayName": "Emerald Growth",
-        "canonical": "#4CAF50",
-        "tonalRamp": ["#132c14", "#265728", "#39833c", "#4caf50", "#70bf73", "#94cf96", "#b7dfb9", "#dbefdc"]
-      },
-      "warning": {
-        "role": "secondary",
-        "displayName": "Amber Warning",
-        "canonical": "#fb8c00",
-        "tonalRamp": ["#3f2300", "#7e4600", "#bd6900", "#fb8c00", "#fca333", "#fdb966", "#fed199", "#fee8cc"]
-      },
-      "error": {
-        "role": "secondary",
-        "displayName": "Signal Crimson",
-        "canonical": "#F44335",
-        "tonalRamp": ["#3d110d", "#7a221b", "#b73228", "#f44335", "#f6695d", "#f88e86", "#fbb4ae", "#fdd9d7"]
-      },
-      "neutral-bg": {
-        "role": "neutral",
-        "displayName": "Cloud Foundation",
-        "canonical": "#f0f2f5",
-        "tonalRamp": ["#252627", "#4b4c4d", "#707274", "#95989b", "#babdc1", "#dfe2e6", "#f0f2f5", "#fbfbfc"]
-      },
-      "neutral-surface": {
-        "role": "neutral",
-        "displayName": "Pure Canvas",
-        "canonical": "#ffffff",
-        "tonalRamp": ["#1a1a1a", "#404040", "#666666", "#8c8c8c", "#b3b3b3", "#d9d9d9", "#f2f2f2", "#ffffff"]
-      },
-      "neutral-dark": {
-        "role": "neutral",
-        "displayName": "Slate Navy",
-        "canonical": "#344767",
-        "tonalRamp": ["#0d121a", "#1a2434", "#27354d", "#344767", "#5d6c85", "#8591a4", "#aeb5c2", "#d6dae1"]
-      },
-      "neutral-text": {
-        "role": "neutral",
-        "displayName": "Muted Text",
-        "canonical": "#7b809a",
-        "tonalRamp": ["#1f2027", "#3e404d", "#5c6074", "#7b809a", "#9599ae", "#b0b3c3", "#cbccd7", "#e5e6eb"]
-      },
-      "neutral-border": {
-        "role": "neutral",
-        "displayName": "Subtle Hairline",
-        "canonical": "#dee2e6",
-        "tonalRamp": ["#232424", "#474849", "#6b6d6e", "#8f9193", "#b4b6b8", "#dee2e6", "#eef0f2", "#f8f9fa"]
-      }
+      "primary": { "role": "primary", "displayName": "4LIFE Coral", "canonical": "#ff385c", "tonalRamp": ["#40040f", "#80091e", "#bf0d2d", "#e61a3b", "#ff385c", "#ff6682", "#ff99ab", "#ffccd5"] },
+      "primary-deep": { "role": "primary", "displayName": "Deep Berry", "canonical": "#B61F43", "tonalRamp": ["#2e0811", "#5c1022", "#8a1732", "#a91b3d", "#c54564", "#d9768d", "#eaa8b6", "#f5d3da"] },
+      "canvas": { "role": "neutral", "displayName": "Night Canvas", "canonical": "#060A0B", "tonalRamp": ["#060A0B", "#121617", "#1E2223", "#2A2E2F", "#363A3B", "#626667", "#A0A3A4", "#F1F2F2"] },
+      "surface": { "role": "neutral", "displayName": "Charcoal Surface", "canonical": "#202024", "tonalRamp": ["#0A0A0C", "#141416", "#202024", "#2C2C30", "#38383C", "#68686B", "#A4A4A6", "#F1F1F2"] },
+      "surface-raised": { "role": "neutral", "displayName": "Raised Charcoal", "canonical": "#2C2F33", "tonalRamp": ["#0D0E0F", "#1A1C1E", "#2C2F33", "#3A3D41", "#484B4F", "#73767A", "#AFB1B3", "#F1F2F2"] },
+      "text-primary": { "role": "neutral", "displayName": "White Text", "canonical": "#FFFFFF", "tonalRamp": ["#161616", "#303030", "#4A4A4A", "#646464", "#7E7E7E", "#989898", "#B2B2B2", "#FFFFFF"] },
+      "text-secondary": { "role": "neutral", "displayName": "Muted Gray", "canonical": "#A1A1A5", "tonalRamp": ["#202021", "#404042", "#616163", "#818184", "#A1A1A5", "#B8B8BB", "#D0D0D2", "#E8E8E9"] },
+      "success": { "role": "secondary", "displayName": "Success Green", "canonical": "#35ED7E", "tonalRamp": ["#06210F", "#0D421F", "#13632F", "#1A843F", "#35ED7E", "#65F29B", "#95F6B8", "#C5FBD5"] },
+      "warning": { "role": "secondary", "displayName": "Warning Yellow", "canonical": "#FEE75C", "tonalRamp": ["#282300", "#504700", "#786B00", "#A08F00", "#FEE75C", "#FEEB7D", "#FEF09E", "#FFF5BF"] },
+      "error": { "role": "secondary", "displayName": "Signal Red", "canonical": "#ED4245", "tonalRamp": ["#260A0B", "#4C1516", "#722021", "#982B2C", "#ED4245", "#F16B6D", "#F59496", "#F9BDBE"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero statistics and high-level platform telemetry." },
-      "headline": { "displayName": "Headline", "purpose": "Page headers, primary modal titles, and section dividers." },
-      "title": { "displayName": "Title", "purpose": "Card titles, table column headers, and applicant names." },
-      "body": { "displayName": "Body", "purpose": "Data cells, user profiles, form inputs, and descriptive text." },
-      "label": { "displayName": "Label", "purpose": "Buttons, uppercase badges, status indicators, and column tags." }
+      "body": { "displayName": "Body", "purpose": "Readable admin content, table values, and form labels." },
+      "headline": { "displayName": "Headline", "purpose": "Page and section titles with clear scanning hierarchy." }
     },
     "shadows": [
-      { "name": "card-rest", "value": "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)", "purpose": "Resting elevation for cards and summary blocks." },
-      { "name": "card-hover", "value": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)", "purpose": "Hover elevation for interactive cards and menus." },
-      { "name": "drawer-floating", "value": "0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)", "purpose": "Permanent Sidenav and modal floating depth." },
-      { "name": "accent-glow", "value": "0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 10px -5px rgba(233,30,98,0.4)", "purpose": "Warm interactive glow on primary buttons." },
-      { "name": "glass-rim", "value": "inset 0 0 1px 1px rgba(255,255,255,0.9), 0 20px 27px 0 rgba(0,0,0,0.05)", "purpose": "Frosted glass navbar border highlight and soft drop shadow." }
+      { "name": "panel-shadow", "value": "0 28px 90px rgba(0,0,0,.52)", "purpose": "Focused authentication panel over the background image." },
+      { "name": "button-shadow", "value": "0 1px 2px rgba(0,0,0,.05)", "purpose": "Subtle lift for primary actions where needed." }
     ],
     "motion": [
-      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for navigation expansion and hover states." },
-      { "name": "duration-standard", "value": "300ms", "purpose": "Transitions for drawer expansion and navbar blur." }
+      { "name": "state-transition", "value": "150ms ease", "purpose": "Compact hover and focus feedback on controls." }
     ],
     "breakpoints": [
       { "name": "xs", "value": "0px" },
-      { "name": "sm", "value": "576px" },
-      { "name": "md", "value": "768px" },
-      { "name": "lg", "value": "992px" },
-      { "name": "xl", "value": "1200px" },
-      { "name": "xxl", "value": "1400px" }
+      { "name": "sm", "value": "600px" },
+      { "name": "md", "value": "900px" },
+      { "name": "lg", "value": "1200px" }
     ]
   },
   "components": [
     {
-      "name": "Gradient Primary Button",
+      "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Primary high-intent commit button with coral gradient and hover depth.",
-      "html": "<button class=\"ds-btn-gradient\">CONFIRM APPROVAL</button>",
-      "css": ".ds-btn-gradient { background: linear-gradient(195deg, #EC407A, #D81B60); color: #ffffff; padding: 8px 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; border: none; border-radius: 8px; box-shadow: 0 3px 3px 0 rgba(233,30,99,0.15), 0 3px 1px -2px rgba(233,30,99,0.2), 0 1px 5px 0 rgba(233,30,99,0.15); cursor: pointer; transition: all 150ms ease-in; font-family: Roboto, sans-serif; letter-spacing: 0.05em; } .ds-btn-gradient:hover { box-shadow: 0 14px 26px -12px rgba(233,30,99,0.4), 0 4px 23px 0 rgba(233,30,99,0.15), 0 8px 10px -5px rgba(233,30,99,0.2); transform: translateY(-1px); }"
+      "description": "High-priority action using the marketplace brand accent.",
+      "html": "<button class=\"ds-btn-primary\">Continue</button>",
+      "css": ".ds-btn-primary { background: #ff385c; color: #fff; border: 0; border-radius: 6px; min-height: 46px; padding: 0 18px; font: 600 14px 'gg sans', system-ui, sans-serif; transition: background 150ms ease, box-shadow 150ms ease; cursor: pointer; } .ds-btn-primary:hover { background: #B61F43; } .ds-btn-primary:focus-visible { outline: 2px solid #ff6682; outline-offset: 2px; } .ds-btn-primary:active { transform: translateY(1px); }"
     },
     {
-      "name": "Contained Action Button",
-      "kind": "button",
-      "refersTo": "button-contained",
-      "description": "Secondary neutral button for cancel, dismiss, or clear actions.",
-      "html": "<button class=\"ds-btn-contained\">CANCEL</button>",
-      "css": ".ds-btn-contained { background: #ffffff; color: #7b809a; padding: 10px 24px; font-size: 12px; font-weight: 600; text-transform: uppercase; border: 1px solid #dee2e6; border-radius: 8px; cursor: pointer; transition: all 150ms ease-in; font-family: Roboto, sans-serif; } .ds-btn-contained:hover { background: #f8f9fa; color: #344767; border-color: #ced4da; }"
-    },
-    {
-      "name": "Data Card Container",
-      "kind": "card",
-      "refersTo": "card",
-      "description": "Elevated white surface container housing telemetry graphs, lists, and forms.",
-      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Moderation Queue</h3><p class=\"ds-card-body\">3 host applications pending verification.</p></div>",
-      "css": ".ds-card { background: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); padding: 20px; font-family: Roboto, sans-serif; } .ds-card-title { color: #344767; font-size: 16px; font-weight: 700; margin: 0 0 8px 0; } .ds-card-body { color: #7b809a; font-size: 14px; margin: 0; line-height: 1.5; }"
-    },
-    {
-      "name": "Search & Filter Input",
+      "name": "Dark Text Field",
       "kind": "input",
       "refersTo": "input-text",
-      "description": "Administrative text field for instant filtering and keyword search.",
-      "html": "<input type=\"text\" class=\"ds-input\" placeholder=\"Search hosts by name or email...\" />",
-      "css": ".ds-input { background: #ffffff; border: 1px solid #d2d6da; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #344767; outline: none; width: 100%; box-sizing: border-box; font-family: Roboto, sans-serif; transition: border-color 150ms ease; } .ds-input:focus { border-color: #EC407A; box-shadow: 0 0 0 2px rgba(236,64,122,0.2); }"
+      "description": "Compact, filled field for search and account forms.",
+      "html": "<input class=\"ds-input\" placeholder=\"Search…\" />",
+      "css": ".ds-input { width: 100%; min-height: 46px; box-sizing: border-box; background: #2C2F33; color: #fff; border: 1px solid rgba(255,255,255,.1); border-radius: 6px; padding: 0 14px; font: 400 14px 'gg sans', system-ui, sans-serif; transition: border-color 150ms ease, background 150ms ease; } .ds-input::placeholder { color: #A1A1A5; } .ds-input:hover { background: #33363A; } .ds-input:focus { outline: none; border-color: #ff385c; } .ds-input:focus-visible { box-shadow: 0 0 0 2px rgba(255,56,92,.25); }"
     },
     {
-      "name": "Status Chip Tag",
+      "name": "Admin Panel",
+      "kind": "card",
+      "refersTo": "card-container",
+      "description": "Flat charcoal surface grouped with a quiet boundary.",
+      "html": "<section class=\"ds-panel\"><h3>Workspace</h3><p>Operational overview</p></section>",
+      "css": ".ds-panel { background: #202024; color: #fff; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 24px; } .ds-panel h3 { margin: 0 0 8px; font: 600 16px 'gg sans', system-ui, sans-serif; } .ds-panel p { margin: 0; color: #A1A1A5; font: 400 14px/1.5 'gg sans', system-ui, sans-serif; }"
+    },
+    {
+      "name": "Status Chip",
       "kind": "chip",
-      "refersTo": "badge",
-      "description": "Pill tag denoting moderation approval status or role indicator.",
-      "html": "<span class=\"ds-chip ds-chip-pending\">PENDING KYC</span>",
-      "css": ".ds-chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 16px; font-size: 11px; font-weight: 700; text-transform: uppercase; font-family: Roboto, sans-serif; } .ds-chip-pending { background: #ffd59f; color: #c87000; } .ds-chip-approved { background: #bce2be; color: #339537; } .ds-chip-rejected { background: #fcd3d0; color: #f61200; }"
+      "refersTo": "status-chip",
+      "description": "Small semantic indicator for workflow state.",
+      "html": "<span class=\"ds-chip\">Approved</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; min-height: 24px; padding: 0 9px; border-radius: 6px; background: rgba(53,237,126,.15); color: #35ED7E; font: 600 11px 'gg sans', system-ui, sans-serif; }"
     }
   ],
   "narrative": {
-    "northStar": "The Trust Cockpit",
-    "overview": "4LIFE Admin is a high-clarity operational cockpit designed for back-office administrators and moderators overseeing an accommodation and homestay marketplace. It unites rigorous moderation workflows with an inviting, modern aesthetic. The visual atmosphere is clean, tactile, and confident, leveraging soft ambient shadows, frosted glass navigation planes, and vibrant Living Coral accents that signal hospitality and brand energy while rejecting spreadsheet clutter and neon noise.",
+    "northStar": "The 4LIFE Operations Desk",
+    "overview": "A focused, dark operations console for 4LIFE marketplace moderators and administrators. Neutral work surfaces keep attention on identity evidence, listings, and business data. Coral/berry provides a consistent marketplace accent; semantic colors stay attached to real system states. The intended component language is compact and flat, using tonal layers and fine borders for structure.",
     "keyCharacteristics": [
-      "Elevated Canvas Planes: Crisp white cards resting over a soft cloud background (#f0f2f5) create layered spatial depth.",
-      "Decisive Accent Hierarchy: Living Coral (#ff385c) is reserved strictly for core commits, active navigation cues, and priority calls to action.",
-      "Unobstructed Evidence Display: Document verification panels present identity artifacts at native proportions without obscuring watermarks or crops.",
-      "Tactile Micro-Feedback: Buttons and drawer tabs feature smooth cubic-bezier transitions, elevated hover responses, and clear active states."
+      "Dark, high-contrast operational surfaces.",
+      "Coral/berry brand emphasis used consistently and sparingly.",
+      "Flat components separated by surface tone and subtle borders.",
+      "Compact controls designed for repeated admin workflows."
     ],
     "rules": [
-      {
-        "name": "The Accent Rarity Rule",
-        "body": "Living Coral is used strictly on actionable decisions, active navigation pills, and critical status markers. It must never cover large container backgrounds or decorative wallpaper.",
-        "section": "colors"
-      },
-      {
-        "name": "The Status Exclusivity Rule",
-        "body": "Semantic colors (Emerald, Amber, Crimson) communicate system truth exclusively; they are never commandeered for ornamental illustration.",
-        "section": "colors"
-      },
-      {
-        "name": "The Structural Contrast Rule",
-        "body": "Pair bold headers (fontWeight: 700, Slate Navy #344767) directly with lighter, secondary labels (fontWeight: 400, Muted Slate #7b809a) to establish instant scanning hierarchies in high-density views.",
-        "section": "typography"
-      },
-      {
-        "name": "The Single-Plane Elevation Rule",
-        "body": "Cards provide the single elevated plane above the canvas background. Elements nested inside a card remain flat or use soft background tints rather than introducing secondary drop shadows.",
-        "section": "elevation"
-      }
+      { "name": "The One Accent Rule", "body": "Use coral/berry for brand emphasis; do not mix legacy purple into new screens.", "section": "colors" },
+      { "name": "The Tonal Layer Rule", "body": "Separate nested controls with a surface shift or border before adding another shadow.", "section": "elevation" }
     ],
     "dos": [
-      "Do preserve the natural aspect ratio of applicant ID documents (front and back) to guarantee verification accuracy.",
-      "Do use rgba(255, 255, 255, 0.6) with backdrop-filter: blur(30px) on sticky headers to keep underlying content subtly visible without harming text contrast.",
-      "Do reinforce moderation decisions with clear colored icons and text (e.g. Check for Accept, Close for Reject).",
-      "Do pair data table loading cycles with smooth linear indicators rather than blocking entire screens."
+      "Do maintain high contrast between text and dark input or panel backgrounds.",
+      "Do use borders and tonal surface shifts to define component boundaries.",
+      "Do keep semantic colors tied to actual system states."
     ],
     "donts": [
-      "Don't crop, tilt, or distort national identity card document uploads in moderation workflows.",
-      "Don't use solid black borders or harsh gridlines across data tables; rely on subtle dividers (#dee2e6) and white row cards.",
-      "Don't use Living Coral for destructive actions; rejections and deletions must remain Signal Crimson (#F44335).",
-      "Don't stack multiple drop shadows inside a single card container."
+      "Don't introduce Discord purple as a second brand accent in new screens.",
+      "Don't apply oversized pill radii to ordinary admin controls.",
+      "Don't rely on a prominent permanent outline for text fields."
     ]
   }
 }

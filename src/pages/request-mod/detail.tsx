@@ -18,7 +18,6 @@ import Loading from "../../components/Loading";
 import NotFound from "../../components/NotFound";
 import { acceptMod } from "./api/acceptRequest";
 import { denyMod } from "./api/denyRequest";
-import colors from "../../assets/theme/base/colors";
 import RejectConfirmModal from "./components/RejectConfirmModal";
 import DocumentLightbox from "./components/DocumentLightbox";
 import { toast } from "react-toastify";
@@ -87,11 +86,11 @@ const RequestDetail = memo(function RequestDetail() {
 					startIcon={<ArrowBack />}
 					variant="text"
 					sx={{
-						color: colors.text.focus,
+						color: "#D4D7D6",
 						fontWeight: 600,
 						fontSize: 13,
 						textTransform: "none",
-						"&:hover": { backgroundColor: colors.grey[200] }
+						"&:hover": { backgroundColor: "#24292A" }
 					}}
 				>
 					Back to Queue
@@ -116,11 +115,11 @@ const RequestDetail = memo(function RequestDetail() {
 							fontWeight: 600,
 							fontSize: 13,
 							textTransform: "none",
-							borderColor: colors.grey[300],
-							color: colors.error.main,
+							borderColor: "#45494A",
+							color: "#FFB2B7",
 							"&:hover": {
-								borderColor: colors.error.main,
-								backgroundColor: "rgba(237, 66, 69, 0.15)"
+								borderColor: "#FFB2B7",
+								backgroundColor: "rgba(255, 178, 183, 0.1)"
 							}
 						}}
 					>
@@ -142,15 +141,15 @@ const RequestDetail = memo(function RequestDetail() {
 						sx={{
 							minHeight: 38,
 							px: 2.5,
-							color: "#ffffff !important",
-							backgroundColor: colors.success.main,
+							color: "#071A12",
+							backgroundColor: "#4EDEA3",
 							fontWeight: 600,
 							fontSize: 13,
 							textTransform: "none",
 							boxShadow: "none",
 							"&:hover": {
-								backgroundColor: colors.success.focus,
-								boxShadow: "0 2px 4px 0 rgba(5, 150, 105, 0.2)"
+								backgroundColor: "#68E9B2",
+								boxShadow: "none"
 							}
 						}}
 					>
@@ -164,11 +163,11 @@ const RequestDetail = memo(function RequestDetail() {
 				<Grid item xs={12}>
 					<Card
 						sx={{
-							p: 3,
-							backgroundColor: colors.dark.main,
-							border: `1px solid ${colors.grey[300]}`,
-							borderRadius: 2.5,
-							boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)"
+							p: { xs: 2, md: 2.5 },
+							backgroundColor: "#171C1D",
+							border: "1px solid #303738",
+							borderRadius: "10px",
+							boxShadow: "none"
 						}}
 					>
 						<Box display="flex" flexDirection={{ xs: "column", sm: "row" }} alignItems="center" gap={3}>
@@ -182,10 +181,10 @@ const RequestDetail = memo(function RequestDetail() {
 								}}
 							/>
 							<Box flex={1} textAlign={{ xs: "center", sm: "left" }}>
-								<Typography variant="h5" fontWeight="bold" textTransform="capitalize" color="text.primary">
+								<Typography variant="h5" fontWeight="bold" textTransform="capitalize" sx={{ color: "#F2F4F3" }}>
 									{user.name}
 								</Typography>
-								<Typography variant="caption" color="text.secondary">
+								<Typography variant="caption" sx={{ color: "#A1A8A5" }}>
 									Applicant ID: {user.id}
 								</Typography>
 							</Box>
@@ -195,51 +194,51 @@ const RequestDetail = memo(function RequestDetail() {
 							mt={3}
 							pt={2}
 							borderTop="1px solid"
-							borderColor={colors.grey[200]}
+							borderColor="#303738"
 							display="grid"
 							gridTemplateColumns={{ xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" }}
 							gap={2}
 						>
 							<Box>
-								<Typography variant="caption" color="text.secondary" display="block">
+								<Typography variant="caption" sx={{ color: "#A1A8A5" }} display="block">
 									Phone Number
 								</Typography>
-								<Typography variant="body2" fontWeight="medium" color="text.primary">
+								<Typography variant="body2" fontWeight="medium" sx={{ color: "#E5E1E4" }}>
 									{user.phoneNumber || "Not provided"}
 								</Typography>
 							</Box>
 
 							<Box>
-								<Typography variant="caption" color="text.secondary" display="block">
+								<Typography variant="caption" sx={{ color: "#A1A8A5" }} display="block">
 									Email Address
 								</Typography>
-								<Typography variant="body2" fontWeight="medium" color="text.primary">
+								<Typography variant="body2" fontWeight="medium" sx={{ color: "#E5E1E4" }}>
 									{user.email}
 								</Typography>
 							</Box>
 
 							<Box>
-								<Typography variant="caption" color="text.secondary" display="block">
+								<Typography variant="caption" sx={{ color: "#A1A8A5" }} display="block">
 									Gender
 								</Typography>
-								<Typography variant="body2" fontWeight="medium" color="text.primary">
+								<Typography variant="body2" fontWeight="medium" sx={{ color: "#E5E1E4" }}>
 									{user.gender !== null ? (user.gender ? "Male" : "Female") : "Not specified"}
 								</Typography>
 							</Box>
 
 							<Box>
-								<Typography variant="caption" color="text.secondary" display="block">
+								<Typography variant="caption" sx={{ color: "#A1A8A5" }} display="block">
 									Date of Birth
 								</Typography>
-								<Typography variant="body2" fontWeight="medium" color="text.primary">
+								<Typography variant="body2" fontWeight="medium" sx={{ color: "#E5E1E4" }}>
 									{user.dateOfBirth || "Not provided"}
 								</Typography>
 							</Box>
 						</Box>
 
 						{user.description && (
-							<Box mt={2} pt={2} borderTop="1px dashed" borderColor={colors.grey[200]}>
-								<Typography variant="caption" color="text.secondary" display="block">
+							<Box mt={2} pt={2} borderTop="1px dashed" borderColor="#303738">
+								<Typography variant="caption" sx={{ color: "#A1A8A5" }} display="block">
 									Self Description / Biography
 								</Typography>
 								<Typography variant="body2" color="text.primary" sx={{ mt: 0.5 }}>
@@ -252,9 +251,9 @@ const RequestDetail = memo(function RequestDetail() {
 
 				{/* Front Identity Document */}
 				<Grid item xs={12} md={6}>
-					<Card sx={{ p: 2, height: "100%", display: "flex", flexDirection: "column" }}>
+					<Card sx={{ p: { xs: 1.5, sm: 2 }, height: "100%", display: "flex", flexDirection: "column", bgcolor: "#171C1D", border: "1px solid #303738", borderRadius: "10px", boxShadow: "none" }}>
 						<Box display="flex" justifyContent="space-between" alignItems="center" mb={1.5}>
-							<Typography variant="subtitle2" fontWeight="bold" color="text.primary">
+							<Typography variant="subtitle2" fontWeight="bold" sx={{ color: "#F2F4F3" }}>
 								National ID — Front View
 							</Typography>
 							<Button
@@ -273,7 +272,7 @@ const RequestDetail = memo(function RequestDetail() {
 							position="relative"
 							sx={{
 								cursor: "pointer",
-								borderRadius: 2,
+								borderRadius: "7px",
 								overflow: "hidden",
 								"&:hover .zoom-overlay": { opacity: 1 }
 							}}
@@ -314,9 +313,9 @@ const RequestDetail = memo(function RequestDetail() {
 
 				{/* Back Identity Document */}
 				<Grid item xs={12} md={6}>
-					<Card sx={{ p: 2, height: "100%", display: "flex", flexDirection: "column" }}>
+					<Card sx={{ p: { xs: 1.5, sm: 2 }, height: "100%", display: "flex", flexDirection: "column", bgcolor: "#171C1D", border: "1px solid #303738", borderRadius: "10px", boxShadow: "none" }}>
 						<Box display="flex" justifyContent="space-between" alignItems="center" mb={1.5}>
-							<Typography variant="subtitle2" fontWeight="bold" color="text.primary">
+							<Typography variant="subtitle2" fontWeight="bold" sx={{ color: "#F2F4F3" }}>
 								National ID — Back View
 							</Typography>
 							<Button
@@ -335,7 +334,7 @@ const RequestDetail = memo(function RequestDetail() {
 							position="relative"
 							sx={{
 								cursor: "pointer",
-								borderRadius: 2,
+								borderRadius: "7px",
 								overflow: "hidden",
 								"&:hover .zoom-overlay": { opacity: 1 }
 							}}

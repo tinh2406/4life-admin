@@ -386,6 +386,7 @@ class MockDatabase {
 		PageSize?: number;
 		PaidType?: string;
 		TypeCycles?: string;
+		Keyword?: string;
 	}): PagingResponse<MockRevenueItem> {
 		const mods = this.users.filter(u => u.role === "Mod");
 		const revenueList: MockRevenueItem[] = mods.map((mod, idx) => {
@@ -412,9 +413,15 @@ class MockDatabase {
 			};
 		});
 
+		const normalizedKeyword = params.Keyword?.trim().toLocaleLowerCase();
+		const filteredRevenueList = normalizedKeyword
+			? revenueList.filter(({ mod }) =>
+				[mod.id, mod.name, mod.phoneNumber].some(value => value?.toLocaleLowerCase().includes(normalizedKeyword))
+			)
+			: revenueList;
 		const pageIndex = Number(params.PageIndex) || 1;
 		const pageSize = Number(params.PageSize) || 10;
-		const totalCount = revenueList.length;
+		const totalCount = filteredRevenueList.length;
 		const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
 		const startIndex = (pageIndex - 1) * pageSize;
 
@@ -425,7 +432,7 @@ class MockDatabase {
 				totalPages,
 				totalCount
 			},
-			data: revenueList.slice(startIndex, startIndex + pageSize)
+			data: filteredRevenueList.slice(startIndex, startIndex + pageSize)
 		};
 	}
 

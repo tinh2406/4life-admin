@@ -43,18 +43,18 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 			component={Paper}
 			sx={{
 				boxShadow: "none",
-				border: "1px solid rgba(255, 255, 255, 0.06)",
-				borderRadius: "16px",
+				border: "1px solid #303738",
+				borderRadius: "8px",
 				overflow: "hidden",
-				backgroundColor: colors.dark.main
+				backgroundColor: "#171C1D"
 			}}
 		>
 			{isLoading && (
 				<LinearProgress
 					sx={{
 						height: 2.5,
-						backgroundColor: "rgba(88, 101, 242, 0.15)",
-						"& .MuiLinearProgress-bar": { backgroundColor: colors.primary.main }
+						backgroundColor: "rgba(135, 146, 255, 0.16)",
+						"& .MuiLinearProgress-bar": { backgroundColor: "#8792FF" }
 					}}
 				/>
 			)}
@@ -79,7 +79,7 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 										letterSpacing: "0.06em",
 										fontSize: 11,
 										fontWeight: 700,
-										color: colors.text.main
+										color: "#A1A8A5"
 									}}
 								>
 									{column.headerName || String(column.field)}
@@ -115,7 +115,7 @@ function DataTableInner<T extends { [key: string]: unknown }>({
 									}}
 								>
 									{typeof row[column.field] === "string" || typeof row[column.field] === "number" ? (
-										<Typography variant="body2" color="text.primary" fontSize={13}>
+									<Typography variant="body2" sx={{ color: "#F2F4F3" }} fontSize={13}>
 											{row[column.field] as React.ReactNode}
 										</Typography>
 									) : (

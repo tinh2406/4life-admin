@@ -1,8 +1,7 @@
-import { MoreVert } from "@mui/icons-material";
-import { Avatar, Box, Card, Menu, MenuItem, Pagination, PaginationItem, Stack, Typography } from "@mui/material";
-import colors from "../../../assets/theme/base/colors";
+import { CalendarMonth, ExpandMore, Search } from "@mui/icons-material";
+import { Avatar, Box, Button, Card, Menu, MenuItem, Pagination, PaginationItem, Stack, Typography } from "@mui/material";
 import DataTable, { GridColDefMe } from "../../../components/DataTable";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import typography from "../../../assets/theme/base/typography";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -30,21 +29,21 @@ type RevenueResponse = {
 	paid: number;
 };
 const columns: GridColDefMe<RowType>[] = [
-	{ field: "id", headerName: "Id", width: 80, align: "center" },
-	{ field: "avatar", headerName: "Avatar", width: 90, align: "center" },
-	{ field: "name", headerName: "Name", width: "25%", align: "left", type: "string" },
-	{ field: "phoneNumber", headerName: "Phone number", width: "20%", align: "left", type: "string" },
-	{ field: "bookings", headerName: "Total reservations", width: "20%", align: "center", type: "string" },
-	// { field: "paid", headerName: "Paid", width: 90, align: "center" },
-	// { field: "unpaid", headerName: "Unpay", width: 90, align: "center" },
-	{ field: "total", headerName: "Total", width: 90, align: "center" }
+	{ field: "id", headerName: "Moderator ID", width: 150, align: "left" },
+	{ field: "avatar", headerName: "", width: 64, align: "center" },
+	{ field: "name", headerName: "Moderator", width: "30%", align: "left", type: "string" },
+	{ field: "phoneNumber", headerName: "Phone number", width: "22%", align: "left", type: "string" },
+	{ field: "bookings", headerName: "Bookings", width: "18%", align: "right", type: "number" },
+	{ field: "total", headerName: "Revenue", width: "20%", align: "right", type: "number" }
 ];
 
 function Sales() {
-	const [menu, setMenu] = useState<EventTarget & SVGSVGElement>();
+	const [menu, setMenu] = useState<HTMLElement | null>(null);
+	const [keyword, setKeyword] = useState("");
+	const searchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-	const openMenu = ({ currentTarget }: React.MouseEvent<SVGSVGElement, MouseEvent>) => setMenu(currentTarget);
-	const closeMenu = () => setMenu(undefined);
+	const openMenu = (event: React.MouseEvent<HTMLElement>) => setMenu(event.currentTarget);
+	const closeMenu = () => setMenu(null);
 
 	const [params, setParams] = useState<
 		PagingParams<""> & {
@@ -56,7 +55,17 @@ function Sales() {
 		PaidType: "All",
 		TypeCycles: "Week"
 	});
-	const { data } = useQuery<PagingResponse<RevenueResponse>, unknown, PagingResponse<RevenueResponse>>({
+	useEffect(() => {
+		if (searchTimer.current) clearTimeout(searchTimer.current);
+		searchTimer.current = setTimeout(() => {
+			setParams(current => ({ ...current, Keyword: keyword.trim() || undefined, PageIndex: 1 }));
+		}, 300);
+		return () => {
+			if (searchTimer.current) clearTimeout(searchTimer.current);
+		};
+	}, [keyword]);
+
+	const { data, isLoading, isFetching } = useQuery<PagingResponse<RevenueResponse>, unknown, PagingResponse<RevenueResponse>>({
 		queryKey: ["transactions", ...Object.values(params)],
 		queryFn: async () => {
 			const res = await axiosInstance.get<PagingResponse<RevenueResponse>>(
@@ -78,8 +87,8 @@ function Sales() {
 				avatar: <Avatar src={item.mod.avatar} />,
 				// paid:<span style={{ color: "green" }}>{item.paid}</span>,
 				// unpaid:<span style={{ color: "red" }}>{item.unPaid}</span>,
-				bookings: <span style={{ color: "green" }}>{item.totalBookings}</span>,
-				total: <span style={{ color: "green" }}>{item.totalRevenue}</span>
+				bookings: <span style={{ color: "#C7C9FF", fontVariantNumeric: "tabular-nums" }}>{item.totalBookings}</span>,
+				total: <span style={{ color: "#76E6A2", fontVariantNumeric: "tabular-nums", fontWeight: 600 }}>{new Intl.NumberFormat("vi-VN").format(item.totalRevenue)} ₫</span>
 			})) || []
 		);
 	}, [data]);
@@ -91,25 +100,27 @@ function Sales() {
 	};
 
 	return (
-		<Card>
-			<Box display="flex" justifyContent="space-between" alignItems="center" p={3}>
+		<Card sx={{ backgroundColor: "#171C1D", border: "1px solid #303738", borderRadius: "10px", boxShadow: "none", overflow: "hidden" }}>
+			<Box display="flex" justifyContent="space-between" alignItems={{ xs: "stretch", sm: "center" }} flexDirection={{ xs: "column", sm: "row" }} gap={2} p={{ xs: 2, sm: 2.5 }}>
 				<Box>
-					<Typography
-						variant="h6"
-						fontWeight={600}
-						fontSize={typography.size.lg}
-						color={colors.dark.main}
-						gutterBottom
-					>
-						Transactions
+					<Typography variant="h6" fontWeight={600} fontSize={typography.size.lg} sx={{ color: "#F2F4F3", mb: 0.5 }}>
+						Revenue by moderator
 					</Typography>
+					<Typography variant="body2" sx={{ color: "#B5BCB9", fontSize: 12.5 }}>Bookings and revenue in the selected period</Typography>
 				</Box>
-				<Box color="text" px={2}>
-					<MoreVert sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small" onClick={openMenu} />
-				</Box>
+				<Box display="flex" alignItems="center" gap={1} flexWrap="wrap">
+					<Box sx={{ display: "flex", alignItems: "center", gap: 1, height: 38, px: 1.25, minWidth: { xs: "100%", sm: 220 }, bgcolor: "#24292A", borderRadius: "6px", transition: "box-shadow 150ms ease", "&:focus-within": { boxShadow: "0 0 0 2px rgba(135, 146, 255, 0.55)" } }}>
+						<Search sx={{ fontSize: 18, color: "#A1A8A5" }} />
+						<Box component="input" value={keyword} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setKeyword(event.target.value)} placeholder="Search moderators" aria-label="Search moderators" sx={{ width: "100%", border: 0, outline: 0, bgcolor: "transparent", color: "#F2F4F3", font: "inherit", fontSize: 13, "&::placeholder": { color: "#A1A8A5", opacity: 1 } }} />
+					</Box>
+					<Box sx={{ color: "#A1A8A5", fontSize: 12, whiteSpace: "nowrap" }}>{data?.meta.totalCount ?? 0} records</Box>
+					<Button aria-label="Choose reporting period" size="small" onClick={openMenu} startIcon={<CalendarMonth sx={{ fontSize: 17 }} />} endIcon={<ExpandMore sx={{ fontSize: 17 }} />} sx={{ color: "#E5E1E4", bgcolor: "#24292A", borderRadius: "6px", minWidth: 104, height: 38, textTransform: "none", fontSize: 12.5, "&:hover": { bgcolor: "#303738" } }}>
+						{params.TypeCycles}
+					</Button>
 				<Menu
 					id="simple-menu"
 					anchorEl={menu}
+					PaperProps={{ sx: { bgcolor: "#202829", color: "#F2F4F3", border: "1px solid #303738", borderRadius: "8px" } }}
 					anchorOrigin={{
 						vertical: "top",
 						horizontal: "left"
@@ -154,10 +165,11 @@ function Sales() {
 						Year
 					</MenuItem>
 				</Menu>
+				</Box>
 			</Box>
 			<Box>
-				<DataTable rows={list} columns={columns} />
-				<Stack alignItems="center" m={1} spacing={2}>
+				<DataTable rows={list} columns={columns} isLoading={isLoading || isFetching} emptyMessage="No moderators found for this search" />
+				<Stack alignItems="center" m={1.5} spacing={2}>
 					<Pagination
 						count={data?.meta.totalPages || 0}
 						onChange={handlePageChange}

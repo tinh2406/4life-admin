@@ -9,8 +9,8 @@ import { uploadHandlers } from "./upload";
 
 export const handlers = [
 	...authHandlers,
-	...userHandlers,
 	...requestModHandlers,
+	...userHandlers,
 	...amenitiesHandlers,
 	...locationsHandlers,
 	...dashboardHandlers,

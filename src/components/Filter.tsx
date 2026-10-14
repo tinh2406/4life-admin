@@ -1,481 +1,165 @@
-import { ArrowDownward, ArrowUpward, KeyboardArrowDown } from "@mui/icons-material";
-import { Box, Button, Menu, MenuItem, TextField } from "@mui/material";
-import { memo, useRef, useState } from "react";
-import colors from "../assets/theme/base/colors";
+import { ArrowDownward, ArrowUpward, Search, Sort } from "@mui/icons-material";
+import { Box, IconButton, InputAdornment, MenuItem, Select, TextField, Tooltip } from "@mui/material";
+import { memo, useEffect, useRef } from "react";
+import type { SelectChangeEvent } from "@mui/material/Select";
 import { useFilter } from "../context/filter";
 
-const requestMap = {
-	Name: "Name",
-	Email: "Email",
-	PhoneNumber: "Phone number"
+type SortOption<T extends string> = { value: T; label: string };
+type FilterToolbarProps<T extends string> = {
+	visible?: boolean;
+	sortBy?: T;
+	descending?: boolean;
+	options: readonly SortOption<T>[];
+	keyword?: string;
+	role?: string;
+	roleOptions?: readonly string[];
+	placeholder: string;
+	onSortChange: (value: T) => void;
+	onDirectionChange: (descending: boolean) => void;
+	onKeywordChange: (keyword: string) => void;
+	onRoleChange?: (role: string) => void;
 };
 
-export const RequestFilter = memo(({ visible }: { visible?: boolean }) => {
+const FilterToolbar = <T extends string>({
+	visible,
+	sortBy,
+	descending = false,
+	options,
+	keyword,
+	role,
+	roleOptions,
+	placeholder,
+	onSortChange,
+	onDirectionChange,
+	onKeywordChange,
+	onRoleChange
+}: FilterToolbarProps<T>) => {
 	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const selectedLabel = options.find(option => option.value === sortBy)?.label ?? options[0]?.label ?? "Sắp xếp";
+	useEffect(() => () => {
+		if (timerRef.current) clearTimeout(timerRef.current);
+	}, []);
 
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		setAnchorEl(event.currentTarget);
+	const handleSearchChange = (value: string) => {
+		if (timerRef.current) clearTimeout(timerRef.current);
+		timerRef.current = setTimeout(() => onKeywordChange(value), 300);
 	};
-	const handleClose = () => {
-		setAnchorEl(null);
+
+	const handleSortChange = (event: SelectChangeEvent<T>) => {
+		const selectedOption = options.find(option => option.value === event.target.value);
+		if (selectedOption) onSortChange(selectedOption.value);
 	};
+
+	return (
+		<Box sx={{ display: visible ? "flex" : "none", alignItems: "center", flexWrap: "wrap", gap: 0.5, width: "100%", minWidth: 0, p: 0.5, bgcolor: "#171719", border: "1px solid rgba(255,255,255,.07)", borderRadius: "8px" }}>
+			<Box sx={{ display: "flex", alignItems: "center", minWidth: 0, flex: "0 0 auto", gap: 0.25 }}>
+				<Sort sx={{ ml: 0.5, color: "#A6A5AE", fontSize: 18 }} />
+				<Select
+					value={sortBy ?? options[0]?.value ?? ""}
+					onChange={handleSortChange}
+					inputProps={{ "aria-label": `Sắp xếp theo ${selectedLabel}` }}
+					displayEmpty
+					sx={sortSelectSx}
+					MenuProps={{ PaperProps: { sx: menuPaperSx } }}
+				>
+					{options.map(option => <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>)}
+				</Select>
+				<Tooltip title={descending ? "Sắp xếp giảm dần" : "Sắp xếp tăng dần"}>
+					<IconButton size="small" aria-label={descending ? "Đổi sang tăng dần" : "Đổi sang giảm dần"} onClick={() => onDirectionChange(!descending)} sx={directionButtonSx}>
+						{descending ? <ArrowDownward fontSize="small" /> : <ArrowUpward fontSize="small" />}
+					</IconButton>
+				</Tooltip>
+			</Box>
+
+			{roleOptions && role && onRoleChange && <>
+				<Box sx={separatorSx} />
+				<Select value={role} onChange={event => onRoleChange(event.target.value)} inputProps={{ "aria-label": "Lọc theo vai trò" }} sx={{ ...sortSelectSx, minWidth: 95 }} MenuProps={{ PaperProps: { sx: menuPaperSx } }}>
+					{roleOptions.map(option => <MenuItem key={option} value={option}>{option}</MenuItem>)}
+				</Select>
+			</>}
+
+			<Box sx={{ ...separatorSx, display: { xs: "none", sm: "block" } }} />
+			<TextField
+				defaultValue={keyword ?? ""}
+				placeholder={placeholder}
+				aria-label={placeholder}
+				size="small"
+				variant="filled"
+				InputProps={{ disableUnderline: true, startAdornment: <InputAdornment position="start" sx={{ mt: "0 !important", mb: 0, height: 24, maxHeight: "none", display: "flex", alignItems: "center" }}><Search sx={{ color: "#92919B", fontSize: 18, display: "block" }} /></InputAdornment> }}
+				sx={{
+					flex: { xs: "1 1 100%", sm: "1 1 200px" },
+					minWidth: { xs: 0, sm: 180 },
+					"& .MuiFilledInput-root": { ...searchInputSx, alignItems: "center", minHeight: 38, py: 0 },
+					"& .MuiFilledInput-input": { display: "flex", alignItems: "center", boxSizing: "border-box" }
+				}}
+				onChange={event => handleSearchChange(event.target.value)}
+			/>
+		</Box>
+	);
+};
+
+const RequestFilter = memo(({ visible }: { visible?: boolean }) => {
 	const { requestParams, setRequestParams } = useFilter();
-
-	return (
-		<Box
-			pr={1}
-			sx={{ flexGrow: 1, display: visible ? "flex" : "none", alignItems: "center", flexDirection: "row" }}
-		>
-			<Button
-				id="demo-customized-button"
-				aria-controls={open ? "demo-customized-menu" : undefined}
-				aria-haspopup="true"
-				aria-expanded={open ? "true" : undefined}
-				variant="outlined"
-				disableElevation
-				onClick={handleClick}
-				endIcon={<KeyboardArrowDown />}
-				sx={{
-					color: colors.grey[600],
-					marginRight: "0.5rem",
-
-					width: 190,
-					justifyContent: "left",
-					textTransform: "none",
-					borderColor: colors.grey[300],
-					bgcolor: "rgba(255, 255, 255, 0.6)",
-					":hover": {
-						borderColor: colors.grey[400],
-						color: colors.grey[700],
-						bgcolor: "rgba(255, 255, 255)"
-					}
-				}}
-				style={{
-					padding: "12px 8px 12px 4px"
-				}}
-			>
-				<div style={{ width: "100%", textAlign: "left" }}>
-					{!!requestParams.SortBy && requestMap[requestParams.SortBy]}
-				</div>
-			</Button>
-			{requestParams.IsDescending ? (
-				<ArrowUpward
-					fontSize="small"
-					onClick={() => {
-						if (setRequestParams) setRequestParams(state => ({ ...state, IsDescending: false }));
-					}}
-				/>
-			) : (
-				<ArrowDownward
-					fontSize="small"
-					onClick={() => {
-						if (setRequestParams) setRequestParams(state => ({ ...state, IsDescending: true }));
-					}}
-				/>
-			)}
-			<TextField
-				label="Search here"
-				sx={{
-					width: "100%",
-					ml: 2,
-					input: {
-						color: colors.dark.main,
-						zIndex: 1
-					},
-					fieldset: {
-						bgcolor: "rgba(253, 253, 253, 0.6)",
-						zIndex: 0
-					}
-				}}
-				onChange={e => {
-					if (timerRef.current) clearTimeout(timerRef.current);
-
-					timerRef.current = setTimeout(() => {
-						if (setRequestParams) setRequestParams(state => ({ ...state, Keyword: e.target.value }));
-					}, 300);
-				}}
-			/>
-			<Menu
-				id="basic-menu"
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				MenuListProps={{
-					"aria-labelledby": "basic-button"
-				}}
-			>
-				<MenuItem
-					onClick={() => {
-						if (setRequestParams) setRequestParams(state => ({ ...state, SortBy: "Name" }));
-						handleClose();
-					}}
-				>
-					Name
-				</MenuItem>
-				<MenuItem
-					onClick={() => {
-						if (setRequestParams) setRequestParams(state => ({ ...state, SortBy: "Email" }));
-						handleClose();
-					}}
-				>
-					Email
-				</MenuItem>
-				<MenuItem
-					onClick={() => {
-						if (setRequestParams) setRequestParams(state => ({ ...state, SortBy: "PhoneNumber" }));
-						handleClose();
-					}}
-				>
-					Phone number
-				</MenuItem>
-			</Menu>
-		</Box>
-	);
+	const options = [
+		{ value: "Name", label: "Tên" },
+		{ value: "Email", label: "Email" },
+		{ value: "PhoneNumber", label: "Số điện thoại" }
+	] as const;
+	return <FilterToolbar visible={visible} options={options} sortBy={requestParams.SortBy} descending={requestParams.IsDescending} keyword={requestParams.Keyword} placeholder="Tìm yêu cầu..." onSortChange={value => setRequestParams?.(current => ({ ...current, SortBy: value }))} onDirectionChange={value => setRequestParams?.(current => ({ ...current, IsDescending: value }))} onKeywordChange={value => setRequestParams?.(current => ({ ...current, Keyword: value }))} />;
 });
 
-export const UserFilter = memo(({ visible }: { visible?: boolean }) => {
-	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+const UserFilter = memo(({ visible }: { visible?: boolean }) => {
 	const { userParams, setUserParams } = useFilter();
-
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-
-	return (
-		<Box pr={1} sx={{ flexGrow: 1, display: visible ? "flex" : "none", alignItems: "center" }}>
-			<Button
-				id="demo-customized-button"
-				aria-controls={open ? "demo-customized-menu" : undefined}
-				aria-haspopup="true"
-				aria-expanded={open ? "true" : undefined}
-				variant="outlined"
-				disableElevation
-				onClick={handleClick}
-				endIcon={<KeyboardArrowDown />}
-				sx={{
-					marginRight: "0.5rem",
-					color: colors.grey[600],
-					width: 160,
-					justifyContent: "left",
-					textTransform: "none",
-					borderColor: colors.grey[300],
-					bgcolor: "rgba(255, 255, 255, 0.6)",
-					":hover": {
-						borderColor: colors.grey[400],
-						color: colors.grey[700],
-						bgcolor: "rgba(255, 255, 255)"
-					}
-				}}
-				style={{
-					padding: "12px 8px 12px 4px"
-				}}
-			>
-				<div style={{ width: "100%", textAlign: "left" }}>{userParams.Role}</div>
-			</Button>
-			{userParams.IsDescending ? (
-				<ArrowUpward
-					fontSize="small"
-					onClick={() => {
-						if (setUserParams) setUserParams(state => ({ ...state, IsDescending: false }));
-					}}
-				/>
-			) : (
-				<ArrowDownward
-					fontSize="small"
-					onClick={() => {
-						if (setUserParams) setUserParams(state => ({ ...state, IsDescending: true }));
-					}}
-				/>
-			)}
-			<TextField
-				label="Search here"
-				sx={{
-					width: "100%",
-					ml: 2,
-					input: {
-						color: colors.dark.main,
-						zIndex: 1
-					},
-					fieldset: {
-						bgcolor: "rgba(253, 253, 253, 0.6)",
-						zIndex: 0
-					}
-				}}
-				onChange={e => {
-					if (timerRef.current) clearTimeout(timerRef.current);
-
-					timerRef.current = setTimeout(() => {
-						if (setUserParams) setUserParams(state => ({ ...state, Keyword: e.target.value }));
-					}, 300);
-				}}
-			/>
-			<Menu
-				id="basic-menu"
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				MenuListProps={{
-					"aria-labelledby": "basic-button"
-				}}
-			>
-				<MenuItem
-					onClick={() => {
-						if (setUserParams) setUserParams(state => ({ ...state, Role: "User" }));
-						handleClose();
-					}}
-				>
-					User
-				</MenuItem>
-				<MenuItem
-					onClick={() => {
-						if (setUserParams) setUserParams(state => ({ ...state, Role: "Mod" }));
-						handleClose();
-					}}
-				>
-					Mod
-				</MenuItem>
-				<MenuItem
-					onClick={() => {
-						if (setUserParams) setUserParams(state => ({ ...state, Role: "Admin" }));
-						handleClose();
-					}}
-				>
-					Admin
-				</MenuItem>
-			</Menu>
-		</Box>
-	);
+	const options = [
+		{ value: "Name", label: "Tên" },
+		{ value: "Email", label: "Email" },
+		{ value: "PhoneNumber", label: "Số điện thoại" }
+	] as const;
+	return <FilterToolbar visible={visible} options={options} sortBy={userParams.SortBy} descending={userParams.IsDescending} keyword={userParams.Keyword} role={userParams.Role} roleOptions={["User", "Mod", "Admin"]} placeholder="Tìm người dùng..." onSortChange={value => setUserParams?.(current => ({ ...current, SortBy: value }))} onDirectionChange={value => setUserParams?.(current => ({ ...current, IsDescending: value }))} onKeywordChange={value => setUserParams?.(current => ({ ...current, Keyword: value }))} onRoleChange={value => { if (value === "User" || value === "Mod" || value === "Admin") setUserParams?.(current => ({ ...current, Role: value })); }} />;
 });
-export const LocationFilter = memo(({ visible }: { visible?: boolean }) => {
-	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+const LocationFilter = memo(({ visible }: { visible?: boolean }) => {
 	const { locationParams, setLocationParams } = useFilter();
-
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-
-	return (
-		<Box pr={1} sx={{ flexGrow: 1, display: visible ? "flex" : "none", alignItems: "center" }}>
-			<Button
-				id="demo-customized-button"
-				aria-controls={open ? "demo-customized-menu" : undefined}
-				aria-haspopup="true"
-				aria-expanded={open ? "true" : undefined}
-				variant="outlined"
-				disableElevation
-				onClick={handleClick}
-				endIcon={<KeyboardArrowDown />}
-				sx={{
-					marginRight: "0.5rem",
-					color: colors.grey[600],
-					width: 160,
-					justifyContent: "left",
-					textTransform: "none",
-					borderColor: colors.grey[300],
-					bgcolor: "rgba(255, 255, 255, 0.6)",
-					":hover": {
-						borderColor: colors.grey[400],
-						color: colors.grey[700],
-						bgcolor: "rgba(255, 255, 255)"
-					}
-				}}
-				style={{
-					padding: "12px 8px 12px 4px"
-				}}
-			>
-				<div style={{ width: "100%", textAlign: "left" }}>{locationParams.SortBy}</div>
-			</Button>
-			{locationParams.IsDescending ? (
-				<ArrowUpward
-					fontSize="small"
-					onClick={() => {
-						if (setLocationParams) setLocationParams(state => ({ ...state, IsDescending: false }));
-					}}
-				/>
-			) : (
-				<ArrowDownward
-					fontSize="small"
-					onClick={() => {
-						if (setLocationParams) setLocationParams(state => ({ ...state, IsDescending: true }));
-					}}
-				/>
-			)}
-			<TextField
-				label="Search here"
-				sx={{
-					width: "100%",
-					ml: 2,
-					input: {
-						color: colors.dark.main,
-						zIndex: 1
-					},
-					fieldset: {
-						bgcolor: "rgba(253, 253, 253, 0.6)",
-						zIndex: 0
-					}
-				}}
-				onChange={e => {
-					if (timerRef.current) clearTimeout(timerRef.current);
-
-					timerRef.current = setTimeout(() => {
-						if (setLocationParams) setLocationParams(state => ({ ...state, Keyword: e.target.value }));
-					}, 300);
-				}}
-			/>
-			<Menu
-				id="basic-menu"
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				MenuListProps={{
-					"aria-labelledby": "basic-button"
-				}}
-			>
-				<MenuItem
-					onClick={() => {
-						if (setLocationParams) setLocationParams(state => ({ ...state, SortBy: "City" }));
-						handleClose();
-					}}
-				>
-					City
-				</MenuItem>
-				<MenuItem
-					onClick={() => {
-						if (setLocationParams) setLocationParams(state => ({ ...state, SortBy: "District" }));
-						handleClose();
-					}}
-				>
-					District
-				</MenuItem>
-			</Menu>
-		</Box>
-	);
+	const options = [
+		{ value: "City", label: "Thành phố" },
+		{ value: "District", label: "Quận / huyện" }
+	] as const;
+	return <FilterToolbar visible={visible} options={options} sortBy={locationParams.SortBy} descending={locationParams.IsDescending} keyword={locationParams.Keyword} placeholder="Tìm địa điểm..." onSortChange={value => setLocationParams?.(current => ({ ...current, SortBy: value }))} onDirectionChange={value => setLocationParams?.(current => ({ ...current, IsDescending: value }))} onKeywordChange={value => setLocationParams?.(current => ({ ...current, Keyword: value }))} />;
 });
 
-const amenityMap = {
-	Name: "Name",
-	CreatedDate: "Create date"
-};
-export const AmenityFilter = memo(({ visible }: { visible?: boolean }) => {
-	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+const AmenityFilter = memo(({ visible }: { visible?: boolean }) => {
 	const { amenityParams, setAmenityParams } = useFilter();
-
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-	return (
-		<Box pr={1} sx={{ flexGrow: 1,display: visible ? "flex" : "none", alignItems: "center" }}>
-			<Button
-				id="demo-customized-button"
-				aria-controls={open ? "demo-customized-menu" : undefined}
-				aria-haspopup="true"
-				aria-expanded={open ? "true" : undefined}
-				variant="outlined"
-				disableElevation
-				onClick={handleClick}
-				endIcon={<KeyboardArrowDown />}
-				sx={{
-					marginRight: "0.5rem",
-					color: colors.grey[600],
-					width: 160,
-					justifyContent: "left",
-					textTransform: "none",
-					borderColor: colors.grey[300],
-					":hover": {
-						borderColor: colors.grey[400],
-						color: colors.grey[700],
-						bgcolor: "rgba(255, 255, 255)"
-					},
-					bgcolor: "rgba(255, 255, 255, 0.6)"
-				}}
-				style={{
-					padding: "12px 8px 12px 4px"
-				}}
-			>
-				<div style={{ width: "100%", textAlign: "left" }}>
-					{amenityParams.SortBy && amenityMap[amenityParams.SortBy]}
-				</div>
-			</Button>
-			{amenityParams.IsDescending ? (
-				<ArrowUpward
-					fontSize="small"
-					onClick={() => {
-						if (setAmenityParams) setAmenityParams(state => ({ ...state, IsDescending: false }));
-					}}
-				/>
-			) : (
-				<ArrowDownward
-					fontSize="small"
-					onClick={() => {
-						if (setAmenityParams) setAmenityParams(state => ({ ...state, IsDescending: true }));
-					}}
-				/>
-			)}
-			<TextField
-				label="Search here"
-				sx={{
-					width: "100%",
-					ml: 2,
-					input: {
-						color: colors.dark.main,
-						zIndex: 1
-					},
-					fieldset: {
-						bgcolor: "rgba(253, 253, 253, 0.6)",
-						zIndex: 0
-					}
-				}}
-				onChange={e => {
-					if (timerRef.current) clearTimeout(timerRef.current);
-
-					timerRef.current = setTimeout(() => {
-						if (setAmenityParams) setAmenityParams(state => ({ ...state, Keyword: e.target.value }));
-					}, 300);
-				}}
-			/>
-			<Menu
-				id="basic-menu"
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				MenuListProps={{
-					"aria-labelledby": "basic-button"
-				}}
-			>
-				<MenuItem
-					onClick={() => {
-						if (setAmenityParams) setAmenityParams(state => ({ ...state, SortBy: "Name" }));
-						handleClose();
-					}}
-				>
-					Name
-				</MenuItem>
-				<MenuItem
-					onClick={() => {
-						if (setAmenityParams) setAmenityParams(state => ({ ...state, SortBy: "CreatedDate" }));
-						handleClose();
-					}}
-				>
-					Created date
-				</MenuItem>
-			</Menu>
-		</Box>
-	);
+	const options = [
+		{ value: "Name", label: "Tên" },
+		{ value: "CreatedDate", label: "Ngày tạo" }
+	] as const;
+	return <FilterToolbar visible={visible} options={options} sortBy={amenityParams.SortBy} descending={amenityParams.IsDescending} keyword={amenityParams.Keyword} placeholder="Tìm tiện ích..." onSortChange={value => setAmenityParams?.(current => ({ ...current, SortBy: value }))} onDirectionChange={value => setAmenityParams?.(current => ({ ...current, IsDescending: value }))} onKeywordChange={value => setAmenityParams?.(current => ({ ...current, Keyword: value }))} />;
 });
+
+const sortSelectSx = {
+	minWidth: 116,
+	color: "#E5E1E4",
+	fontSize: 12,
+	fontWeight: 550,
+	borderRadius: "6px",
+	"& .MuiSelect-select": { py: 0.85, pl: 1, pr: "28px !important" },
+	"& .MuiOutlinedInput-notchedOutline": { border: 0 },
+	"&:hover": { bgcolor: "#2A2A2C" },
+	"&.Mui-focused": { bgcolor: "#2A2A2C" },
+	"& .MuiSvgIcon-root": { color: "#92919B", fontSize: 19 }
+};
+const directionButtonSx = { color: "#B8B7C1", width: 32, height: 32, borderRadius: "6px", "&:hover": { bgcolor: "#2A2A2C", color: "#F7F7F8" } };
+const separatorSx = { width: "1px", height: 22, bgcolor: "rgba(255,255,255,.1)", flexShrink: 0 };
+const searchInputSx = {
+	color: "#F7F7F8 !important",
+	bgcolor: "#202024 !important",
+	borderRadius: "6px",
+	py: 0.05,
+	"&:hover": { bgcolor: "#2A2A2C !important" },
+	"&.Mui-focused": { bgcolor: "#202024 !important" },
+	"& input": { color: "#F7F7F8 !important", WebkitTextFillColor: "#F7F7F8", py: "8px", fontSize: 12.5 },
+	"& input::placeholder": { color: "#A6A5AE", opacity: 1 }
+};
+const menuPaperSx = { bgcolor: "#202024", color: "#E5E1E4", border: "1px solid rgba(255,255,255,.08)", borderRadius: "7px", "& .MuiMenuItem-root": { fontSize: 13, minHeight: 36, "&:hover, &.Mui-selected, &.Mui-selected:hover": { bgcolor: "rgba(88,101,242,.18)" } } };
+
+export { RequestFilter, UserFilter, LocationFilter, AmenityFilter };

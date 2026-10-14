@@ -29,22 +29,22 @@ const ReportsLineChart = memo(function ReportsLineChart({
 
 	const lineColor =
 		color === "primary"
-			? colors.primary.main
+			? "#8792FF"
 			: color === "success"
-			? colors.success.main
+			? "#63D995"
 			: color === "info"
-			? colors.info.main
+			? "#8792FF"
 			: color === "dark"
-			? colors.dark.main
+			? "#A1A8A5"
 			: colors.primary.main;
 
 	const chartBg =
 		color === "primary"
-			? "rgba(225, 29, 72, 0.08)"
+			? "rgba(135, 146, 255, 0.10)"
 			: color === "success"
-			? "rgba(5, 150, 105, 0.08)"
+			? "rgba(99, 217, 149, 0.08)"
 			: color === "info"
-			? "rgba(37, 99, 235, 0.08)"
+			? "rgba(135, 146, 255, 0.08)"
 			: "rgba(24, 24, 27, 0.06)";
 
 	const chartData = useMemo(
@@ -91,12 +91,12 @@ const ReportsLineChart = memo(function ReportsLineChart({
 						display: true,
 						drawOnChartArea: true,
 						drawTicks: false,
-						color: "rgba(0, 0, 0, 0.04)"
+						color: "rgba(255, 255, 255, 0.07)"
 					},
 					ticks: {
 						padding: 8,
 						font: { size: 11, family: '"Plus Jakarta Sans", sans-serif' },
-						color: colors.grey[600]
+						color: "#A1A8A5"
 					}
 				},
 				x: {
@@ -104,7 +104,7 @@ const ReportsLineChart = memo(function ReportsLineChart({
 					ticks: {
 						padding: 8,
 						font: { size: 11, family: '"Plus Jakarta Sans", sans-serif' },
-						color: colors.grey[600]
+						color: "#A1A8A5"
 					}
 				}
 			}
@@ -120,20 +120,20 @@ const ReportsLineChart = memo(function ReportsLineChart({
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "space-between",
-				backgroundColor: colors.dark.main,
-				border: `1px solid ${colors.grey[300]}`,
-				borderRadius: 2.5,
-				boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
-				transition: "border-color 150ms ease, box-shadow 150ms ease",
-				"&:hover": { borderColor: colors.grey[400], boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)" }
+				backgroundColor: "#171C1D",
+				border: "1px solid #303738",
+				borderRadius: "10px",
+				boxShadow: "none",
+				transition: "border-color 150ms ease",
+				"&:hover": { borderColor: "#465151" },
 			}}
 		>
 			<Box mb={2}>
-				<Typography variant="subtitle1" fontWeight={600} color="text.primary">
+				<Typography variant="subtitle1" fontWeight={600} sx={{ color: "#F2F4F3" }}>
 					{title}
 				</Typography>
 				{description && (
-					<Typography variant="caption" color="text.secondary">
+					<Typography variant="caption" sx={{ color: "#A1A8A5" }}>
 						{description}
 					</Typography>
 				)}
@@ -147,11 +147,11 @@ const ReportsLineChart = memo(function ReportsLineChart({
 				display="flex"
 				alignItems="center"
 				pt={1.5}
-				borderTop={`1px solid ${colors.grey[200]}`}
+				borderTop="1px solid #303738"
 				gap={0.75}
 			>
-				<Schedule sx={{ fontSize: 15, color: colors.grey[500] }} />
-				<Typography variant="caption" color="text.secondary" sx={{ fontSize: 11.5 }}>
+				<Schedule sx={{ fontSize: 15, color: "#A1A8A5" }} />
+				<Typography variant="caption" sx={{ color: "#A1A8A5", fontSize: 11.5 }}>
 					{date}
 				</Typography>
 			</Box>

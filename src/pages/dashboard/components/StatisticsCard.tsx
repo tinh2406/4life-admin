@@ -1,12 +1,9 @@
 import { Box, Card, Typography } from "@mui/material";
 import { TrendingDown, TrendingUp } from "@mui/icons-material";
-import colors from "../../../assets/theme/base/colors";
-import { ColorType } from "./type";
 
 import { memo } from "react";
 
 type StatisticsCardProps = {
-	color: ColorType;
 	title: string;
 	count: string | number;
 	percentage: {
@@ -18,7 +15,6 @@ type StatisticsCardProps = {
 };
 
 const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
-	color,
 	title,
 	count,
 	percentage,
@@ -27,106 +23,63 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 	const isPositive = percentage.color === "success";
 	const isNegative = percentage.color === "error";
 
-	const iconBg =
-		color === "primary"
-			? "rgba(88, 101, 242, 0.15)"
-			: color === "info"
-			? "rgba(0, 176, 244, 0.15)"
-			: color === "success"
-			? "rgba(53, 237, 126, 0.15)"
-			: color === "warning"
-			? "rgba(254, 231, 92, 0.15)"
-			: color === "error"
-			? "rgba(237, 66, 69, 0.15)"
-			: "rgba(255, 255, 255, 0.08)";
+	const iconBg = "rgba(88, 101, 242, 0.12)";
+	const iconColor = "#AAB2FF";
 
-	const iconColor =
-		color === "primary"
-			? colors.primary.main
-			: color === "info"
-			? colors.info.main
-			: color === "success"
-			? colors.success.main
-			: color === "warning"
-			? colors.warning.main
-			: color === "error"
-			? colors.error.main
-			: colors.text.focus;
-
-	const deltaBg = isPositive ? "rgba(53, 237, 126, 0.15)" : isNegative ? "rgba(237, 66, 69, 0.15)" : "rgba(255, 255, 255, 0.08)";
-	const deltaColor = isPositive ? colors.success.main : isNegative ? colors.error.main : colors.text.main;
-	const deltaBorder = isPositive ? "rgba(53, 237, 126, 0.25)" : isNegative ? "rgba(237, 66, 69, 0.25)" : "rgba(255, 255, 255, 0.1)";
+	const deltaBg = isPositive ? "rgba(53, 237, 126, 0.10)" : isNegative ? "rgba(237, 66, 69, 0.10)" : "rgba(255, 255, 255, 0.06)";
+	const deltaColor = isPositive ? "#76E6A2" : isNegative ? "#FF8587" : "#C2C8C5";
 
 	return (
 		<Card
 			sx={{
-				p: 2.5,
+				p: { xs: 2, sm: 2.5 },
 				height: "100%",
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "space-between",
-				backgroundColor: colors.dark.main,
-				border: `1px solid rgba(255, 255, 255, 0.06)`,
-				borderRadius: "16px",
-				boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
-				transition: "border-color 150ms ease, box-shadow 150ms ease",
-				"&:hover": {
-					borderColor: colors.grey[400],
-					boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)"
-				}
+				backgroundColor: "#171C1D",
+				border: "1px solid #303738",
+				borderRadius: "10px",
+				boxShadow: "none",
+				transition: "border-color 150ms ease",
+				"&:hover": { borderColor: "#465151" }
 			}}
 		>
-			<Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
-				<Box
-					sx={{
-						width: 44,
-						height: 44,
-						borderRadius: 2,
+			<Box mb={2.25}>
+				<Box display="flex" alignItems="center" gap={1.25} mb={1.75}>
+					<Box
+						sx={{
+						width: 36,
+						height: 36,
+						borderRadius: "7px",
 						backgroundColor: iconBg,
 						color: iconColor,
 						display: "grid",
 						placeItems: "center",
 						flexShrink: 0,
-						border: `1px solid ${colors.grey[300]}`,
-						"& svg": {
-							fontSize: 22
-						}
-					}}
-				>
-					{icon}
-				</Box>
-
-				<Box textAlign="right">
-					<Typography
-						variant="caption"
-						fontWeight={500}
-						color="text.secondary"
-						display="block"
-						mb={0.5}
-						sx={{ fontSize: 12.5 }}
-					>
-						{title}
-					</Typography>
-					<Typography
-						variant="h4"
-						fontWeight={700}
-						color="text.primary"
-						sx={{
-							fontVariantNumeric: "tabular-nums",
-							letterSpacing: "-0.02em",
-							fontSize: 26
+						"& svg": { fontSize: 20 }
 						}}
 					>
-						{count}
+						{icon}
+					</Box>
+					<Typography variant="body2" fontWeight={500} sx={{ color: "#B5BCB9", fontSize: 13 }}>
+						{title}
 					</Typography>
 				</Box>
+				<Typography
+					variant="h4"
+					fontWeight={700}
+					sx={{ color: "#F2F4F3", fontVariantNumeric: "tabular-nums", letterSpacing: "-0.035em", fontSize: 28 }}
+				>
+					{count}
+				</Typography>
 			</Box>
 
 			<Box
 				display="flex"
 				alignItems="center"
-				pt={1.5}
-				borderTop={`1px solid ${colors.grey[200]}`}
+				pt={1.25}
+				borderTop="1px solid #303738"
 				gap={1}
 			>
 				<Box
@@ -134,12 +87,12 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 						display: "inline-flex",
 						alignItems: "center",
 						gap: 0.5,
-						px: 1,
+						px: 0.8,
 						py: 0.25,
-						borderRadius: 1.5,
+						borderRadius: "4px",
 						backgroundColor: deltaBg,
 						color: deltaColor,
-						border: `1px solid ${deltaBorder}`,
+						border: "1px solid rgba(255, 255, 255, 0.05)",
 						fontWeight: 600,
 						fontSize: 11.5
 					}}
@@ -151,9 +104,8 @@ const ComplexStatisticsCard = memo(function ComplexStatisticsCard({
 
 				<Typography
 					variant="caption"
-					color="text.secondary"
 					noWrap
-					sx={{ fontSize: 12 }}
+					sx={{ fontSize: 12, color: "#A1A8A5" }}
 				>
 					{percentage.label}
 				</Typography>

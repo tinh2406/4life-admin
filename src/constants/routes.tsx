@@ -1,4 +1,4 @@
-import { Check, Dashboard, LocationOn, People, Toll } from "@mui/icons-material";
+import { Check, Dashboard, LocationOn, People, Settings, Toll } from "@mui/icons-material";
 const routes = [
 	{
 		name: "Dashboard",
@@ -29,6 +29,12 @@ const routes = [
 		key: "locations",
 		route: "/locations",
 		icon: <LocationOn fontSize="small" />
+	},
+	{
+		name: "System settings",
+		key: "settings",
+		route: "/settings",
+		icon: <Settings fontSize="small" />
 	}
 ];
 export default routes;
