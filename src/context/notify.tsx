@@ -4,6 +4,7 @@ import { ReactNode, createContext, useCallback, useContext, useEffect, useMemo, 
 import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { AuthStateType } from "../store/auth/type";
+import { getSignalRUrl } from "../services/environment/serverMode";
 
 type AnyObject = Record<string, boolean>;
 
@@ -45,7 +46,7 @@ export const NotifyProvider = ({ children }: { children: ReactNode }) => {
 	useEffect(() => {
 		if (!token) return;
 
-		const hubUrl = import.meta.env.VITE_SIGNALR_HUB_URL || "https://tuna.whitemage.tech/NotificationHub";
+		const hubUrl = getSignalRUrl();
 
 		const connection = new HubConnectionBuilder()
 			.withUrl(hubUrl, {

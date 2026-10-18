@@ -13,7 +13,10 @@ import { StatisticsProvider } from "./context/statistics.tsx";
 const queryClient = new QueryClient();
 
 async function enableMocking() {
-	if (import.meta.env.VITE_ENABLE_MOCK === "true") {
+	const savedMode = localStorage.getItem("admin_server_mode");
+	const shouldMock = savedMode ? savedMode === "mock" : import.meta.env.VITE_ENABLE_MOCK === "true";
+
+	if (shouldMock) {
 		const { worker } = await import("./mocks/browser");
 		return worker.start({
 			onUnhandledFrame: "bypass"

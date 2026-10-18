@@ -35,8 +35,8 @@ const BasicLayout = memo(function BasicLayout({ image, children }: BasicLayoutPr
 				}}
 			/>
 			<Box width="100%" minHeight="100dvh" zIndex={1} position="relative" display="flex" alignItems="center">
-				<Grid container justifyContent="center" alignItems="center" sx={{ px: 2, py: 4 }}>
-					<Grid item xs={11} sm={8} md={5} lg={4} xl={3}>
+				<Grid container justifyContent="center" alignItems="center" sx={{ px: 2, py: { xs: 2, sm: 4 } }}>
+					<Grid item xs={11} sm={9} md={6} lg={4.6} xl={3.8}>
 						{children}
 					</Grid>
 				</Grid>

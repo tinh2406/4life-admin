@@ -1,11 +1,10 @@
 import axios, { AxiosInstance } from "axios";
 import { store } from "../../store";
 import { logout } from "../../store/auth/slice";
-
-const baseURL = import.meta.env.VITE_API_BASE_URL || "https://tuna.whitemage.tech/api";
+import { getServerBaseUrl } from "../environment/serverMode";
 
 export const httpClient: AxiosInstance = axios.create({
-	baseURL,
+	baseURL: getServerBaseUrl(),
 	headers: {
 		"Content-Type": "application/json"
 	}
@@ -13,6 +12,9 @@ export const httpClient: AxiosInstance = axios.create({
 
 httpClient.interceptors.request.use(
 	config => {
+		// Dynamically assign active server base URL
+		config.baseURL = getServerBaseUrl();
+
 		try {
 			const state = store.getState();
 			const token = state?.token;
