@@ -51,29 +51,28 @@ export const SERVER_MODES: Record<ServerMode, ServerModeInfo> = {
 	},
 	fresh: {
 		id: "fresh",
-		name: "Server với data mới từ Web Users",
-		shortName: "Fresh Web Users",
-		badge: "FRESH DATA",
+		name: "Sandbox Trình duyệt (Data Mới Tinh)",
+		shortName: "Sandbox Browser",
+		badge: "CLEAN SANDBOX",
 		badgeColor: "#38bdf8",
 		badgeBg: "rgba(56, 189, 248, 0.12)",
 		badgeBorder: "rgba(56, 189, 248, 0.28)",
-		defaultUrl: "http://localhost:5000/api",
-		signalRUrl: "http://localhost:5000/NotificationHub",
-		description: "Kết nối tới server backend local hoặc máy chủ mới tinh, nơi dữ liệu sinh ra từ người dùng đăng ký trên Web Users (PBL6_FE_User).",
-		databaseInfo: "Cơ sở dữ liệu mới khởi tạo (sau khi chạy migrations). Chưa có sẵn nhiều dữ liệu mẫu, người dùng đến từ luồng đăng ký thực tế trên web khách.",
+		defaultUrl: "/api",
+		signalRUrl: "/NotificationHub",
+		description: "Tự host API ngay trong trình duyệt bằng Service Worker. Bắt đầu với Database trắng tinh, toàn bộ dữ liệu thêm mới hay chỉnh sửa đều được lưu vào LocalStorage của bạn. Không cần cài đặt hay chạy bất kỳ server nào!",
+		databaseInfo: "Database sạch sẽ (Clean State) được lưu trữ trực tiếp trong LocalStorage trình duyệt của bạn. Bắt đầu từ con số 0 và không cần chạy server.",
 		adminGuide: {
-			accountOverview: "Tài khoản được tạo từ luồng đăng ký của Web Users hoặc tài khoản Seed của backend.",
+			accountOverview: "Tài khoản Super Admin mặc định được khởi tạo sẵn để bạn đăng nhập ngay vào hệ thống trắng.",
 			email: "admin@4life.vn",
-			passwordHint: "Mật khẩu bạn tự đặt khi đăng ký trên Web Users hoặc mật khẩu seed ban đầu.",
-			roleRequirement: "Mặc định người dùng đăng ký từ Web Khách hàng sẽ có Role = 'User'. Bạn cần nâng quyền lên 'Admin' trong database để truy cập Admin Console.",
+			passwordHint: "Bất kỳ mật khẩu nào (ví dụ: Admin@123 hoặc Admin@4life).",
+			roleRequirement: "Tài khoản có sẵn quyền 'Admin' để bạn toàn quyền tạo mới dữ liệu, duyệt phòng, thêm tiện ích.",
 			howToMakeAdmin: [
-				"Bước 1: Mở ứng dụng Web Khách hàng (PBL6_FE_User) và đăng ký một tài khoản mới bằng email của bạn.",
-				"Bước 2: Mở công cụ quản trị Database (SQL Server Management Studio / DBeaver / pgAdmin / MySQL Workbench).",
-				"Bước 3: Chạy câu lệnh SQL bên dưới để nâng tài khoản vừa tạo thành Admin:",
-				"Bước 4: Quay lại trang này và đăng nhập bằng email & mật khẩu bạn vừa đăng ký."
+				"Nhấn nút '⚡ Tự động điền tài khoản mẫu' hoặc nhập email: admin@4life.vn.",
+				"Bấm 'Đăng nhập': Hệ thống mở Dashboard với dữ liệu trắng tinh.",
+				"Bạn có thể bắt đầu tạo người dùng mới, thêm địa điểm, thêm tiện ích trực tiếp trên web.",
+				"Mọi dữ liệu bạn tạo ra sẽ được lưu tự động trong LocalStorage máy bạn (F5 không mất)."
 			],
-			sqlSnippet: "UPDATE Users SET Role = 'Admin' WHERE Email = 'your_registered_email@domain.com';",
-			specialNotes: "Nếu backend của bạn có kịch bản Seed sẵn tài khoản Admin, bạn có thể đăng nhập ngay bằng tài khoản seed được cấu hình trong backend."
+			specialNotes: "Chạy 100% trong trình duyệt. Không cần tạo hay chạy bất kỳ server nào trên máy tính!"
 		}
 	},
 	mock: {
@@ -91,7 +90,7 @@ export const SERVER_MODES: Record<ServerMode, ServerModeInfo> = {
 		adminGuide: {
 			accountOverview: "Tài khoản quản trị viên mẫu được nạp sẵn trong môi trường giả lập.",
 			email: "admin@4life.vn",
-			passwordHint: "Bất kỳ mật khẩu nào (ví dụ: admin123 hoặc 123456).",
+			passwordHint: "Bất kỳ mật khẩu nào (ví dụ: Admin@123 hoặc Admin@4life).",
 			roleRequirement: "Mock Server tự động cấp quyền 'Admin' cho phiên đăng nhập này.",
 			howToMakeAdmin: [
 				"Nhấn nút '1-Click Tự động điền' phía dưới để tự động điền sẵn tài khoản Admin.",
@@ -121,11 +120,8 @@ export const setServerMode = (mode: ServerMode, customUrl?: string): void => {
 
 export const getServerBaseUrl = (mode?: ServerMode): string => {
 	const currentMode = mode || getServerMode();
-	if (currentMode === "mock") {
+	if (currentMode === "mock" || currentMode === "fresh") {
 		return "/api";
-	}
-	if (currentMode === "fresh") {
-		return localStorage.getItem("admin_fresh_url") || SERVER_MODES.fresh.defaultUrl;
 	}
 	return (
 		localStorage.getItem("admin_real_url") ||
@@ -136,12 +132,8 @@ export const getServerBaseUrl = (mode?: ServerMode): string => {
 
 export const getSignalRUrl = (mode?: ServerMode): string => {
 	const currentMode = mode || getServerMode();
-	if (currentMode === "mock") {
+	if (currentMode === "mock" || currentMode === "fresh") {
 		return "/NotificationHub";
-	}
-	if (currentMode === "fresh") {
-		const base = getServerBaseUrl("fresh").replace(/\/api\/?$/, "");
-		return `${base}/NotificationHub`;
 	}
 	return (
 		import.meta.env.VITE_SIGNALR_HUB_URL ||

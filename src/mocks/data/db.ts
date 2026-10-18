@@ -29,6 +29,40 @@ export interface MockRevenueItem {
 	paid: number;
 }
 
+const FRESH_STORAGE_KEY = "admin_fresh_sandbox_db_v1";
+
+const createInitialAdminUser = (): (CollapseUser & {
+	role: UserRole;
+	status: UserStatus;
+	isBlocked: boolean;
+	blockReason?: string;
+	detail: DetailUser;
+}) => ({
+	id: initialAdminProfile.id,
+	name: initialAdminProfile.name,
+	email: initialAdminProfile.email,
+	phoneNumber: initialAdminProfile.phoneNumber || "0901234567",
+	avatar: initialAdminProfile.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+	role: "Admin",
+	status: "Active",
+	isBlocked: false,
+	detail: {
+		id: initialAdminProfile.id,
+		name: initialAdminProfile.name,
+		email: initialAdminProfile.email,
+		phoneNumber: initialAdminProfile.phoneNumber || "0901234567",
+		avatar: initialAdminProfile.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+		dateOfBirth: initialAdminProfile.dateOfBirth || "1998-06-24",
+		gender: true,
+		role: "Admin",
+		status: "Active",
+		isBlocked: false,
+		description: "Platform Operations & Super Administrator",
+		frontIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+		backIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+	}
+});
+
 class MockDatabase {
 	private adminProfile: User;
 	private users: (CollapseUser & { role: UserRole; status: UserStatus; isBlocked: boolean; blockReason?: string; detail: DetailUser })[];
@@ -38,41 +72,102 @@ class MockDatabase {
 	private notifications: MockNotification[];
 
 	constructor() {
-		this.adminProfile = { ...initialAdminProfile };
-		this.users = JSON.parse(JSON.stringify(initialUsers));
-		this.hostRequests = JSON.parse(JSON.stringify(initialHostRequests));
-		this.amenities = JSON.parse(JSON.stringify(initialAmenities));
-		this.locations = JSON.parse(JSON.stringify(initialLocations));
-
-		this.notifications = [
-			{
-				id: "notif-001",
-				type: "RequestToMod",
-				content: "New Host verification submitted by Dang Quoc Bao",
-				note: "Ba Na Hills Villas",
-				createdDate: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
-				avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=128&q=80",
-				userFrom: "req-001"
-			},
-			{
-				id: "notif-002",
-				type: "RequestToMod",
-				content: "New Host verification submitted by Nguyen Thao My",
-				note: "My Khe Beachfront House",
-				createdDate: new Date(Date.now() - 1000 * 60 * 60 * 3).toISOString(),
-				avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=128&q=80",
-				userFrom: "req-002"
-			},
-			{
-				id: "notif-003",
-				type: "RequestToMod",
-				content: "New Host verification submitted by Tran Dinh Khoa",
-				note: "Hoi An Heritage House",
-				createdDate: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
-				avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=128&q=80",
-				userFrom: "req-003"
+		if (this.isFreshMode()) {
+			const saved = localStorage.getItem(FRESH_STORAGE_KEY);
+			if (saved) {
+				try {
+					const parsed = JSON.parse(saved);
+					this.adminProfile = parsed.adminProfile || { ...initialAdminProfile };
+					this.users = parsed.users || [];
+					this.hostRequests = parsed.hostRequests || [];
+					this.amenities = parsed.amenities || [];
+					this.locations = parsed.locations || [];
+					this.notifications = parsed.notifications || [];
+					return;
+				} catch {
+					// Fall through to default clean state
+				}
 			}
-		];
+
+			// Initialize clean slate for fresh mode
+			this.adminProfile = { ...initialAdminProfile };
+			this.users = [createInitialAdminUser()];
+			this.hostRequests = [];
+			this.amenities = [];
+			this.locations = [];
+			this.notifications = [];
+			this.persist();
+		} else {
+			// Mock Mode with pre-populated sample records
+			this.adminProfile = { ...initialAdminProfile };
+			this.users = JSON.parse(JSON.stringify(initialUsers));
+			this.hostRequests = JSON.parse(JSON.stringify(initialHostRequests));
+			this.amenities = JSON.parse(JSON.stringify(initialAmenities));
+			this.locations = JSON.parse(JSON.stringify(initialLocations));
+
+			this.notifications = [
+				{
+					id: "notif-001",
+					type: "RequestToMod",
+					content: "New Host verification submitted by Dang Quoc Bao",
+					note: "Ba Na Hills Villas",
+					createdDate: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
+					avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=128&q=80",
+					userFrom: "req-001"
+				},
+				{
+					id: "notif-002",
+					type: "RequestToMod",
+					content: "New Host verification submitted by Nguyen Thao My",
+					note: "My Khe Beachfront House",
+					createdDate: new Date(Date.now() - 1000 * 60 * 60 * 3).toISOString(),
+					avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=128&q=80",
+					userFrom: "req-002"
+				},
+				{
+					id: "notif-003",
+					type: "RequestToMod",
+					content: "New Host verification submitted by Tran Dinh Khoa",
+					note: "Hoi An Heritage House",
+					createdDate: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
+					avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=128&q=80",
+					userFrom: "req-003"
+				}
+			];
+		}
+	}
+
+	private isFreshMode(): boolean {
+		return localStorage.getItem("admin_server_mode") === "fresh";
+	}
+
+	private persist(): void {
+		if (this.isFreshMode()) {
+			try {
+				const payload = {
+					adminProfile: this.adminProfile,
+					users: this.users,
+					hostRequests: this.hostRequests,
+					amenities: this.amenities,
+					locations: this.locations,
+					notifications: this.notifications
+				};
+				localStorage.setItem(FRESH_STORAGE_KEY, JSON.stringify(payload));
+			} catch (err) {
+				console.warn("Could not save to LocalStorage:", err);
+			}
+		}
+	}
+
+	public resetFreshDatabase(): void {
+		localStorage.removeItem(FRESH_STORAGE_KEY);
+		this.adminProfile = { ...initialAdminProfile };
+		this.users = [createInitialAdminUser()];
+		this.hostRequests = [];
+		this.amenities = [];
+		this.locations = [];
+		this.notifications = [];
+		this.persist();
 	}
 
 	getAdminProfile(): User {
@@ -171,6 +266,7 @@ class MockDatabase {
 		if (!user) return false;
 		user.role = role;
 		user.detail.role = role;
+		this.persist();
 		return true;
 	}
 
@@ -183,6 +279,7 @@ class MockDatabase {
 		user.detail.isBlocked = isBlocked;
 		user.detail.status = isBlocked ? "Blocked" : "Active";
 		user.detail.blockReason = user.blockReason;
+		this.persist();
 		return true;
 	}
 
@@ -190,6 +287,7 @@ class MockDatabase {
 		const index = this.users.findIndex(u => u.id === id);
 		if (index === -1) return false;
 		this.users.splice(index, 1);
+		this.persist();
 		return true;
 	}
 
@@ -246,6 +344,7 @@ class MockDatabase {
 			status: "Active",
 			isBlocked: false
 		});
+		this.persist();
 		return true;
 	}
 
@@ -254,6 +353,7 @@ class MockDatabase {
 		if (index === -1) return false;
 
 		this.hostRequests.splice(index, 1);
+		this.persist();
 		return true;
 	}
 
@@ -295,6 +395,7 @@ class MockDatabase {
 			icon: dto.icon || "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=128&q=80"
 		};
 		this.amenities.unshift(newAmenity);
+		this.persist();
 		return newAmenity;
 	}
 
@@ -303,6 +404,7 @@ class MockDatabase {
 		if (!item) return undefined;
 		item.name = dto.name;
 		if (dto.icon) item.icon = dto.icon;
+		this.persist();
 		return item;
 	}
 
@@ -310,6 +412,7 @@ class MockDatabase {
 		const index = this.amenities.findIndex(a => a.id === id);
 		if (index === -1) return false;
 		this.amenities.splice(index, 1);
+		this.persist();
 		return true;
 	}
 
@@ -353,6 +456,7 @@ class MockDatabase {
 			district: dto.district
 		};
 		this.locations.unshift(newLoc);
+		this.persist();
 		return newLoc;
 	}
 
@@ -361,6 +465,7 @@ class MockDatabase {
 		if (!item) return undefined;
 		item.city = dto.city;
 		item.district = dto.district;
+		this.persist();
 		return item;
 	}
 
@@ -368,6 +473,7 @@ class MockDatabase {
 		const index = this.locations.findIndex(l => l.id === id);
 		if (index === -1) return false;
 		this.locations.splice(index, 1);
+		this.persist();
 		return true;
 	}
 

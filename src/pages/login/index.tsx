@@ -69,7 +69,7 @@ const Login = memo(function Login() {
 		resolver: yupResolver(SchemaLogin),
 		defaultValues: {
 			email: SERVER_MODES[activeMode].adminGuide.email,
-			password: activeMode === "mock" ? "admin123" : ""
+			password: activeMode === "mock" ? "Admin@123" : ""
 		}
 	});
 
@@ -79,7 +79,7 @@ const Login = memo(function Login() {
 	useEffect(() => {
 		if (activeMode === "mock") {
 			setValue("email", "admin@4life.vn");
-			setValue("password", "admin123");
+			setValue("password", "Admin@123");
 		} else {
 			setValue("email", "admin@4life.vn");
 		}
@@ -90,24 +90,15 @@ const Login = memo(function Login() {
 		setActiveMode(newMode);
 		setHelpTab(newMode);
 		setServerMode(newMode);
-
-		const isSwitchingMockState =
-			(activeMode === "mock" && newMode !== "mock") ||
-			(activeMode !== "mock" && newMode === "mock");
-
-		if (isSwitchingMockState) {
-			toast.info(`Chuyển sang ${SERVER_MODES[newMode].name}. Tải lại trang...`);
-			setTimeout(() => {
-				window.location.reload();
-			}, 500);
-		} else {
-			toast.success(`Đã chọn: ${SERVER_MODES[newMode].name}`);
-		}
+		toast.info(`Chuyển sang ${SERVER_MODES[newMode].name}. Đang tải lại...`);
+		setTimeout(() => {
+			window.location.reload();
+		}, 350);
 	};
 
 	const handleQuickFill = () => {
 		setValue("email", modeConfig.adminGuide.email);
-		setValue("password", activeMode === "mock" ? "admin123" : "123456");
+		setValue("password", activeMode === "mock" ? "Admin@123" : "Admin@4life");
 		toast.success(`Đã điền tài khoản cho chế độ ${modeConfig.shortName}`);
 	};
 
@@ -258,7 +249,7 @@ const Login = memo(function Login() {
 								<Typography noWrap sx={{ fontSize: 11.5, color: "#8E95A1", fontFamily: "monospace" }}>
 									{currentUrl}
 								</Typography>
-								{activeMode !== "mock" && (
+								{activeMode === "real" && (
 									<Tooltip title="Đổi URL server">
 										<IconButton
 											size="small"
@@ -355,7 +346,7 @@ const Login = memo(function Login() {
 							<TextField
 								id="login-password"
 								type={showPassword ? "text" : "password"}
-								placeholder={activeMode === "mock" ? "admin123" : "Nhập mật khẩu"}
+								placeholder={activeMode === "mock" ? "Admin@123" : "Nhập mật khẩu"}
 								fullWidth
 								autoComplete="current-password"
 								error={!!errors.password}
@@ -533,7 +524,7 @@ const Login = memo(function Login() {
 						}}
 					>
 						<Tab value="real" label="1. Server thực tế" icon={<LanOutlined sx={{ fontSize: 14 }} />} iconPosition="start" />
-						<Tab value="fresh" label="2. Data mới Web Users" icon={<StorageOutlined sx={{ fontSize: 14 }} />} iconPosition="start" />
+						<Tab value="fresh" label="2. Sandbox Data mới (Trình duyệt)" icon={<StorageOutlined sx={{ fontSize: 14 }} />} iconPosition="start" />
 						<Tab value="mock" label="3. Mock Demo có sẵn" icon={<DnsOutlined sx={{ fontSize: 14 }} />} iconPosition="start" />
 					</Tabs>
 				</Box>
@@ -687,7 +678,7 @@ const Login = memo(function Login() {
 						variant="text"
 						onClick={() => {
 							setValue("email", activeHelpConfig.adminGuide.email);
-							setValue("password", helpTab === "mock" ? "admin123" : "123456");
+							setValue("password", helpTab === "mock" ? "Admin@123" : "Admin@456");
 							setHelpOpen(false);
 							toast.success(`Đã điền tài khoản vào form!`);
 						}}

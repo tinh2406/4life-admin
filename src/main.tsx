@@ -14,7 +14,8 @@ const queryClient = new QueryClient();
 
 async function enableMocking() {
 	const savedMode = localStorage.getItem("admin_server_mode");
-	const shouldMock = savedMode ? savedMode === "mock" : import.meta.env.VITE_ENABLE_MOCK === "true";
+	const isLocalMock = savedMode === "mock" || savedMode === "fresh";
+	const shouldMock = savedMode ? isLocalMock : import.meta.env.VITE_ENABLE_MOCK === "true";
 
 	if (shouldMock) {
 		const { worker } = await import("./mocks/browser");
