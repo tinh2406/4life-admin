@@ -1,4 +1,4 @@
-import { CollapseUser, DetailUser, User } from "../../features/users/types";
+import { CollapseUser, DetailUser, User, UserRole, UserStatus } from "../../features/users/types";
 import { Amenity } from "../../features/amenities/types";
 import { Location } from "../../features/locations/types";
 import { PagingResponse } from "../../type/Paging";
@@ -31,7 +31,7 @@ export interface MockRevenueItem {
 
 class MockDatabase {
 	private adminProfile: User;
-	private users: (CollapseUser & { role: "User" | "Mod" | "Admin"; detail: DetailUser })[];
+	private users: (CollapseUser & { role: UserRole; status: UserStatus; isBlocked: boolean; blockReason?: string; detail: DetailUser })[];
 	private hostRequests: (CollapseUser & { detail: DetailUser })[];
 	private amenities: Amenity[];
 	private locations: Location[];
@@ -81,7 +81,8 @@ class MockDatabase {
 
 	// USERS
 	getUsers(params: {
-		Role?: "User" | "Mod" | "Admin";
+		Role?: "All" | UserRole;
+		Status?: "All" | UserStatus;
 		Keyword?: string;
 		PageIndex?: number;
 		PageSize?: number;
@@ -90,8 +91,12 @@ class MockDatabase {
 	}): PagingResponse<CollapseUser> {
 		let list = [...this.users];
 
-		if (params.Role) {
+		if (params.Role && params.Role !== "All") {
 			list = list.filter(u => u.role === params.Role);
+		}
+
+		if (params.Status && params.Status !== "All") {
+			list = list.filter(u => u.status === params.Status);
 		}
 
 		if (params.Keyword) {
@@ -118,12 +123,16 @@ class MockDatabase {
 		const totalCount = list.length;
 		const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
 		const startIndex = (pageIndex - 1) * pageSize;
-		const data = list.slice(startIndex, startIndex + pageSize).map(({ id, name, email, phoneNumber, avatar }) => ({
+		const data = list.slice(startIndex, startIndex + pageSize).map(({ id, name, email, phoneNumber, avatar, role, status, isBlocked, blockReason }) => ({
 			id,
 			name,
 			email,
 			phoneNumber,
-			avatar
+			avatar,
+			role,
+			status,
+			isBlocked,
+			blockReason
 		}));
 
 		return {
@@ -140,13 +149,48 @@ class MockDatabase {
 	getUserDetail(id: string): DetailUser | undefined {
 		// Look in active users
 		const user = this.users.find(u => u.id === id);
-		if (user) return user.detail;
+		if (user) {
+			return {
+				...user.detail,
+				role: user.role,
+				status: user.status,
+				isBlocked: user.isBlocked,
+				blockReason: user.blockReason
+			};
+		}
 
 		// Look in host verification requests
 		const req = this.hostRequests.find(r => r.id === id);
 		if (req) return req.detail;
 
 		return undefined;
+	}
+
+	updateUserRole(id: string, role: UserRole): boolean {
+		const user = this.users.find(u => u.id === id);
+		if (!user) return false;
+		user.role = role;
+		user.detail.role = role;
+		return true;
+	}
+
+	toggleBlockUser(id: string, isBlocked: boolean, reason?: string): boolean {
+		const user = this.users.find(u => u.id === id);
+		if (!user) return false;
+		user.isBlocked = isBlocked;
+		user.status = isBlocked ? "Blocked" : "Active";
+		user.blockReason = isBlocked ? reason || "Đã thêm vào danh sách đen do vi phạm quy định" : undefined;
+		user.detail.isBlocked = isBlocked;
+		user.detail.status = isBlocked ? "Blocked" : "Active";
+		user.detail.blockReason = user.blockReason;
+		return true;
+	}
+
+	deleteUser(id: string): boolean {
+		const index = this.users.findIndex(u => u.id === id);
+		if (index === -1) return false;
+		this.users.splice(index, 1);
+		return true;
 	}
 
 	// HOST KYC REQUESTS
@@ -198,7 +242,9 @@ class MockDatabase {
 		const [approved] = this.hostRequests.splice(index, 1);
 		this.users.push({
 			...approved,
-			role: "Mod"
+			role: "Mod",
+			status: "Active",
+			isBlocked: false
 		});
 		return true;
 	}

@@ -2,7 +2,10 @@
 import { createContext, useContext, useMemo, useState } from "react";
 import { PagingParams } from "../type/Paging";
 
-export type UsersParams = PagingParams<"Name" | "Email" | "PhoneNumber"> & { Role: "User" | "Mod" | "Admin" };
+export type UsersParams = PagingParams<"Name" | "Email" | "PhoneNumber"> & {
+	Role?: "All" | "User" | "Staff" | "Mod" | "Admin";
+	Status?: "All" | "Active" | "Blocked";
+};
 
 type FilterContextType = {
 	requestParams: PagingParams<"Name" | "Email" | "PhoneNumber">;
@@ -21,7 +24,8 @@ const FilterContext = createContext<FilterContextType>({
 		IsDescending: false
 	},
 	userParams: {
-		Role: "User"
+		Role: "All",
+		Status: "All"
 	},
 	amenityParams: {},
 	locationParams: {}
@@ -47,7 +51,8 @@ export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
 		IsDescending: false
 	});
 	const [userParams, setUserParams] = useState<UsersParams>({
-		Role: "User",
+		Role: "All",
+		Status: "All",
 		SortBy: "Email",
 		IsDescending: false
 	});

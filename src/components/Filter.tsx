@@ -115,7 +115,26 @@ const UserFilter = memo(({ visible }: { visible?: boolean }) => {
 		{ value: "Email", label: "Email" },
 		{ value: "PhoneNumber", label: "Số điện thoại" }
 	] as const;
-	return <FilterToolbar visible={visible} options={options} sortBy={userParams.SortBy} descending={userParams.IsDescending} keyword={userParams.Keyword} role={userParams.Role} roleOptions={["User", "Mod", "Admin"]} placeholder="Tìm người dùng..." onSortChange={value => setUserParams?.(current => ({ ...current, SortBy: value }))} onDirectionChange={value => setUserParams?.(current => ({ ...current, IsDescending: value }))} onKeywordChange={value => setUserParams?.(current => ({ ...current, Keyword: value }))} onRoleChange={value => { if (value === "User" || value === "Mod" || value === "Admin") setUserParams?.(current => ({ ...current, Role: value })); }} />;
+	return (
+		<FilterToolbar
+			visible={visible}
+			options={options}
+			sortBy={userParams.SortBy}
+			descending={userParams.IsDescending}
+			keyword={userParams.Keyword}
+			role={userParams.Role}
+			roleOptions={["All", "User", "Staff", "Mod", "Admin"]}
+			placeholder="Tìm người dùng..."
+			onSortChange={value => setUserParams?.(current => ({ ...current, SortBy: value }))}
+			onDirectionChange={value => setUserParams?.(current => ({ ...current, IsDescending: value }))}
+			onKeywordChange={value => setUserParams?.(current => ({ ...current, Keyword: value }))}
+			onRoleChange={value => {
+				if (["All", "User", "Staff", "Mod", "Admin"].includes(value)) {
+					setUserParams?.(current => ({ ...current, Role: value as "All" | "User" | "Staff" | "Mod" | "Admin" }));
+				}
+			}}
+		/>
+	);
 });
 
 const LocationFilter = memo(({ visible }: { visible?: boolean }) => {

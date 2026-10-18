@@ -53,7 +53,7 @@ const RequestsMod = memo(function RequestsMod() {
 				<Box sx={{ mb: 2.5 }}>
 					<Box display="flex" alignItems="center" gap={1} flexWrap="wrap" mb={0.5}>
 						<Typography component="h1" variant="h5" sx={{ color: "#F2F4F3", fontWeight: 700, letterSpacing: "-0.03em" }}>
-							Hồ sơ đăng ký chủ nhà và điều hành viên
+							Hồ sơ đăng ký chủ nhà (Host)
 						</Typography>
 						<Box sx={{ px: 1, py: 0.35, bgcolor: "rgba(255, 178, 183, 0.1)", color: "#FFB2B7", borderRadius: "5px", fontSize: 11.5, fontWeight: 600 }}>
 							{totalApplications} chờ xét duyệt

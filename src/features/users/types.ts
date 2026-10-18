@@ -1,3 +1,6 @@
+export type UserRole = "User" | "Staff" | "Mod" | "Admin";
+export type UserStatus = "Active" | "Blocked";
+
 export type User = {
 	avatar?: string;
 	dateOfBirth?: string;
@@ -7,6 +10,10 @@ export type User = {
 	id: string;
 	name: string;
 	phoneNumber?: string;
+	role?: UserRole;
+	status?: UserStatus;
+	isBlocked?: boolean;
+	blockReason?: string;
 };
 
 export type CollapseUser = {
@@ -15,6 +22,10 @@ export type CollapseUser = {
 	email: string;
 	phoneNumber: string;
 	avatar: string;
+	role?: UserRole;
+	status?: UserStatus;
+	isBlocked?: boolean;
+	blockReason?: string;
 };
 
 export type DetailUser = {
@@ -28,4 +39,9 @@ export type DetailUser = {
 	description: string;
 	frontIdentityCard: string;
 	backIdentityCard: string;
+	role?: UserRole;
+	status?: UserStatus;
+	isBlocked?: boolean;
+	blockReason?: string;
 };
+

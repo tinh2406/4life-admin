@@ -1,4 +1,4 @@
-import { CollapseUser, DetailUser, User } from "../../features/users/types";
+import { CollapseUser, DetailUser, User, UserRole, UserStatus } from "../../features/users/types";
 import { Amenity } from "../../features/amenities/types";
 import { Location } from "../../features/locations/types";
 
@@ -13,7 +13,7 @@ export const initialAdminProfile: User = {
 	description: "Platform Operations & Super Administrator"
 };
 
-export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; detail: DetailUser })[] = [
+export const initialUsers: (CollapseUser & { role: UserRole; status: UserStatus; isBlocked: boolean; blockReason?: string; detail: DetailUser })[] = [
 	{
 		id: "usr-001",
 		name: "Le Hoang Nam",
@@ -21,6 +21,8 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 		phoneNumber: "0912345671",
 		avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=256&q=80",
 		role: "User",
+		status: "Active",
+		isBlocked: false,
 		detail: {
 			id: "usr-001",
 			name: "Le Hoang Nam",
@@ -29,7 +31,10 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 			avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=256&q=80",
 			dateOfBirth: "1996-03-12",
 			gender: true,
-			description: "Frequent traveler and travel blogger exploring Central Vietnam.",
+			role: "User",
+			status: "Active",
+			isBlocked: false,
+			description: "Khách hàng thân thiết, thường xuyên du lịch khu vực miền Trung.",
 			frontIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
 			backIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
 		}
@@ -41,6 +46,8 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 		phoneNumber: "0987654322",
 		avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=256&q=80",
 		role: "Mod",
+		status: "Active",
+		isBlocked: false,
 		detail: {
 			id: "usr-002",
 			name: "Tran Thi Mai",
@@ -49,7 +56,10 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 			avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=256&q=80",
 			dateOfBirth: "1992-11-20",
 			gender: false,
-			description: "Host of An Bang Beach Villa and 4 boutique apartments in Da Nang.",
+			role: "Mod",
+			status: "Active",
+			isBlocked: false,
+			description: "Chủ An Bang Beach Villa và chuỗi căn hộ boutique tại Đà Nẵng.",
 			frontIdentityCard: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
 			backIdentityCard: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
 		}
@@ -60,7 +70,9 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 		email: "duc.pham@traveler.com",
 		phoneNumber: "0934567893",
 		avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=256&q=80",
-		role: "User",
+		role: "Staff",
+		status: "Active",
+		isBlocked: false,
 		detail: {
 			id: "usr-003",
 			name: "Pham Minh Duc",
@@ -69,7 +81,10 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 			avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=256&q=80",
 			dateOfBirth: "1999-08-14",
 			gender: true,
-			description: "Tech worker and digital nomad based in Da Lat.",
+			role: "Staff",
+			status: "Active",
+			isBlocked: false,
+			description: "Chuyên viên vận hành hỗ trợ khách hàng và điều phối sự cố.",
 			frontIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
 			backIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
 		}
@@ -81,6 +96,8 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 		phoneNumber: "0905123454",
 		avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80",
 		role: "Mod",
+		status: "Active",
+		isBlocked: false,
 		detail: {
 			id: "usr-004",
 			name: "Do Thi Kim Ngan",
@@ -89,7 +106,10 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 			avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80",
 			dateOfBirth: "1988-04-05",
 			gender: false,
-			description: "Co-founder of Pine Hills Retreat Da Lat.",
+			role: "Mod",
+			status: "Active",
+			isBlocked: false,
+			description: "Đồng sáng lập Pine Hills Retreat Đà Lạt.",
 			frontIdentityCard: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
 			backIdentityCard: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
 		}
@@ -101,6 +121,9 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 		phoneNumber: "0971234565",
 		avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
 		role: "User",
+		status: "Blocked",
+		isBlocked: true,
+		blockReason: "Đã thêm vào danh sách đen do phát hiện thanh toán gian lận và hủy phòng liên tục",
 		detail: {
 			id: "usr-005",
 			name: "Nguyen Van An",
@@ -109,7 +132,11 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 			avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
 			dateOfBirth: "2000-01-25",
 			gender: true,
-			description: "University student and backpacker.",
+			role: "User",
+			status: "Blocked",
+			isBlocked: true,
+			blockReason: "Đã thêm vào danh sách đen do phát hiện thanh toán gian lận và hủy phòng liên tục",
+			description: "Tài khoản bị tạm khóa để xác minh danh tính.",
 			frontIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
 			backIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
 		}
@@ -121,6 +148,8 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 		phoneNumber: "0908765436",
 		avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
 		role: "Mod",
+		status: "Active",
+		isBlocked: false,
 		detail: {
 			id: "usr-006",
 			name: "Vo Thi Bich Thuy",
@@ -129,9 +158,37 @@ export const initialUsers: (CollapseUser & { role: "User" | "Mod" | "Admin"; det
 			avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
 			dateOfBirth: "1994-09-18",
 			gender: false,
-			description: "Host of Riverside Studio in Ho Chi Minh City.",
+			role: "Mod",
+			status: "Active",
+			isBlocked: false,
+			description: "Chủ hệ thống Riverside Studio tại Thành phố Hồ Chí Minh.",
 			frontIdentityCard: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
 			backIdentityCard: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+		}
+	},
+	{
+		id: "usr-007",
+		name: "Nguyen Quoc Tinh",
+		email: "admin@4life.vn",
+		phoneNumber: "0901234567",
+		avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+		role: "Admin",
+		status: "Active",
+		isBlocked: false,
+		detail: {
+			id: "usr-007",
+			name: "Nguyen Quoc Tinh",
+			email: "admin@4life.vn",
+			phoneNumber: "0901234567",
+			avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+			dateOfBirth: "1998-06-24",
+			gender: true,
+			role: "Admin",
+			status: "Active",
+			isBlocked: false,
+			description: "Quản trị viên trưởng hệ thống 4Life Platform.",
+			frontIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+			backIdentityCard: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
 		}
 	}
 ];
