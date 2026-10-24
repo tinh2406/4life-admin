@@ -13,7 +13,7 @@ const contained = {
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     minHeight: pxToRem(48),
     color: white.main,
-    outline: 0,
+    outline: "none",
     padding: `${pxToRem(12)} ${pxToRem(24)}`,
     outlineStyle: "none",
 
